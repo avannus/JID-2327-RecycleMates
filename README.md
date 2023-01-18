@@ -11,7 +11,7 @@ Jr Design Implementation
 * M
 * N
 
-[Licences under GNUv3 ](LICENSE)
+[License under GNUv](LICENSE)
 
 ## Release Notes
 
