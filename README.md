@@ -2,7 +2,7 @@
 
 Jr Design Implementation
 
-Authors:
+## Authors
 
 * Andrew VanNus
 * A
@@ -10,3 +10,20 @@ Authors:
 * J
 * M
 * N
+
+[Licences under GNUv3 ](LICENSE)
+
+## Release Notes
+
+### Version 0.1.0
+
+#### New Features
+
+* Initialized project!
+* ...
+
+#### Bug Fixes
+
+* N/A
+
+---
