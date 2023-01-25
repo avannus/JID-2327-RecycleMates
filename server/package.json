@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/avannus/JID-2327-RecycleMates/issues"
   },
-  "homepage": "https://github.com/avannus/JID-2327-RecycleMates#readme"
+  "homepage": "https://github.com/avannus/JID-2327-RecycleMates#readme",
+  "private": true
 }
