@@ -5,7 +5,7 @@ Jr Design Implementation
 ## Authors
 
 * Andrew VanNus
-* A
+* Avnee Naik
 * G
 * J
 * M
