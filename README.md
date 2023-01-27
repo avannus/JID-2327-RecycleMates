@@ -7,7 +7,7 @@ Jr Design Implementation
 * Andrew VanNus
 * A
 * G
-* J
+* Jenny Liu
 * M
 * N
 
