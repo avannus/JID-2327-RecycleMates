@@ -7,7 +7,7 @@ Jr Design Implementation
 * Andrew VanNus
 * Avnee Naik
 * G
-* J
+* Jenny Liu
 * May Everest
 * N
 
