@@ -8,7 +8,7 @@ Jr Design Implementation
 * A
 * G
 * J
-* M
+* May Everest
 * N
 
 [License under GPLv3](LICENSE)
