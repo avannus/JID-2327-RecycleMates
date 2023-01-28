@@ -1,4 +1,4 @@
-export { createUser } from './createUser.js';
-export { deleteUser } from './deleteUser.js';
-export { getUser } from './getUser.js';
-export { updateUser } from './updateUser.js';
+export * from './createUser.js';
+export * from './deleteUser.js';
+export * from './getUser.js';
+export * from './updateUser.js';
