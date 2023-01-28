@@ -1,17 +1,18 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true,
     "es2021": true
   },
   "extends": "xo",
   "overrides": [],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "rules": {
-    "object-curly-spacing": ["error", "always"],
+    "object-curly-spacing": ["warn", "always"],
     "capitalized-comments": "off",
-    "indent": ["error", 2]
+    "indent": ["warn", 2],
+    "arrow-parens": ["warn", "always"]
   }
 }

@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   },
   lastName: {
     type: String,
-    required: 'User must have a first name',
+    required: 'User must have a last name',
   },
   address: {
     type: String,

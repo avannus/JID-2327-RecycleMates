@@ -3,18 +3,17 @@ import { connect } from 'mongoose';
 import bp from 'body-parser';
 const { urlencoded, json } = bp;
 
-import './api/models/userModel.js'; // created model loading here
+import './api/models/userModel.js';
 import routes from './api/routes/routes.js';
-// eslint-disable-next-line no-unused-vars
-
-const app = express();
-const port = process.env.PORT || 3000;
 
 connect('mongodb://127.0.0.1:27017/RecycleMates');
 
+// init express server
+const app = express();
+const port = process.env.PORT || 3000;
+
 app.use(urlencoded({ extended: true }));
 app.use(json());
-// importing route
 routes(app); // register the route
 
 app.listen(port);

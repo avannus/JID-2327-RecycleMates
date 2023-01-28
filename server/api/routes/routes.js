@@ -3,7 +3,7 @@ import {
   getUser,
   updateUser,
   deleteUser,
-} from '../controllers/controller.js';
+} from '../controllers/index.js';
 
 export default app => {
   app.route('/users').post(createUser);
