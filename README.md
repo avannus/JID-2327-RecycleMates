@@ -20,7 +20,12 @@ Jr Design Implementation
 #### New Features
 
 * Initialized project!
-* ...
+* Created RESTful server with MongoDB
+* Created API calls for:
+  * Creating a user
+  * Modifying a user's account
+  * Deleting a user
+  * Fetching a user's information
 
 #### Bug Fixes
 
