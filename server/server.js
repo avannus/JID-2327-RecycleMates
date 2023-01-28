@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import { connect } from 'mongoose';
 import bp from 'body-parser';
@@ -6,7 +8,8 @@ const { urlencoded, json } = bp;
 import './api/models/userModel.js';
 import routes from './api/routes/routes.js';
 
-connect('mongodb://127.0.0.1:27017/RecycleMates');
+// add your connection url to .env if the default fails
+connect(process.env.MONGODB_CONNECTION_URL || 'mongodb://127.0.0.1:27017/RecycleMates');
 
 // init express server
 const app = express();
@@ -14,7 +17,7 @@ const port = process.env.PORT || 3000;
 
 app.use(urlencoded({ extended: true }));
 app.use(json());
-routes(app); // register the route
+routes(app);
 
 app.listen(port);
 
