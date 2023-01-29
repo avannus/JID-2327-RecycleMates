@@ -1,4 +1,4 @@
-export default function navBar(title) {
+function navBar({ title }) {
   return {
     title,
     headerStyle: {
@@ -10,3 +10,5 @@ export default function navBar(title) {
     },
   };
 }
+
+export default navBar;
