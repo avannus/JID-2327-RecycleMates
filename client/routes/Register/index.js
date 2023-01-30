@@ -3,10 +3,18 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
+import RMStyle from '../../RMStyle';
 
 function Register({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}
+    >
       <Text>Register</Text>
       <RMTextInput
         label='Email1'
@@ -44,7 +52,7 @@ function Register({ navigation }) {
       />
       <RMButton
         theme='primary'
-        label='Register!'
+        label='Continue'
         onPress={() => {
           navigation.navigate('RegisterInfo');
         }}

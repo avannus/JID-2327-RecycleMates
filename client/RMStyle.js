@@ -1,10 +1,11 @@
 const RMStyle = {
-  colorPrimary: '#8cd98c',
-  colorDark: '#466c46',
-  colorTertiary: '#B3D98C',
-  colorBackground: '#f2e2d9',
-  colorBackgroundButton: '#C4A484',
-  colorText: '#25292e',
+  colors: {
+    background: '#C4A484',
+    primary: '#8cd98c',
+    dark: '#466c46',
+    light: '#d9f2d9',
+    text: '#25292e',
+  },
 };
 
 export default RMStyle;

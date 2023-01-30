@@ -10,10 +10,8 @@ function Button({ label, onPress }) {
       style={[
         styles.buttonContainer,
         {
-          borderWidth: 2,
-          borderColor: RMStyle.colorDark,
-          borderRadius: 4,
           alignItems: 'center',
+          padding: 20,
         },
       ]}
     >
@@ -21,9 +19,12 @@ function Button({ label, onPress }) {
         style={[
           styles.button,
           {
-            backgroundColor: RMStyle.colorBackgroundButton,
-            borderRadius: 3,
+            backgroundColor: RMStyle.colors.primary,
+            borderRadius: 20,
             alignItems: 'center',
+            width: 150,
+            height: 60,
+            justifyContent: 'center',
           },
         ]}
         onPress={onPress}
@@ -34,7 +35,9 @@ function Button({ label, onPress }) {
           color={RMStyle.colorText}
           style={styles.buttonIcon}
         />
-        <Text style={[styles.buttonLabel, { color: RMStyle.colorText }]}>{label}</Text>
+        <Text style={[styles.buttonLabel, { color: RMStyle.colorText }]}>
+          {label}
+        </Text>
       </Pressable>
     </View>
   );

@@ -3,14 +3,22 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import Button from '../../components/RMButton';
 import RMTextInput from '../../components/RMTextInput';
+import RMStyle from '../../RMStyle';
 
 function Login({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}
+    >
       <Text>Login</Text>
       <RMTextInput
-        label='Username'
-        placeholder='Username or Email'
+        label='Email'
+        placeholder='Email'
         keyboardType='email-address'
         autoCapitalize='none'
         autoCompleteType='email'
