@@ -21,7 +21,7 @@ Jr Design Implementation
 
 * Initialized project!
 * Created RESTful server with MongoDB
-* Created API calls for:
+* Created API calls for the following:
   * Creating a user
   * Modifying a user's account
   * Deleting a user
@@ -39,6 +39,8 @@ Jr Design Implementation
 
 ### Known Bugs
 
-*
+* Emails aren't ensured to match
+* Passwords aren't ensured to match
+* You can go "back" from logging in
 
 ---
