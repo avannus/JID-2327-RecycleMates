@@ -26,7 +26,7 @@ Jr Design Implementation
   * Modifying a user's account
   * Deleting a user
   * Fetching a user's information
-* Created UI pages
+* Created UI pages with ReactNative and Expo
   * Landing page
   * Login page
   * Registration page
