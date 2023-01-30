@@ -26,9 +26,19 @@ Jr Design Implementation
   * Modifying a user's account
   * Deleting a user
   * Fetching a user's information
+* Created UI pages
+  * Landing page
+  * Login page
+  * Registration page
+  * Registration information page
+  * Home page (stub)
 
 #### Bug Fixes
 
 * N/A
+
+### Known Bugs
+
+*
 
 ---
