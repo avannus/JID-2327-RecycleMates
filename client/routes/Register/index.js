@@ -1,13 +1,22 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
+import RMText from '../../components/RMText';
+import RMStyle from '../../RMStyle';
 
 function Register({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Register</Text>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}
+    >
+      <RMText>Register</RMText>
       <RMTextInput
         label='Email1'
         placeholder='Email'
@@ -44,7 +53,7 @@ function Register({ navigation }) {
       />
       <RMButton
         theme='primary'
-        label='Register!'
+        label='Continue'
         onPress={() => {
           navigation.navigate('RegisterInfo');
         }}

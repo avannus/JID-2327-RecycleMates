@@ -1,8 +1,10 @@
+import RMStyle from '../../RMStyle';
+
 function navBar({ title }) {
   return {
     title,
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: RMStyle.colors.primary,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
