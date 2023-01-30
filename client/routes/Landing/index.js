@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Button from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
+import RMText from '../../components/RMText';
 
-function Entry({ navigation }) {
+function Landing({ navigation }) {
   return (
     <View
       style={{
@@ -14,7 +15,7 @@ function Entry({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <Text>Welcome to Recycle Mates!</Text>
+      <RMText>Welcome to Recycle Mates!</RMText>
       <Button
         label='Join Us!'
         onPress={() => {
@@ -31,4 +32,4 @@ function Entry({ navigation }) {
   );
 }
 
-export default Entry;
+export default Landing;

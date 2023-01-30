@@ -1,11 +1,18 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import RMText from '../../components/RMText';
+import RMStyle from '../../RMStyle';
 
 function Entry() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}>
+      <RMText>Home Screen</RMText>
     </View>
   );
 }
