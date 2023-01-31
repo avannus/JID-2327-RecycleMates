@@ -9,7 +9,7 @@ Jr Design Implementation
 * G
 * J
 * M
-* N
+* Nathan Haileyesus
 
 [License under GNUv3](LICENSE)
 
