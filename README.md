@@ -5,13 +5,13 @@ Jr Design Implementation
 ## Authors
 
 * Andrew VanNus
-* A
+* Avnee Naik
 * G
-* J
-* M
+* Jenny Liu
+* May Everest
 * Nathan Haileyesus
 
-[License under GNUv3](LICENSE)
+[License under GPLv3](LICENSE)
 
 ## Release Notes
 
@@ -20,10 +20,27 @@ Jr Design Implementation
 #### New Features
 
 * Initialized project!
-* ...
+* Created RESTful server with MongoDB
+* Created API calls for the following:
+  * Creating a user
+  * Modifying a user's account
+  * Deleting a user
+  * Fetching a user's information
+* Created UI pages with ReactNative and Expo
+  * Landing page
+  * Login page
+  * Registration page
+  * Registration information page
+  * Home page (stub)
 
 #### Bug Fixes
 
 * N/A
+
+### Known Bugs
+
+* Emails aren't ensured to match
+* Passwords aren't ensured to match
+* You can go "back" from logging in
 
 ---
