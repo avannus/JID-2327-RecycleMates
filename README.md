@@ -9,7 +9,7 @@ Jr Design Implementation
 * G
 * Jenny Liu
 * May Everest
-* N
+* Nathan Haileyesus
 
 [License under GPLv3](LICENSE)
 
