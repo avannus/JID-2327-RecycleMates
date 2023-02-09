@@ -11,6 +11,24 @@ Jr Design Implementation
 * May Everest
 * Nathan Haileyesus
 
+## Runtime Requirements
+
+Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links below assume you use brew.
+
+* [Node.js, npm](https://formulae.brew.sh/formula/node)
+* [MongoDB 6](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/) (for backend only)
+
+## Development Recommendations
+
+* General
+  * [VSCode](https://formulae.brew.sh/cask/visual-studio-code)
+    * [VSCode Extension: ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - finds issues with syntax, logic, and unifies code style for the project
+    * [VSCode Extension: Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Can automatically format messy code. Before committing, make sure it doesn't change parts of code you don't want to change!
+    * [Set up `code`](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) - open VSCode in a terminal with the `code <dir>` command, i.e. `code .`, `code server`, `code ~/GT/JID-2327-RecycleMates`
+* Back End
+  * [MongoDB Compass](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/) - a GUI tool to view and edit a MongoDB database
+  * [Postman](https://formulae.brew.sh/cask/postman) - a GUI tool to send RESTful API calls
+
 [License under GPLv3](LICENSE)
 
 ## Release Notes
