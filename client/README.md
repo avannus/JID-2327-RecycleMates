@@ -2,11 +2,21 @@
 
 ## To Run
 
-1. `cd` into the client directory
-2. `npm i`
-3. `npm run start` (or `npm start`)
+1. [Ensure node is installed](../README.md##Runtime-Requirements)
+2. Install dependencies
+   1. `cd` into the client directory
+   2. `npm i` (or `npm install`)
+3. Run with Expo
+   1. `npm run start` (or `npm start`)
+      1. One of the following to open the UI
+         1. Scan the QR code with a phone on the same network and the Expo app (I think you need to scan within the Expo app on Android)
+         2. Read the printout for other runtimes
 
-If you get the following bug, try `npm run startLegacy` instead of `npm run start`
+Note that Expo will try to auto-update if you make changes, but sometimes it crashes when doing so, and your viewer will be stuck with the last working code. Kill Expo with `ctrl+C` and reopen it with the above commands.
+
+---
+
+If you get the following crash on start, try `npm run startLegacy` instead of `npm run start`
 
 ```bash
 node:internal/crypto/hash:71
