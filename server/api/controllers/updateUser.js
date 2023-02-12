@@ -16,6 +16,7 @@ export function updateUser(req, res) {
     (err, usr) => {
       if (err) {
         res.send(err);
+        return;
       }
 
       res.json(usr);

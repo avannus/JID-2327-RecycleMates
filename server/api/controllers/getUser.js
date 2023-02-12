@@ -13,6 +13,7 @@ export function getUser(req, res) {
   User.findById(req.params.userId, (err, usr) => {
     if (err) {
       res.send(err);
+      return;
     }
 
     res.json(usr);

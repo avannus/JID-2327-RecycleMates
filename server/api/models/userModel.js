@@ -31,6 +31,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  password: {
+    type: String,
+    required: 'User must have a password',
+  },
 });
 
 export default model('Users', UserSchema);
