@@ -1,7 +1,21 @@
 const RMStyle = {
   colors: {
-    background: '#C4A484',
-    darkBrown: '#78522C',
+    background: '#FFF',
+    button: {
+      background: '#000',
+      text: '#FFF',
+      icon: '#FFF',
+      shadow: '#7DE093',
+    },
+    textInput: {
+      background: '#FFF',
+      text: '#000',
+      placeholder: '#777',
+      shadow: '#7DE093',
+      border: '#777',
+    },
+    // eslint-disable-next-line no-warning-comments
+    // TODO probably need to delete these and add specific colors for each component
     primary: '#8cd98c',
     dark: '#466c46',
     light: '#d9f2d9',

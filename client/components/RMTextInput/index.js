@@ -4,20 +4,25 @@ import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
 import RMStyle from '../../RMStyle';
 
+const colors = RMStyle.colors.textInput;
+
 function RMTextInput({ placeholder, secureTextEntry = false, ...props }) {
   return (
     <TextInput
       placeholder={placeholder}
+      placeholderTextColor={colors.placeholder}
       secureTextEntry={secureTextEntry}
       style={{
         height: 50,
         width: 300,
-        borderColor: RMStyle.colors.dark,
+        borderColor: colors.border,
         borderWidth: 1,
         paddingLeft: 40,
         margin: 10,
-        borderRadius: 20,
-        backgroundColor: RMStyle.colors.light,
+        borderRadius: 3,
+        backgroundColor: colors.background,
+        shadowColor: colors.shadow,
+        shadowOffset: { width: 2, height: 4 },
       }}
       {...props}
     />
