@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import Button from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
+const recyclingLogo = require('../../assets/recycling-symbol.png');
 
 function Landing({ navigation }) {
   return (
@@ -15,7 +16,23 @@ function Landing({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Welcome to Recycle Mates!</RMText>
+      <RMText
+        style={{
+          fontSize: 36,
+          padding: 0,
+        }}
+      >
+        Welcome to{'\n'}RecycleMates
+      </RMText>
+      <Image
+        source={recyclingLogo}
+        style={{
+          resizeMode: 'contain',
+          objectFit: 'center',
+          padding: 100,
+        }}
+      />
+      <RMText>Join us in our quest{'\n'}to make a better world!</RMText>
       <Button
         label='Join Us!'
         onPress={() => {
