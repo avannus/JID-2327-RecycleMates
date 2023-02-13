@@ -30,6 +30,8 @@ function Landing({ navigation }) {
           resizeMode: 'contain',
           objectFit: 'center',
           padding: 100,
+          width: 100,
+          height: 100
         }}
       />
       <RMText>Join us in our quest{'\n'}to make a better world!</RMText>
