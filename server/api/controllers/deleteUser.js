@@ -16,6 +16,7 @@ export function deleteUser(req, res) {
     (err, user) => {
       if (err) {
         res.send(err);
+        return;
       }
 
       res.json({ message: `User ${user} successfully deleted` });

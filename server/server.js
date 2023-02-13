@@ -24,5 +24,5 @@ app.listen(port);
 console.log(`RESTful API server started on: ${port}`);
 
 app.use((req, res) => {
-  res.status(404).send({ url: `${req.originalUrl} not found` });
+  res.status(404).send({ url: `404: ${req.method} on endpoint ${req.originalUrl} not found` });
 });
