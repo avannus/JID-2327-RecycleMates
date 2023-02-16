@@ -6,6 +6,7 @@ import Register from './Register';
 import Home from './Home';
 import RegisterInfo from './RegisterInfo';
 import Landing from './Landing';
+import AccountType from './Account Type';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ function RMRoutes() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Landing'>
         <Stack.Screen name='Landing' component={Landing} />
+        <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />

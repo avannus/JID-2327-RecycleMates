@@ -38,7 +38,7 @@ function Landing({ navigation }) {
       <Button
         label='Join Us!'
         onPress={() => {
-          navigation.navigate('Register');
+          navigation.navigate('Account Type');
         }}
       />
       <Button
