@@ -20,6 +20,7 @@ function Landing({ navigation }) {
         style={{
           fontSize: 36,
           padding: 0,
+          textAlign: 'center',
         }}
       >
         Welcome to{'\n'}RecycleMates
@@ -34,7 +35,14 @@ function Landing({ navigation }) {
           height: 100
         }}
       />
-      <RMText>Join us in our quest{'\n'}to make a better world!</RMText>
+      <RMText
+        style={{
+          fontSize: 20,
+          textAlign: 'center',
+        }}
+      >
+        Join us in our quest{'\n'}to make a better world!
+        </RMText>
       <Button
         label='Join Us!'
         onPress={() => {
