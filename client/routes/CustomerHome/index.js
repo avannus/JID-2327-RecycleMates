@@ -12,7 +12,7 @@ import Button from '../../components/RMButton';
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function Home({ navigation }) {
+function Home({ route, navigation }) {
   return (
     <View
       style={{

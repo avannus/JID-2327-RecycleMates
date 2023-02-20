@@ -29,13 +29,13 @@ function AccountType({ navigation }) {
         <Button
             label='I am a Customer'
             onPress={() => {
-            navigation.navigate('Register');
+            navigation.navigate('Register', { accountType: 'customer' });
             }}
         />
         <Button
             label='I am a Driver'
             onPress={() => {
-            navigation.navigate('Register');
+            navigation.navigate('Register', { accountType: 'driver' });
             }}
         />
     </View>
