@@ -50,10 +50,16 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
   * Registration page
   * Registration information page
   * Home page (stub)
+  * Active Pikcups Page
+  * Choose Account Types Pages
+
+
+
 
 #### Bug Fixes
 
-* N/A
+* Fixed sizing issue for logo on Landing page for IOS 
+* Fixed text alignment issue on Landing page
 
 ### Known Bugs
 
