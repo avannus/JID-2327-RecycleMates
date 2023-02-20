@@ -11,11 +11,14 @@ const User = model('Users');
  */
 
 export function createUser(req, res) {
-  const newUser = new User(req.body);
-  if (!newUser.username || !newUser.password) {
-    res.status(400).send({ error: true, message: 'Please provide username/password' });
+  if (!req.body.username || !req.body.password) {
+    res
+      .status(400)
+      .send({ error: true, message: 'Please provide username/password' });
     return;
   }
+
+  const newUser = new User(req.body);
 
   newUser.password = bcrypt.hashSync(req.body.password, BCRYPT_SALT_ROUNDS);
   newUser.save((err, usr) => {
@@ -23,6 +26,8 @@ export function createUser(req, res) {
       res.send(err);
       return;
     }
+
+    console.log('here3');
 
     res.json(usr);
   });

@@ -7,6 +7,14 @@ const UserSchema = new Schema({
     type: String,
     required: 'User must have a username',
   },
+  email: {
+    type: String,
+    required: 'User must have a username',
+  },
+  password: {
+    type: String,
+    required: 'User must have a password',
+  },
   firstName: {
     type: String,
     required: 'User must have a first name',
@@ -31,9 +39,9 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  password: {
+  accountType: {
     type: String,
-    required: 'User must have a password',
+    required: 'User must have an account type',
   },
 });
 

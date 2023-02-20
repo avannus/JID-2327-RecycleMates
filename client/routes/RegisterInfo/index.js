@@ -11,7 +11,7 @@ function Register({ route, navigation }) {
   const [lastName, setLastName] = React.useState();
   const [address, setAddress] = React.useState();
   const [city, setCity] = React.useState();
-  const [zipCode, setZipCode] = React.useState();
+  const [zip, setZipCode] = React.useState();
 
   return (
     <View
@@ -70,21 +70,34 @@ function Register({ route, navigation }) {
       <RMButton
         theme='primary'
         label='Create Account!'
-        onPress={() => {
+        onPress={async () => {
           // TODO: Add validation
           const regInfo = {
+            username: route.params.email,
+            email: route.params.email,
+            password: route.params.password,
             firstName,
             lastName,
             address,
             city,
-            zipCode,
-            email: route.params.email,
-            password: route.params.password,
+            zip,
             accountType: route.params.accountType,
           };
-          // TODO: api call to create account
-          // TODO: prompt the user to verify their email
-          navigation.navigate('ConfirmEmail', regInfo);
+          // const response = await fetch('http://localhost:3000/cors', { mode: 'cors' });
+          // console.log(JSON.stringify(response));
+          fetch('http://localhost:3000/user/create', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              // 'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(regInfo),
+          }).then((response) => {
+            console.log('here');
+            console.log(JSON.stringify(response));
+            navigation.navigate('ConfirmEmail', regInfo);
+          });
         }}
       />
     </View>
