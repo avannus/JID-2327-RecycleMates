@@ -38,7 +38,17 @@ function Login({ navigation }) {
         theme='primary'
         label='Login'
         onPress={() => {
-          navigation.navigate('Home');
+          // TODO api call
+          const homeScreenInfo = {
+            firstName: 'John',
+            city: 'Default City',
+            accountType: 'driver',
+          };
+          if (homeScreenInfo.accountType === 'customer') {
+            navigation.navigate('CustomerHome', homeScreenInfo);
+          } else if (homeScreenInfo.accountType === 'driver') {
+            navigation.navigate('DriverHome', homeScreenInfo);
+          }
         }}
       />
     </View>

@@ -6,7 +6,13 @@ import RMButton from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
 
-function Register({ navigation }) {
+function Register({ route, navigation }) {
+  const [firstName, setFirstName] = React.useState();
+  const [lastName, setLastName] = React.useState();
+  const [address, setAddress] = React.useState();
+  const [city, setCity] = React.useState();
+  const [zipCode, setZipCode] = React.useState();
+
   return (
     <View
       style={{
@@ -24,6 +30,7 @@ function Register({ navigation }) {
         autoCapitalize='words'
         autoCompleteType='name'
         textContentType='name'
+        onChangeText={(newText) => setFirstName(newText)}
       />
       <RMTextInput
         label='Last Name'
@@ -32,6 +39,7 @@ function Register({ navigation }) {
         autoCapitalize='words'
         autoCompleteType='name'
         textContentType='name'
+        onChangeText={(newText) => setLastName(newText)}
       />
       <RMTextInput
         label='Address'
@@ -40,6 +48,7 @@ function Register({ navigation }) {
         autoCapitalize='words'
         autoCompleteType='street-address'
         textContentType='streetAddressLine1'
+        onChangeText={(newText) => setAddress(newText)}
       />
       <RMTextInput
         label='City'
@@ -47,6 +56,7 @@ function Register({ navigation }) {
         keyboardType='default'
         autoCapitalize='words'
         textContentType='addressCity'
+        onChangeText={(newText) => setCity(newText)}
       />
       <RMTextInput
         label='Zip Code'
@@ -55,12 +65,26 @@ function Register({ navigation }) {
         autoCapitalize='words'
         autoCompleteType='postal-code'
         textContentType='postalCode'
+        onChangeText={(newText) => setZipCode(newText)}
       />
       <RMButton
         theme='primary'
         label='Create Account!'
         onPress={() => {
-          navigation.navigate('Home');
+          // TODO: Add validation
+          const regInfo = {
+            firstName,
+            lastName,
+            address,
+            city,
+            zipCode,
+            email: route.params.email,
+            password: route.params.password,
+            accountType: route.params.accountType,
+          };
+          // TODO: api call to create account
+          // TODO: prompt the user to verify their email
+          navigation.navigate('ConfirmEmail', regInfo);
         }}
       />
     </View>

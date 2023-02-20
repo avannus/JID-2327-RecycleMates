@@ -3,12 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Login';
 import Register from './Register';
-import Home from './Home';
+import CustomerHome from './CustomerHome';
 import RegisterInfo from './RegisterInfo';
 import Landing from './Landing';
 import AccountType from './Account Type';
 import Edit from './Edit';
 import DriverHome from './DriverHome';
+import ConfirmEmail from './ConfirmEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +22,10 @@ function RMRoutes() {
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
-        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='CustomerHome' component={CustomerHome} />
         <Stack.Screen name ='Edit' component={Edit} />
         <Stack.Screen name ='DriverHome' component={DriverHome} />
+        <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

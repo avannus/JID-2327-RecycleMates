@@ -6,7 +6,12 @@ import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 
-function Register({ navigation }) {
+function Register({ route, navigation }) {
+  const [email, setEmail] = React.useState();
+  const [confirmEmail, setConfirmEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [confirmPassword, setConfirmPassword] = React.useState();
+
   return (
     <View
       style={{
@@ -24,6 +29,7 @@ function Register({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='email'
         textContentType='emailAddress'
+        onChangeText={(newText) => setEmail(newText)}
       />
       <RMTextInput
         label='Email2'
@@ -32,6 +38,7 @@ function Register({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='email'
         textContentType='emailAddress'
+        onChangeText={(newText) => setConfirmEmail(newText)}
       />
       <RMTextInput
         label='Password1'
@@ -41,6 +48,7 @@ function Register({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='new-password'
         textContentType='password'
+        onChangeText={(newText) => setPassword(newText)}
       />
       <RMTextInput
         label='Password2'
@@ -50,12 +58,20 @@ function Register({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='password'
         textContentType='password'
+        onChangeText={(newText) => setConfirmPassword(newText)}
       />
       <RMButton
         theme='primary'
         label='Continue'
         onPress={() => {
-          navigation.navigate('RegisterInfo');
+          console.log('here');
+          // TODO: confirm email and password match here
+          const regInfo = {
+            email,
+            password,
+            accountType: route.params.accountType,
+          };
+          navigation.navigate('RegisterInfo', regInfo);
         }}
       />
     </View>
