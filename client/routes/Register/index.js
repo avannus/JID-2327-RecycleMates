@@ -11,6 +11,7 @@ function Register({ route, navigation }) {
   const [confirmEmail, setConfirmEmail] = React.useState();
   const [password, setPassword] = React.useState();
   const [confirmPassword, setConfirmPassword] = React.useState();
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   return (
     <View
@@ -68,12 +69,23 @@ function Register({ route, navigation }) {
           // TODO: confirm email and password match here
           const regInfo = {
             email,
+            confirmEmail,
             password,
+            confirmPassword,
             accountType: route.params.accountType,
           };
-          navigation.navigate('RegisterInfo', regInfo);
+          
+          
+          if (email === confirmEmail && password === confirmPassword) {
+            navigation.navigate('RegisterInfo', regInfo);
+          } else {
+            setErrorMessage('Emails and passwords must match');
+          }          
         }}
       />
+
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      
     </View>
   );
 }
