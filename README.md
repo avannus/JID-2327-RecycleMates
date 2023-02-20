@@ -33,6 +33,23 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 ## Release Notes
 
+### Version 0.2.0
+
+#### New Features
+
+* Created initial UI Customer and Driver home pages
+
+#### Bug Fixes
+
+* Fixed button overflow on home screens for certain resolutions
+
+### Known Bugs
+
+* Home screen buttons may overflow on certain other resolutions
+* There's no way to scroll on the home screen when additional information gets added
+
+---
+
 ### Version 0.1.0
 
 #### New Features
