@@ -38,7 +38,8 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 #### New Features
 
 * Refreshed UI Theme
-* Customer and Driver Home Page
+* Customer Home Page
+* Driver Home Page
 * Active Pickups Page
 * Choose Account Types Page
 * Account editing page
