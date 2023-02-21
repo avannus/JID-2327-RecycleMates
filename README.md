@@ -44,8 +44,6 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 * Fixed button overflow on home screens for certain resolutions
 * Ensured emails and passwords must match before moving from register screen to register info screen
 
-
-
 ### Known Bugs
 
 * Home screen buttons may overflow on certain other resolutions
