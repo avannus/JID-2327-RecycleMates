@@ -37,17 +37,26 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 #### New Features
 
-* Created initial UI Customer and Driver home pages
+* Refreshed UI Theme
+* Customer Home Page
+* Driver Home Page
+* Active Pickups Page
+* Choose Account Types Page
+* Account editing page
+* Hashed and Salted Password Storage
+* Rewrite of Backend Schema to allow Account Types
 
 #### Bug Fixes
 
 * Fixed button overflow on home screens for certain resolutions
 * Ensured emails and passwords must match before moving from register screen to register info screen
+* Data from previous screens is propagated on account registration
 
-### Known Bugs
+#### Known Bugs
 
 * Home screen buttons may overflow on certain other resolutions
 * There's no way to scroll on the home screen when additional information gets added
+* Back button still appears after logging in
 
 ---
 
@@ -68,18 +77,13 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
   * Registration page
   * Registration information page
   * Home page (stub)
-  * Active Pikcups Page
-  * Choose Account Types Pages
-
-
-
 
 #### Bug Fixes
 
 * Fixed sizing issue for logo on Landing page for IOS 
 * Fixed text alignment issue on Landing page
 
-### Known Bugs
+#### Known Bugs
 
 * Emails aren't ensured to match
 * Passwords aren't ensured to match
