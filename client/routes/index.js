@@ -10,6 +10,7 @@ import AccountType from './Account Type';
 import Edit from './Edit';
 import DriverHome from './DriverHome';
 import ConfirmEmail from './ConfirmEmail';
+import ForgotPass from './ForgotPass';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ function RMRoutes() {
         <Stack.Screen name ='Edit' component={Edit} />
         <Stack.Screen name ='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
+        <Stack.Screen name='ForgotPass' component={ForgotPass} />
       </Stack.Navigator>
     </NavigationContainer>
   );
