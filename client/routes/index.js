@@ -11,6 +11,7 @@ import Edit from './Edit';
 import DriverHome from './DriverHome';
 import ConfirmEmail from './ConfirmEmail';
 import ForgotPass from './ForgotPass';
+import ActivePickups from './Active Pickups - Driver';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,8 @@ function RMRoutes() {
         <Stack.Screen name ='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
         <Stack.Screen name='ForgotPass' component={ForgotPass} />
-      </Stack.Navigator>
+        <Stack.Screen name='Active Pickups' component={ActivePickups} />
+      </Stack.Navigator> 
     </NavigationContainer>
   );
 }
