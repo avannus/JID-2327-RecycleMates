@@ -1,0 +1,64 @@
+/* eslint-disable react/prop-types */
+import * as React from 'react';
+import { View } from 'react-native';
+import RMText from '../../components/RMText';
+import RMStyle from '../../RMStyle';
+import Button from '../../components/RMButton';
+import RMTextInput from '../../components/RMTextInput';
+
+function ForgotPass({ route, navigation }) {
+  const [visible, setVisible] = React.useState(true);
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}
+    >
+      {visible && (
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <RMText>
+            If you have forgotten your password, enter your email below
+            and we'll send you a link to reset your password.
+          </RMText>
+          <RMTextInput
+            label='Email'
+            placeholder='Email address'
+            secureTextEntry={false}
+            keyboardType='default'
+            autoCapitalize='none'
+            autoCompleteType='email'
+          ></RMTextInput>
+          <Button
+            label='Reset Password'
+            onPress={() => {
+              setVisible(false);
+            }}
+          ></Button>
+        </View>
+      )}
+      {!visible && (
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <RMText>
+            A link to reset your password has been sent to your email.
+          </RMText>
+          <Button
+            label='Back to login'
+            onPress={() => {
+              navigation.navigate('Login');
+            }}
+          ></Button>
+        </View>
+      )}
+    </View>
+  );
+}
+
+export default ForgotPass;
