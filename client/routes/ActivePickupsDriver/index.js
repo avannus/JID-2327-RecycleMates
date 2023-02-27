@@ -4,7 +4,7 @@ import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 
-function ActivePickups({ navigation }) {
+function ActivePickupsDriver({ navigation }) {
   return (
     <View
       style={{
@@ -51,5 +51,5 @@ function ActivePickups({ navigation }) {
   );
 }
 
-export default ActivePickups;
+export default ActivePickupsDriver;
 
