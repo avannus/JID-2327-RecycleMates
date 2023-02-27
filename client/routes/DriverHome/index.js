@@ -51,7 +51,7 @@ function DriverHome({ navigation }) {
       >
         <Button
           label='View Available Routes'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('AvailableRoutes')}
         />
         <Button
           label='Begin Next Route'
