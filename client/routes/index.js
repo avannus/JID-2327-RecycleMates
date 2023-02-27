@@ -13,6 +13,7 @@ import ConfirmEmail from './ConfirmEmail';
 import ForgotPass from './ForgotPass';
 import ActivePickups from './Active Pickups - Driver';
 import AvailableRoutes from './Driver - Available Routes';
+import DescribeMaterial from './DescribeMaterial';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ function RMRoutes() {
         <Stack.Screen name='ForgotPass' component={ForgotPass} />
         <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} />
         <Stack.Screen name='Active Pickups' component={ActivePickups} />
+        <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
       </Stack.Navigator> 
     </NavigationContainer>
   );
