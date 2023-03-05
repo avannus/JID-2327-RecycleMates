@@ -9,7 +9,7 @@ import Button from '../../components/RMButton';
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function Home({ route, navigation }) {
+function CustomerHome({ route, navigation }) {
   return (
     <ScrollView>
       <View style={styles.header}>
@@ -61,28 +61,28 @@ function Home({ route, navigation }) {
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
-    height: '40%',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#399431',
+    justifyContent: 'center',
+    height: '40%',
+    width: '100%',
   },
   buttonContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: RMStyle.colors.background,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '100%',
-    backgroundColor: RMStyle.colors.background,
+    justifyContent: 'center',
     padding: 10,
+    width: '100%',
   },
   currentPickups: {
-    backgroundColor: RMStyle.colors.background,
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
+    justifyContent: 'center',
     padding: 10,
   },
 });
 
-export default Home;
+export default CustomerHome;

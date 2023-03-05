@@ -1,35 +1,25 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
-
-// Buttons are overflowing
-// UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container, 
-// which was the lowest it could go without overflowing
-// I think the lowest we need to design for is 320 pixels so I need to find another solution
+// The page keeps bouncing back up on iOS when you scroll down
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
 // Maybe update driver messages
 function DriverHome({ navigation }) {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: RMStyle.colors.background,
-      }}
-    >
+    <ScrollView>
       <View style={styles.header}>
         <RMText style={{ color: '#ffffff', fontSize: 40 }}>
           Confirm a pickup
         </RMText>
         <RMText style={{ color: '#ffffff' }}>
-        RecycleMates customers are currently waiting for their recyclables to be picked up.
+          Recycle Mates customers are currently waiting for their recyclables to
+          be picked up.
         </RMText>
         <Button
           label='Your Current Active Pickups'
@@ -38,17 +28,7 @@ function DriverHome({ navigation }) {
           }}
         />
       </View>
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          width: 440,
-          backgroundColor: RMStyle.colors.background,
-        }}
-      >
+      <View style={styles.buttonContainer}>
         <Button
           label='View Available Routes'
           onPress={() => navigation.navigate('AvailableRoutes')}
@@ -62,12 +42,12 @@ function DriverHome({ navigation }) {
           onPress={() => navigation.navigate(null)}
         />
       </View>
-      <View style={{ flex: 1 }}>
+      <View style={styles.currentRoutes}>
         <RMText style={{ fontSize: 40 }}>Current Routes</RMText>
         <RMText>Monday, 4pm-8pm</RMText>
         <RMText>Thursday, 8am-12pm</RMText>
       </View>
-      <View style={{ flex: 0.7 }}>
+      <View style={{ backgroundColor: RMStyle.colors.background }}>
         <Button
           label='Edit Account Info'
           onPress={() => {
@@ -75,17 +55,33 @@ function DriverHome({ navigation }) {
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
-    height: '40%',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#399431',
+    justifyContent: 'center',
+    height: '40%',
+    width: '100%',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%',
+  },
+  currentRoutes: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
   },
 });
 
