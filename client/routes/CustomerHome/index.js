@@ -5,13 +5,12 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
-// The page keeps bouncing back up on iOS when you scroll down
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
 function CustomerHome({ route, navigation }) {
   return (
-    <ScrollView>
+    <ScrollView styles={styles.container}>
       <View style={styles.header}>
         <RMText style={{ color: '#ffffff', fontSize: 40 }}>
           Schedule a pickup
@@ -47,7 +46,7 @@ function CustomerHome({ route, navigation }) {
         <RMText style={{ fontSize: 40 }}>Current Pickups</RMText>
         <RMText>Monday, 6 pm - 8 pm</RMText>
       </View>
-      <View style={{ backgroundColor: RMStyle.colors.background }}>
+      <View style={styles.footer}>
         <Button
           label='Edit Account Info'
           onPress={() => {
@@ -60,11 +59,15 @@ function CustomerHome({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: RMStyle.colors.background,
+    flex: 1,
+  },
   header: {
     alignItems: 'center',
     backgroundColor: '#399431',
     justifyContent: 'center',
-    height: '40%',
+    height: 300,
     width: '100%',
   },
   buttonContainer: {
@@ -82,6 +85,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 10,
+  },
+  footer: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%',
   },
 });
 

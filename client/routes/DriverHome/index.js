@@ -5,14 +5,12 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
-// The page keeps bouncing back up on iOS when you scroll down
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-// Maybe update driver messages
 function DriverHome({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <RMText style={{ color: '#ffffff', fontSize: 40 }}>
           Confirm a pickup
@@ -47,7 +45,7 @@ function DriverHome({ navigation }) {
         <RMText>Monday, 4pm-8pm</RMText>
         <RMText>Thursday, 8am-12pm</RMText>
       </View>
-      <View style={{ backgroundColor: RMStyle.colors.background }}>
+      <View style={styles.footer}>
         <Button
           label='Edit Account Info'
           onPress={() => {
@@ -60,11 +58,15 @@ function DriverHome({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: RMStyle.colors.background,
+  },
   header: {
     alignItems: 'center',
     backgroundColor: '#399431',
     justifyContent: 'center',
-    height: '40%',
+    height: 300,
     width: '100%',
   },
   buttonContainer: {
@@ -82,6 +84,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 10,
+  },
+  footer: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    width: '100%',
   },
 });
 
