@@ -29,8 +29,8 @@ function RMRoutes() {
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
         <Stack.Screen name='CustomerHome' component={CustomerHome} />
-        <Stack.Screen name ='Edit' component={Edit} />
-        <Stack.Screen name ='DriverHome' component={DriverHome} />
+        <Stack.Screen name='Edit' component={Edit} />
+        <Stack.Screen name='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
         <Stack.Screen name='ForgotPass' component={ForgotPass} />
         <Stack.Screen name='ActivePickups' component={ActivePickups} />
