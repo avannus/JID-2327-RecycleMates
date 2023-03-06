@@ -74,6 +74,7 @@ function Edit({ navigation }) {
         theme='primary'
         label='Continue'
         onPress={() => {
+          // TODO should not continue to RegisterInfo
           navigation.navigate('RegisterInfo');
         }}
       />
