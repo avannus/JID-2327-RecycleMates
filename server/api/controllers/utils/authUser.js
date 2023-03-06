@@ -10,6 +10,7 @@ const User = model('Users');
  */
 
 export function authUser(req) {
+  // TODO this isn't thennable
   if (!req.body.username || !req.body.password) {
     return {
       error: 'Please provide username/password',
