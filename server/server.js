@@ -20,9 +20,7 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 routes(app);
 
-app.use(cors({
-  origin: '*',
-}));
+app.use(cors());
 app.get('/', (req, res, next) => {
   res.json({ message: 'Welcome to the RecycleMates API' });
   next();

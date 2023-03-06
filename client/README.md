@@ -3,18 +3,34 @@
 ## To Run
 
 1. [Ensure node is installed](../README.md##Runtime-Requirements)
-2. Install dependencies
+2. Create a `.env` file in this directory `<project>/client/.env`
+3. Add SERVER as a key/value pair
+   1. `SERVER=http://localhost:3000/`
+   2. `SERVER=http://192.168.86.41:3000/`
+4. Install dependencies
    1. `cd` into the client directory
    2. `npm i` (or `npm install`)
-3. Run with Expo
+5. Run with Expo
    1. `npm run start` (or `npm start`)
       1. One of the following to open the UI
          1. Scan the QR code with a phone on the same network and the Expo app (I think you need to scan within the Expo app on Android)
          2. Read the printout for other run-time options
 
-Note that Expo will try to auto-update if you make changes, but sometimes it crashes when doing so, and your viewer will be stuck with the last working code. Kill Expo with `ctrl+C` and reopen it with the above commands.
+## Get working in a browser
+
+You must disable CORS to get this working within a browser.
+
+**Note that this is a security risk to leave on outside of development.**
+
+Here is a firefox extension to do so: https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/
+
+## Notes
+
+Expo will try to auto-update if you make changes, but sometimes it crashes when doing so, and your viewer will be stuck with the last working code. Kill Expo with `ctrl+C` and reopen it with the above commands.
 
 ---
+
+## Crashes
 
 If you get the following crash on start, try `npm run startLegacy` instead of `npm run start`
 

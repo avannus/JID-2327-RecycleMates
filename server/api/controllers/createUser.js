@@ -23,12 +23,15 @@ export function createUser(req, res) {
   newUser.password = bcrypt.hashSync(req.body.password, BCRYPT_SALT_ROUNDS);
   newUser.save((err, usr) => {
     if (err) {
+      console.log('createUser error: ', err);
       res.send(err);
       return;
     }
 
-    console.log('here3');
+    console.log('createUser usr: ', usr);
 
     res.json(usr);
+
+    console.log('res: \n', res);
   });
 }

@@ -5,6 +5,7 @@ import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
+import { SERVER } from '@env';
 
 function Register({ route, navigation }) {
   const [firstName, setFirstName] = React.useState();
@@ -85,16 +86,15 @@ function Register({ route, navigation }) {
           };
           // const response = await fetch('http://localhost:3000/cors', { mode: 'cors' });
           // console.log(JSON.stringify(response));
-          fetch('http://localhost:3000/user/create', {
+          fetch(`${SERVER}user/create`, {
             method: 'POST',
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              // 'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(regInfo),
           }).then((response) => {
-            console.log('here');
             console.log(JSON.stringify(response));
             navigation.navigate('ConfirmEmail', regInfo);
           });
