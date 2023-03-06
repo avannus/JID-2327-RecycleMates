@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: 'User must have a username',
+    required: 'User must have a email',
   },
   password: {
     type: String,
@@ -42,6 +42,11 @@ const UserSchema = new Schema({
   accountType: {
     type: String,
     required: 'User must have an account type',
+  },
+  isVerified: {
+    type: Boolean,
+    // TODO - change to false once email verification is implemented
+    default: true,
   },
 });
 
