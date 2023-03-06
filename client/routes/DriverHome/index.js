@@ -5,7 +5,6 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
-
 // Buttons are overflowing
 // UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container, 
 // which was the lowest it could go without overflowing

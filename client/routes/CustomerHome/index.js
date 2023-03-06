@@ -6,7 +6,7 @@ import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
 // Buttons are overflowing
-// UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container, 
+// UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container,
 // which was the lowest it could go without overflowing
 // I think the lowest we need to design for is 320 pixels so I need to find another solution
 // Buttons need to navigate to pages

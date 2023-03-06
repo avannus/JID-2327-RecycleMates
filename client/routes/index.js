@@ -38,7 +38,7 @@ function RMRoutes() {
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
-      </Stack.Navigator> 
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

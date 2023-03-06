@@ -62,8 +62,8 @@ function Edit({ navigation }) {
         textContentType='city'
       />
       <RMTextInput
-        label='Zipcode'
-        placeholder='Pickup Zipcode'
+        label='Zip Code'
+        placeholder='Pickup Zip Code'
         secureTextEntry={true}
         keyboardType='default'
         autoCapitalize='none'

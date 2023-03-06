@@ -14,39 +14,39 @@ function ActivePickupsDriver({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-        <RMText
+      <RMText
         style={{
-            justifyContent: 'center',
-            fontSize: 36,
-            marginBottom: 100,
-            textAlign: 'center',
+          justifyContent: 'center',
+          fontSize: 36,
+          marginBottom: 100,
+          textAlign: 'center',
 
         }}
-        >
+      >
         Active Pickups
-        </RMText>
-        
-        <RMText>(Map Shown Here)</RMText>
+      </RMText>
 
-        <Button
-            label='Confirm Pickup'
-            onPress={() => {
-            navigation.navigate('Final Route');
-            }}
-        />
-        <Button
-            label='Drop off Recycled Goods'
-            onPress={() => {
-            navigation.navigate('Dropoff Goods');
-            }}
-        />
+      <RMText>(Map Shown Here)</RMText>
 
-        <Button
-            label='Cancel Pickup'
-            onPress={() => {
-            navigation.navigate('Cancel Route');
-            }}
-        />
+      <Button
+        label='Confirm Pickup'
+        onPress={() => {
+          navigation.navigate('Final Route');
+        }}
+      />
+      <Button
+        label='Drop off Recycled Goods'
+        onPress={() => {
+          navigation.navigate('Drop Off Goods');
+        }}
+      />
+
+      <Button
+        label='Cancel Pickup'
+        onPress={() => {
+          navigation.navigate('Cancel Route');
+        }}
+      />
     </View>
   );
 }

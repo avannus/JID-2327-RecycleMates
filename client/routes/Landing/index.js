@@ -32,7 +32,7 @@ function Landing({ navigation }) {
           objectFit: 'center',
           padding: 100,
           width: 100,
-          height: 100
+          height: 100,
         }}
       />
       <RMText
@@ -42,7 +42,7 @@ function Landing({ navigation }) {
         }}
       >
         Join us in our quest{'\n'}to make a better world!
-        </RMText>
+      </RMText>
       <Button
         label='Join Us!'
         onPress={() => {

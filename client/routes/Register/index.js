@@ -7,10 +7,10 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 
 function Register({ route, navigation }) {
-  const [email, setEmail] = React.useState("");
-  const [confirmEmail, setConfirmEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [confirmEmail, setConfirmEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
 
   return (
@@ -74,16 +74,13 @@ function Register({ route, navigation }) {
             confirmPassword,
             accountType: route.params.accountType,
           };
-          
-          
+
           if (email === confirmEmail && password === confirmPassword) {
             if (email.length === 0 || password.length === 0) {
               setErrorMessage('Emails or passwords cannot be empty.');
-            }
-            else {
+            } else {
               navigation.navigate('RegisterInfo', regInfo);
             }
-           
           } else {
             setErrorMessage('Emails and passwords must match.');
           }
@@ -91,7 +88,7 @@ function Register({ route, navigation }) {
       />
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      
+
     </View>
   );
 }
