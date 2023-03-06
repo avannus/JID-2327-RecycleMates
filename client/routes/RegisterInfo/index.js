@@ -5,7 +5,7 @@ import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
-import { SERVER } from '@env';
+import { SERVER } from 'RMenv';
 
 function Register({ route, navigation }) {
   const [firstName, setFirstName] = React.useState();

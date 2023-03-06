@@ -5,8 +5,7 @@
 1. [Ensure node is installed](../README.md##Runtime-Requirements)
 2. Create a `.env` file in this directory `<project>/client/.env`
 3. Add SERVER as a key/value pair
-   1. `SERVER=http://localhost:3000/`
-   2. `SERVER=http://192.168.86.41:3000/`
+   1. `SERVER=http://192.168.86.234:3000/`
 4. Install dependencies
    1. `cd` into the client directory
    2. `npm i` (or `npm install`)
