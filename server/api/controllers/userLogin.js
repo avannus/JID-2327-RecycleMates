@@ -1,4 +1,4 @@
-import { authUser } from '../utils/authUser.js';
+import { authUser } from './utils/authUser.js';
 
 /**
  * User login
