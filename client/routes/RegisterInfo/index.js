@@ -12,7 +12,7 @@ function Register({ route, navigation }) {
   const [lastName, setLastName] = React.useState();
   const [address, setAddress] = React.useState();
   const [city, setCity] = React.useState();
-  const [zip, setZipCode] = React.useState();
+  const [zip, setZip] = React.useState();
 
   return (
     <View
@@ -66,7 +66,7 @@ function Register({ route, navigation }) {
         autoCapitalize='words'
         autoCompleteType='postal-code'
         textContentType='postalCode'
-        onChangeText={(newText) => setZipCode(newText)}
+        onChangeText={(newText) => setZip(newText)}
       />
       <RMButton
         theme='primary'
@@ -84,8 +84,6 @@ function Register({ route, navigation }) {
             zip,
             accountType: route.params.accountType,
           };
-          // const response = await fetch('http://localhost:3000/cors', { mode: 'cors' });
-          // console.log(JSON.stringify(response));
           fetch(`${SERVER}user/create`, {
             method: 'POST',
             headers: {
@@ -95,6 +93,7 @@ function Register({ route, navigation }) {
             },
             body: JSON.stringify(regInfo),
           }).then((response) => {
+            // TODO update API to send back just needed info for confirm email screen, update navigation call
             console.log(JSON.stringify(response));
             navigation.navigate('ConfirmEmail', regInfo);
           });
