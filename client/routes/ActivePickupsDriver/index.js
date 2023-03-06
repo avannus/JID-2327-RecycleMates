@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import PropTypes from 'prop-types';
 
 function ActivePickupsDriver({ navigation }) {
   return (
@@ -50,6 +51,10 @@ function ActivePickupsDriver({ navigation }) {
     </View>
   );
 }
+
+ActivePickupsDriver.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default ActivePickupsDriver;
 

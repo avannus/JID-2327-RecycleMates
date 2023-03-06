@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 
-function AvailableRoutes({ navigation }) {
+function AvailableRoutes() {
   return (
     <View
       style={{

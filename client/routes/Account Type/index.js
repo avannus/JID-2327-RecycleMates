@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import PropTypes from 'prop-types';
 
 function AccountType({ navigation }) {
   return (
@@ -41,5 +42,9 @@ function AccountType({ navigation }) {
     </View>
   );
 }
+
+AccountType.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default AccountType;

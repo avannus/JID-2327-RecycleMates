@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import PropTypes from 'prop-types';
 
 function DescribeMaterial({ navigation }) {
   return (
@@ -45,5 +45,9 @@ function DescribeMaterial({ navigation }) {
     </View>
   );
 }
+
+DescribeMaterial.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default DescribeMaterial;

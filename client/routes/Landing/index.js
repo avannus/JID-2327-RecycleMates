@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View, Image } from 'react-native';
 import Button from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
 const recyclingLogo = require('../../assets/recycling-symbol.png');
+import PropTypes from 'prop-types';
 
 function Landing({ navigation }) {
   return (
@@ -58,5 +58,9 @@ function Landing({ navigation }) {
     </View>
   );
 }
+
+Landing.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default Landing;

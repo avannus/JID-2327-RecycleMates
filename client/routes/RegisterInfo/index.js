@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
+import PropTypes from 'prop-types';
 
 function Register({ route, navigation }) {
   const [firstName, setFirstName] = React.useState();
@@ -90,5 +90,10 @@ function Register({ route, navigation }) {
     </View>
   );
 }
+
+Register.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 
 export default Register;

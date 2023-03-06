@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
+import PropTypes from 'prop-types';
 
 // Buttons are overflowing
 // UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container,
@@ -12,7 +12,7 @@ import Button from '../../components/RMButton';
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function Home({ route, navigation }) {
+function Home({ navigation }) {
   return (
     <View
       style={{
@@ -78,6 +78,10 @@ function Home({ route, navigation }) {
     </View>
   );
 }
+
+Home.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
   header: {
