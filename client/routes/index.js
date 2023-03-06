@@ -10,6 +10,12 @@ import AccountType from './Account Type';
 import Edit from './Edit';
 import DriverHome from './DriverHome';
 import ConfirmEmail from './ConfirmEmail';
+import ForgotPass from './ForgotPass';
+import ActivePickups from './ActivePickups';
+import ActivePickupsDriver from './ActivePickupsDriver';
+import AvailableRoutes from './Driver - Available Routes';
+import BoxRequest from './BoxRequest';
+import DescribeMaterial from './DescribeMaterial';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +32,13 @@ function RMRoutes() {
         <Stack.Screen name ='Edit' component={Edit} />
         <Stack.Screen name ='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
-      </Stack.Navigator>
+        <Stack.Screen name='ForgotPass' component={ForgotPass} />
+        <Stack.Screen name='ActivePickups' component={ActivePickups} />
+        <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} />
+        <Stack.Screen name='BoxRequest' component={BoxRequest} />
+        <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
+        <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
+      </Stack.Navigator> 
     </NavigationContainer>
   );
 }

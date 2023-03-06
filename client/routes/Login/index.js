@@ -51,6 +51,12 @@ function Login({ navigation }) {
           }
         }}
       />
+      <Button
+        label='Forgot Password?'
+        onPress={() => {
+          navigation.navigate('ForgotPass');
+        }}
+      />
     </View>
   );
 }

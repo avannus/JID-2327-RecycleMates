@@ -5,6 +5,7 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 
+
 // Buttons are overflowing
 // UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container, 
 // which was the lowest it could go without overflowing
@@ -31,8 +32,10 @@ function DriverHome({ navigation }) {
         RecycleMates customers are currently waiting for their recyclables to be picked up.
         </RMText>
         <Button
-          label='View Available Routes'
-          onPress={() => navigation.navigate(null)}
+          label='Your Current Active Pickups'
+          onPress={() => {
+            navigation.navigate('Active Pickups');
+          }}
         />
       </View>
       <View
@@ -48,7 +51,7 @@ function DriverHome({ navigation }) {
       >
         <Button
           label='View Available Routes'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('AvailableRoutes')}
         />
         <Button
           label='Begin Next Route'
