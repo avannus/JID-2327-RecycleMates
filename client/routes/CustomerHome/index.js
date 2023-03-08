@@ -1,14 +1,14 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
+import PropTypes from 'prop-types';
 
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function CustomerHome({ route, navigation }) {
+function CustomerHome({ navigation }) {
   return (
     <ScrollView styles={styles.container}>
       <View style={styles.header}>
@@ -57,6 +57,10 @@ function CustomerHome({ route, navigation }) {
     </ScrollView>
   );
 }
+
+CustomerHome.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMStyle from '../../RMStyle';
 import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
+import PropTypes from 'prop-types';
 
 function Landing({ route, navigation }) {
   const [timer, setTimer] = React.useState(10);
@@ -55,5 +55,10 @@ function Landing({ route, navigation }) {
     </View>
   );
 }
+
+Landing.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 
 export default Landing;

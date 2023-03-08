@@ -14,7 +14,6 @@ const RMStyle = {
       shadow: '#7DE093',
       border: '#777',
     },
-    // eslint-disable-next-line no-warning-comments
     // TODO probably need to delete these and add specific colors for each component
     primary: '#8cd98c',
     dark: '#466c46',

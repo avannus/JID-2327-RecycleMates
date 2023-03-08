@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
+import PropTypes from 'prop-types';
 
 // Buttons need to navigate to pages
 // Make buttons match Figma
@@ -56,6 +56,10 @@ function DriverHome({ navigation }) {
     </ScrollView>
   );
 }
+
+DriverHome.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

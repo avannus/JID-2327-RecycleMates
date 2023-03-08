@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import PropTypes from 'prop-types';
 
 function AccountType({ navigation }) {
   return (
@@ -14,32 +15,36 @@ function AccountType({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-        <RMText
+      <RMText
         style={{
-            justifyContent: 'center',
-            fontSize: 36,
-            marginBottom: 100,
-            textAlign: 'center',
+          justifyContent: 'center',
+          fontSize: 36,
+          marginBottom: 100,
+          textAlign: 'center',
 
         }}
-        >
+      >
         Choose Account Type
-        </RMText>
+      </RMText>
 
-        <Button
-            label='I am a Customer'
-            onPress={() => {
-            navigation.navigate('Register', { accountType: 'customer' });
-            }}
-        />
-        <Button
-            label='I am a Driver'
-            onPress={() => {
-            navigation.navigate('Register', { accountType: 'driver' });
-            }}
-        />
+      <Button
+        label='I am a Customer'
+        onPress={() => {
+          navigation.navigate('Register', { accountType: 'customer' });
+        }}
+      />
+      <Button
+        label='I am a Driver'
+        onPress={() => {
+          navigation.navigate('Register', { accountType: 'driver' });
+        }}
+      />
     </View>
   );
 }
+
+AccountType.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default AccountType;

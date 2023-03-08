@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
-import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 
-function BoxRequest({ navigation }) {
+function BoxRequest() {
   return (
     <View
       style={{

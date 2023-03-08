@@ -1,12 +1,12 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 import RMTextInput from '../../components/RMTextInput';
+import PropTypes from 'prop-types';
 
-function ForgotPass({ route, navigation }) {
+function ForgotPass({ navigation }) {
   const [visible, setVisible] = React.useState(true);
 
   return (
@@ -24,7 +24,7 @@ function ForgotPass({ route, navigation }) {
         >
           <RMText>
             If you have forgotten your password, enter your email below
-            and we'll send you a link to reset your password.
+            and we&apos;ll send you a link to reset your password.
           </RMText>
           <RMTextInput
             label='Email'
@@ -60,5 +60,9 @@ function ForgotPass({ route, navigation }) {
     </View>
   );
 }
+
+ForgotPass.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default ForgotPass;
