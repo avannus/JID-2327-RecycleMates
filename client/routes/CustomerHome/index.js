@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function CustomerHome({ route, navigation }) {
+function CustomerHome({ navigation }) {
   return (
     <ScrollView styles={styles.container}>
       <View style={styles.header}>
@@ -58,7 +58,7 @@ function CustomerHome({ route, navigation }) {
   );
 }
 
-Home.propTypes = {
+CustomerHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
