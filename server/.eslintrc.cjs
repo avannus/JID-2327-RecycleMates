@@ -14,5 +14,6 @@ module.exports = {
     'capitalized-comments': 'off',
     indent: ['warn', 2],
     'arrow-parens': ['warn', 'always'],
+    'no-warning-comments': 'off',
   },
 };
