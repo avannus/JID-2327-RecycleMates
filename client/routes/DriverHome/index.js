@@ -22,7 +22,7 @@ function DriverHome({ navigation }) {
         <Button
           label='Your Current Active Pickups'
           onPress={() => {
-            navigation.navigate('Active Pickups');
+            navigation.navigate('ActivePickups');
           }}
         />
       </View>
