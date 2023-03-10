@@ -4,6 +4,7 @@ import express from 'express';
 import { connect } from 'mongoose';
 import bp from 'body-parser';
 const { urlencoded, json } = bp;
+import cors from 'cors';
 
 import './api/models/userModel.js';
 import routes from './api/routes/routes.js';
@@ -18,6 +19,13 @@ const port = process.env.PORT || 3000;
 app.use(urlencoded({ extended: true }));
 app.use(json());
 routes(app);
+
+// enable CORS for all requests
+app.use(cors());
+app.get('/', (req, res, next) => {
+  res.json({ message: 'Welcome to the RecycleMates API' });
+  next();
+});
 
 app.listen(port);
 

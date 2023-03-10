@@ -1,17 +1,18 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
+import PropTypes from 'prop-types';
+import { SERVER } from 'RMenv';
 
 function Register({ route, navigation }) {
   const [firstName, setFirstName] = React.useState();
   const [lastName, setLastName] = React.useState();
   const [address, setAddress] = React.useState();
   const [city, setCity] = React.useState();
-  const [zipCode, setZipCode] = React.useState();
+  const [zip, setZip] = React.useState();
 
   return (
     <View
@@ -65,30 +66,46 @@ function Register({ route, navigation }) {
         autoCapitalize='words'
         autoCompleteType='postal-code'
         textContentType='postalCode'
-        onChangeText={(newText) => setZipCode(newText)}
+        onChangeText={(newText) => setZip(newText)}
       />
       <RMButton
         theme='primary'
         label='Create Account!'
-        onPress={() => {
+        onPress={async () => {
           // TODO: Add validation
           const regInfo = {
+            username: route.params.email,
+            email: route.params.email,
+            password: route.params.password,
             firstName,
             lastName,
             address,
             city,
-            zipCode,
-            email: route.params.email,
-            password: route.params.password,
+            zip,
             accountType: route.params.accountType,
           };
-          // TODO: api call to create account
-          // TODO: prompt the user to verify their email
-          navigation.navigate('ConfirmEmail', regInfo);
+          fetch(`${SERVER}user/create`, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(regInfo),
+          }).then((response) => {
+            // TODO update API to send back just needed info for confirm email screen, update navigation call
+            console.log(JSON.stringify(response));
+            navigation.navigate('ConfirmEmail', regInfo);
+          });
         }}
       />
     </View>
   );
 }
+
+Register.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 
 export default Register;

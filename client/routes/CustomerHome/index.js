@@ -1,51 +1,30 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
+import PropTypes from 'prop-types';
 
-// Buttons are overflowing
-// UPDATE: I fixed it on my phone screen by making the width 440 for the buttons container, 
-// which was the lowest it could go without overflowing
-// I think the lowest we need to design for is 320 pixels so I need to find another solution
 // Buttons need to navigate to pages
 // Make buttons match Figma
 // Add the navigation bar at the bottom
-function Home({ route, navigation }) {
+function CustomerHome({ navigation }) {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: RMStyle.colors.background,
-      }}
-    >
+    <ScrollView styles={styles.container}>
       <View style={styles.header}>
         <RMText style={{ color: '#ffffff', fontSize: 40 }}>
           Schedule a pickup
         </RMText>
         <RMText style={{ color: '#ffffff' }}>
           Local drivers are available and ready to pickup your recyclable
-          packages with RecycleMates
+          packages with Recycle Mates
         </RMText>
         <Button
           label='Schedule Now'
           onPress={() => navigation.navigate(null)}
         />
       </View>
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          width: 440,
-          backgroundColor: RMStyle.colors.background,
-        }}
-      >
+      <View style={styles.buttonContainer}>
         <Button
           label='Schedule Pickup'
           onPress={() => navigation.navigate(null)}
@@ -59,15 +38,15 @@ function Home({ route, navigation }) {
           onPress={() => navigation.navigate(null)}
         />
         <Button
-          label='Request boxes'
+          label='Request Boxes'
           onPress={() => navigation.navigate(null)}
         />
       </View>
-      <View style={{ flex: 1 }}>
+      <View style={styles.currentPickups}>
         <RMText style={{ fontSize: 40 }}>Current Pickups</RMText>
         <RMText>Monday, 6 pm - 8 pm</RMText>
       </View>
-      <View style={{ flex: 0.7 }}>
+      <View style={styles.footer}>
         <Button
           label='Edit Account Info'
           onPress={() => {
@@ -75,18 +54,51 @@ function Home({ route, navigation }) {
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
+CustomerHome.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: RMStyle.colors.background,
+    flex: 1,
+  },
   header: {
-    width: '100%',
-    height: '40%',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#399431',
+    justifyContent: 'center',
+    height: 300,
+    width: '100%',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%',
+  },
+  currentPickups: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  footer: {
+    alignItems: 'center',
+    backgroundColor: RMStyle.colors.background,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: 10,
+    width: '100%',
   },
 });
 
-export default Home;
+export default CustomerHome;

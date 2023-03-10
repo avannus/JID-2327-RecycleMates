@@ -1,14 +1,9 @@
-import {
-  createUser,
-  getUser,
-  updateUser,
-  deleteUser,
-  authUser,
-} from '../controllers/index.js';
+import { userCreate } from '../controllers/userCreate.js';
+import { userLogin } from '../controllers/userLogin.js';
+import { userExists } from '../controllers/userExists.js';
 
 export default (app) => {
-  app.route('/user/create').post(createUser);
-  app.route('/user/auth').get(authUser);
-
-  app.route('/users/:userId').get(getUser).put(updateUser).delete(deleteUser);
+  app.route('/user/create').post(userCreate);
+  app.route('/user/login').get(userLogin);
+  app.route('/user/exists').get(userExists);
 };

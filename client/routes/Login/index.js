@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { View } from 'react-native';
 import Button from '../../components/RMButton';
 import RMTextInput from '../../components/RMTextInput';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
+import PropTypes from 'prop-types';
 
 function Login({ navigation }) {
   return (
@@ -60,5 +60,9 @@ function Login({ navigation }) {
     </View>
   );
 }
+
+Login.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default Login;
