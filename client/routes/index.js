@@ -16,6 +16,7 @@ import ActivePickupsDriver from './ActivePickupsDriver';
 import AvailableRoutes from './Driver - Available Routes';
 import BoxRequest from './BoxRequest';
 import DescribeMaterial from './DescribeMaterial';
+import SchedulePickups from './SchedulePickups';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ function RMRoutes() {
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
+        <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
       </Stack.Navigator>
     </NavigationContainer>
   );
