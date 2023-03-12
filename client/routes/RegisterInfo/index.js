@@ -96,6 +96,9 @@ function Register({ route, navigation }) {
             // TODO update API to send back just needed info for confirm email screen, update navigation call
             console.log(JSON.stringify(response));
             navigation.navigate('ConfirmEmail', regInfo);
+          }).catch((error) => {
+            console.log('Error creating account: ');
+            console.log(error);
           });
         }}
       />
