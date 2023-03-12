@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "./autoenv.sh",
     "start": "expo start",
-    "prestartLegacy": "npm i",
+    "prestartLegacy": "./autoenv.sh",
     "startLegacy": "NODE_OPTIONS=--openssl-legacy-provider expo start"
   },
   "dependencies": {
