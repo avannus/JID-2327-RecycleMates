@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "prestart": "npm i",
+    "prestart": "./autoenv.sh",
     "start": "expo start",
     "prestartLegacy": "npm i",
     "startLegacy": "NODE_OPTIONS=--openssl-legacy-provider expo start"
