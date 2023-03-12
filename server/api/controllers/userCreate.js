@@ -6,7 +6,7 @@ const User = model('Users');
 /**
  * Creates a new user.
  *
- * @param {*} req http request data, the user data
+ * @param {User} req http request data, the user data
  * @param {*} res response to request
  */
 

@@ -3,7 +3,7 @@ import { getUser } from './utils/getUser.js';
 /**
  * User Exists
  *
- * @param {*} req http request data, the userID
+ * @param {*} req { username }
  * @param {*} res { userExists }
  */
 
