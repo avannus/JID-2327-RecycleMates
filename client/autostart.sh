@@ -3,6 +3,8 @@
 ENV_FILE=".env"
 PORT=3000
 
+echo -e "---Starting Andrew's helper script---\n"
+
 function ip_found () {
   echo "Local IP detected as $ip"
 
@@ -30,6 +32,15 @@ else
   ip_found
 fi
 
-# export NODE_OPTIONS=--openssl-legacy-provider
+OPENSSL_MAJOR=$(npm version | grep openssl | grep -Eo '[0-9]+' | head -n 1)
+if (( $OPENSSL_MAJOR > 1))
+then
+  echo -e "'openssl' incompatibility detected. Defaulting to use legacy provider\n"
+  export NODE_OPTIONS=--openssl-legacy-provider
+else
+  echo -e "'openssl' detected as compatible, using default version\n"
+fi
 
-npm i
+echo -e "---Finishing Andrew's helper script, starting expo---\n"
+
+npx expo start

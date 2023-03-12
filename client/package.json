@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "prestart": "./autoenv.sh",
-    "start": "expo start",
-    "prestartLegacy": "./autoenv.sh",
-    "startLegacy": "NODE_OPTIONS=--openssl-legacy-provider expo start"
+    "start": "./autostart.sh"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
