@@ -9,14 +9,18 @@ function SchedulePickups() {
       style={{
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Schedule a Pickup:</RMText>
-      <RMText>First Active Pickup: (date + time)</RMText>
-      <RMText>Second Active Pickup: (date + time)</RMText>
-      <RMText>Third Active Pickup: (date + time)</RMText>
+      <RMText>Schedule a pickup</RMText>
+      <RMText>Select how often you would like your recyclables picked up.</RMText>
+      <select name="pickup-frequency" id="pickup-frequency">
+        <option value="weekly">Weekly</option>
+        <option value="biweekly">Biweekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="bimonthly">Bimonthly</option>
+      </select>
     </View>
   );
 }
