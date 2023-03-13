@@ -21,13 +21,13 @@ function CustomerHome({ navigation }) {
         </RMText>
         <Button
           label='Schedule Now'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('SchedulePickups')}
         />
       </View>
       <View style={styles.buttonContainer}>
         <Button
           label='Schedule Pickup'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('SchedulePickups')}
         />
         <Button
           label='Cancel Pickup'
@@ -35,11 +35,11 @@ function CustomerHome({ navigation }) {
         />
         <Button
           label='Current Pickups'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('ActivePickups')}
         />
         <Button
           label='Request Boxes'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('BoxRequest')}
         />
       </View>
       <View style={styles.currentPickups}>
