@@ -6,17 +6,9 @@ import RMStyle from '../../RMStyle';
 
 const colors = RMStyle.colors.button;
 
-function Button({ label, onPress }) {
+function Button({ label, onPress, width, height }) {
   return (
-    <View
-      style={[
-        styles.buttonContainer,
-        {
-          alignItems: 'center',
-          padding: 10,
-        },
-      ]}
-    >
+    <View style={styles.buttonContainer}>
       <Pressable
         style={[
           styles.button,
@@ -24,8 +16,8 @@ function Button({ label, onPress }) {
             backgroundColor: colors.background,
             borderRadius: 100,
             alignItems: 'center',
-            width: 200,
-            height: 60,
+            width,
+            height,
             justifyContent: 'center',
             shadowColor: colors.shadow,
             shadowOffset: { width: 1, height: 5 },
@@ -39,9 +31,7 @@ function Button({ label, onPress }) {
           color={colors.icon}
           style={styles.buttonIcon}
         /> */}
-        <Text style={[styles.buttonLabel, { color: colors.text }]}>
-          {label}
-        </Text>
+        <Text style={styles.buttonLabel}>{label}</Text>
       </Pressable>
     </View>
   );
@@ -50,9 +40,27 @@ function Button({ label, onPress }) {
 Button.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
+
+Button.defaultProps = {
+  width: 200,
+  height: 60,
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  buttonLabel: {
+    color: colors.text,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   // Styles from previous step remain unchanged.
 });
 
