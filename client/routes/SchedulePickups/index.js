@@ -31,7 +31,7 @@ function SchedulePickups({ navigation }) {
         theme='primary'
         label='Confirm'
         onPress={() => {
-          navigation.navigate('PickupConfirmation');
+          navigation.navigate('DescribeMaterial');
         }}
       />
     </View>
