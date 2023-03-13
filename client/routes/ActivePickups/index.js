@@ -9,14 +9,12 @@ function ActivePickups() {
       style={{
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        //justifyContent: 'center',
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Active Pickups:</RMText>
-      <RMText>First Active Pickup: (date + time)</RMText>
-      <RMText>Second Active Pickup: (date + time)</RMText>
-      <RMText>Third Active Pickup: (date + time)</RMText>
+      <RMText>Current Pickup Frequency: (frequency)</RMText>
+      <RMText>Your next pickup is on (date)</RMText>
     </View>
   );
 }
