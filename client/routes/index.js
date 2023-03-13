@@ -16,13 +16,15 @@ import ActivePickupsDriver from './ActivePickupsDriver';
 import AvailableRoutes from './Driver - Available Routes';
 import BoxRequest from './BoxRequest';
 import DescribeMaterial from './DescribeMaterial';
+import SchedulePickups from './SchedulePickups';
+import PickupConfirmation from './PickupConfirmation';
 
 const Stack = createNativeStackNavigator();
 
 function RMRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'>
+      <Stack.Navigator initialRouteName='SchedulePickups'>
         <Stack.Screen name='Landing' component={Landing} />
         <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Login' component={Login} />
@@ -38,6 +40,8 @@ function RMRoutes() {
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
+        <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
+        <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
