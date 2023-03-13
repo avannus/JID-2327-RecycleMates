@@ -2,8 +2,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import RMButton from '../../components/RMButton';
 
-function PickupConfirmation() {
+function PickupConfirmation({ navigation }) {
   return (
     <View
       style={{
@@ -13,7 +14,15 @@ function PickupConfirmation() {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Confirm Pickup</RMText>
+      <RMText>Your pickup frequency has been scheduled!</RMText>
+      <RMText>(display pickup frequency)</RMText>
+      <RMButton
+        theme='primary'
+        label='Return Home'
+        onPress={() => {
+          navigation.navigate('CustomerHome');
+        }}
+      />
     </View>
   );
 }
