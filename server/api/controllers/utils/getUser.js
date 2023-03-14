@@ -4,29 +4,27 @@ const User = model('Users');
 /**
  * Helper to check if a user is logged in.
  *
- * @param {*} req http request data, the userID
+ * @param {*} req http request data, { username }
+ * @returns {Thennable} Thennable that resolves to { error, usr )
+ *               error is an object with message and code properties
+ *               usr is the user object
  */
 
-export function getUser(req) {
-  // TODO this isn't thennable
+export function getUser(req, collection = User) {
   if (!req.body.username) {
     return {
-      then: (cb) => cb({
-        error: 'Please provide username',
-      }),
+      // thennable so it can be chained
+      then: (cb) =>
+        cb({
+          error: {
+            message: 'Please provide username',
+            code: 400,
+          },
+        }),
     };
   }
 
-  return User.findOne({ username: req.body.username }).then((usr) => {
-    if (!usr) {
-      return {
-        error: `Could not find user ${req.body.username}}`,
-      };
-    }
-
-    return {
-      error: false,
-      usr,
-    };
-  });
+  return collection
+    .findOne({ username: req.body.username })
+    .then((usr) => ({ usr }));
 }

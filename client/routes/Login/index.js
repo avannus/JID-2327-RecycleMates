@@ -5,8 +5,13 @@ import RMTextInput from '../../components/RMTextInput';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
 import PropTypes from 'prop-types';
+import { SERVER } from 'RMenv';
+import { currentLogin } from '../../currentLogin';
 
 function Login({ navigation }) {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   return (
     <View
       style={{
@@ -18,12 +23,13 @@ function Login({ navigation }) {
     >
       <RMText>Login</RMText>
       <RMTextInput
-        label='Email'
-        placeholder='Email'
+        label='Username or Email'
+        placeholder='Username or Email'
         keyboardType='email-address'
         autoCapitalize='none'
         autoCompleteType='email'
         textContentType='emailAddress'
+        onChangeText={(newText) => setUsername(newText)}
       />
       <RMTextInput
         label='Password'
@@ -33,22 +39,46 @@ function Login({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='password'
         textContentType='password'
+        onChangeText={(newText) => setPassword(newText)}
       />
       <Button
         theme='primary'
         label='Login'
         onPress={() => {
-          // TODO api call
-          const homeScreenInfo = {
-            firstName: 'John',
-            city: 'Default City',
-            accountType: 'driver',
+          const loginObj = {
+            username,
+            password,
           };
-          if (homeScreenInfo.accountType === 'customer') {
-            navigation.navigate('CustomerHome', homeScreenInfo);
-          } else if (homeScreenInfo.accountType === 'driver') {
-            navigation.navigate('DriverHome', homeScreenInfo);
-          }
+          fetch(`${SERVER}user/login`, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(loginObj),
+          })
+            .then((response) => response.json())
+            .then((body) => {
+              console.log('body: ', body);
+              if (body.accountType === 'customer') {
+                currentLogin.username = username;
+                currentLogin.password = password;
+                navigation.navigate('CustomerHome');
+              } else if (body.accountType === 'driver') {
+                console.log('Logging in as driver');
+                currentLogin.username = username;
+                currentLogin.password = password;
+                navigation.navigate('DriverHome');
+              } else {
+                console.log('invalid account type');
+              }
+            })
+            .catch((error) => {
+              // TODO handle failed login
+              console.log('Error Logging in: ');
+              console.log(error);
+            });
         }}
       />
       <Button
