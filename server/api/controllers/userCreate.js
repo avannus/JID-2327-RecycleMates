@@ -12,12 +12,15 @@ const User = model('Users');
 
 export function userCreate(req, res) {
   if (!req.body.username || !req.body.password) {
-    res.status(400).send(
-      {
-        error: true,
-        message: 'Please provide username/password',
-      },
-    );
+    res.status(400).send('Please provide username/password');
+    return;
+  }
+
+  if (
+    !req.body.accountType
+    || (req.body.accountType !== 'customer' && req.body.accountType !== 'driver')
+  ) {
+    res.status(400).send('Please provide accountType of customer or driver');
     return;
   }
 
@@ -26,7 +29,7 @@ export function userCreate(req, res) {
   newUser.password = bcrypt.hashSync(req.body.password, BCRYPT_SALT_ROUNDS);
   newUser.save((err, usr) => {
     if (err) {
-      res.send(err);
+      res.status(400).send(err);
       return;
     }
 
@@ -34,23 +37,23 @@ export function userCreate(req, res) {
 
     if (usr.accountType === 'customer') {
       customerCreate(usr, res);
-    } else if (usr.accountType === 'employee') {
-      employeeCreate(usr, res);
+    } else if (usr.accountType === 'driver') {
+      driverCreate(usr, res);
     } else {
-      res.json(usr); // TODO - this should never happen, send 400 back and delete user
+      res.status(500).send('somehow bypassed internal customer driver check'); // TODO - send 400 back and delete user
     }
   });
 }
 
-function employeeCreate(usr, res) {
-  const Employee = model('Employees');
-  const newEmployee = new Employee({
+function driverCreate(usr, res) {
+  const Driver = model('Drivers');
+  const newDriver = new Driver({
     username: usr.username,
     email: usr.email,
   });
-  newEmployee.save((err) => {
+  newDriver.save((err) => {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
       return err;
     }
 
@@ -66,7 +69,7 @@ function customerCreate(usr, res) {
   });
   newCustomer.save((err) => {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
       return err;
     }
 
