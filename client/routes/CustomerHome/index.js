@@ -20,17 +20,17 @@ function CustomerHome({ navigation }) {
           packages with Recycle Mates
         </RMText>
         <Button
-          label='Schedule Now'
-          onPress={() => navigation.navigate('SchedulePickups')}
+          label='Confirm Your Next Pickup'
+          onPress={() => navigation.navigate('DescribeMaterial')}
         />
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          label='Schedule Pickup'
+          label='Change Frequency'
           onPress={() => navigation.navigate('SchedulePickups')}
         />
         <Button
-          label='Cancel Pickup'
+          label='Cancel Next Pickup'
           onPress={() => navigation.navigate(null)}
         />
         <Button
