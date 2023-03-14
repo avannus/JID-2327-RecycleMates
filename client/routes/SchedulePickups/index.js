@@ -17,14 +17,14 @@ function SchedulePickups({ navigation }) {
     >
       <RMText>Request Pickup Frequency Change</RMText>
       <RMText>
-        How often would you like have pickups?
+        How often would you like to have pickups?
       </RMText>
 
       <select name='pickup-frequency' id='pickup-frequency'>
         <option value='weekly'>Weekly</option>
         <option value='biweekly'>Biweekly</option>
         <option value='monthly'>Monthly</option>
-        <option value='bimonthly'>None</option>
+        <option value='none'>None</option>
       </select>
 
       <RMButton
