@@ -11,17 +11,17 @@ const CustomerSchema = new Schema({
     type: String,
     required: 'User must have an email',
   },
-  frequencyRequested: {
+  freqReq: {
     type: Number,
     default: -1,
   },
-  frequencyAssigned: {
+  freqAssigned: {
     type: Number,
     default: -1,
   },
   schedule: {
     type: Array,
-    default: [],
+    default: [[], [], [], [], [], [], []],
   },
 });
 
