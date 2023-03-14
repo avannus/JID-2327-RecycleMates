@@ -5,24 +5,22 @@ const User = model('Users');
 /**
  * Helper to check if a user is logged in.
  *
- * @param {*} req http request data, the userID
+ * @param {*} req http request data, { userID }
+ * @returns {Thennable} Thennable that resolves to { error, usr )
+ *               error is an object with message and code properties
+ *               usr is the user object
  */
 
 export function authUser(req) {
-  if (!req.body.username) {
+  if (!req.body.username || !req.body.password) {
     return {
+      // thennable so it can be chained
       then: (cb) =>
         cb({
-          error: 'Please provide username',
-        }),
-    };
-  }
-
-  if (!req.body.password) {
-    return {
-      then: (cb) =>
-        cb({
-          error: 'Please provide password',
+          error: {
+            message: 'Please provide username and password fields',
+            code: 400,
+          },
         }),
     };
   }
@@ -30,12 +28,14 @@ export function authUser(req) {
   return User.findOne({ username: req.body.username }).then((usr) => {
     if (!usr || !bcrypt.compareSync(req.body.password, usr.password)) {
       return {
-        error: 'Invalid username/password',
+        error: {
+          message: 'Invalid username/password',
+          code: 403,
+        },
       };
     }
 
     return {
-      error: false,
       usr,
     };
   });
