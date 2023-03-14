@@ -6,7 +6,10 @@ import bp from 'body-parser';
 const { urlencoded, json } = bp;
 import cors from 'cors';
 
-import './api/models/users.js';
+// load models (BEFORE routes)
+import './api/models/index.js';
+
+// import routes
 import routes from './api/routes/routes.js';
 
 // add your connection url to .env if the default fails
