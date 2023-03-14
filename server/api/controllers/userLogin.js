@@ -10,7 +10,7 @@ import { authUser } from './utils/authUser.js';
 export function userLogin(req, res) {
   authUser(req).then((usrAuth) => {
     if (usrAuth.error) {
-      res.status(403).send(usrAuth);
+      res.status(usrAuth.error.code).send(usrAuth.error.message);
       return;
     }
 

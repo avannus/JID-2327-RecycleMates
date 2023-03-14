@@ -8,12 +8,17 @@ import { getUser } from './utils/getUser.js';
  */
 
 export function userExists(req, res) {
-  getUser(req, false).then((usr) => {
-    if (usr.error) {
-      res.json({ userExists: false });
+  getUser(req).then((gotUser) => {
+    let userExists = true;
+    if (gotUser.error) {
+      res.status(gotUser.error.code).send(gotUser.error.message);
       return;
     }
 
-    res.json({ userExists: true });
+    if (!gotUser.usr) {
+      userExists = false;
+    }
+
+    res.json({ userExists });
   });
 }

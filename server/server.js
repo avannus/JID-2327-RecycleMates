@@ -13,7 +13,9 @@ import './api/models/index.js';
 import routes from './api/routes/routes.js';
 
 // add your connection url to .env if the default fails
-connect(process.env.MONGODB_CONNECTION_URL || 'mongodb://127.0.0.1:27017/RecycleMates');
+connect(
+  process.env.MONGODB_CONNECTION_URL || 'mongodb://127.0.0.1:27017/RecycleMates',
+);
 
 // init express server
 const app = express();
@@ -25,7 +27,7 @@ routes(app);
 
 // enable CORS for all requests
 app.use(cors());
-app.get('/', (req, res, next) => {
+app.get('/', (_req, res, next) => {
   res.json({ message: 'Welcome to the RecycleMates API' });
   next();
 });
@@ -35,5 +37,7 @@ app.listen(port);
 console.log(`RESTful API server started on: ${port}`);
 
 app.use((req, res) => {
-  res.status(404).send({ url: `404: ${req.method} on endpoint ${req.originalUrl} not found` });
+  res.status(404).send({
+    url: `404: ${req.method} on endpoint ${req.originalUrl} not found`,
+  });
 });
