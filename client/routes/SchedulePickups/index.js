@@ -15,23 +15,23 @@ function SchedulePickups({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Schedule a Pickup</RMText>
+      <RMText>Request Pickup Frequency Change</RMText>
       <RMText>
-        Select how often you would like your recyclables to be picked up:
+        How often would you like have pickups?
       </RMText>
 
       <select name='pickup-frequency' id='pickup-frequency'>
         <option value='weekly'>Weekly</option>
         <option value='biweekly'>Biweekly</option>
         <option value='monthly'>Monthly</option>
-        <option value='bimonthly'>Bimonthly</option>
+        <option value='bimonthly'>None</option>
       </select>
 
       <RMButton
         theme='primary'
         label='Confirm'
         onPress={() => {
-          navigation.navigate('DescribeMaterial');
+          navigation.navigate('CustomerHome');
         }}
       />
     </View>
