@@ -7,7 +7,7 @@ const User = model('Users');
  * @param {*} req http request data, the userID
  */
 
-export function getUser(req) {
+export function getUser(req, collection = User) {
   // TODO this isn't thennable
   if (!req.body.username) {
     return {
@@ -17,7 +17,7 @@ export function getUser(req) {
     };
   }
 
-  return User.findOne({ username: req.body.username }).then((usr) => {
+  return collection.findOne({ username: req.body.username }).then((usr) => {
     if (!usr) {
       return {
         error: `Could not find user ${req.body.username}}`,

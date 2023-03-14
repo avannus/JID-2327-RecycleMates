@@ -30,6 +30,46 @@ export function userCreate(req, res) {
       return;
     }
 
+    console.log({ usr });
+
+    if (usr.accountType === 'customer') {
+      customerCreate(usr, res);
+    } else if (usr.accountType === 'employee') {
+      employeeCreate(usr, res);
+    } else {
+      res.json(usr); // TODO - this should never happen, send 400 back and delete user
+    }
+  });
+}
+
+function employeeCreate(usr, res) {
+  const Employee = model('Employees');
+  const newEmployee = new Employee({
+    username: usr.username,
+    email: usr.email,
+  });
+  newEmployee.save((err) => {
+    if (err) {
+      res.send(err);
+      return err;
+    }
+
+    res.json(usr);
+  });
+}
+
+function customerCreate(usr, res) {
+  const Customer = model('Customers');
+  const newCustomer = new Customer({
+    username: usr.username,
+    email: usr.email,
+  });
+  newCustomer.save((err) => {
+    if (err) {
+      res.send(err);
+      return err;
+    }
+
     res.json(usr);
   });
 }
