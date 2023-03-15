@@ -1,28 +1,44 @@
 import * as React from 'react';
-import { StyleSheet, Modal, View, Text, Pressable } from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
+import { AntDesign } from '@expo/vector-icons';
 
 function Edit({ navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
   const saveChanges = () => {
-    // TODO save information to the server
+    // TODO: Save information to the server
     setModalVisible(true);
   };
 
   const returnHome = () => {
-    setModalVisible(!modalVisible);
     navigation.goBack();
   };
 
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
-    <View style={styles.centeredView}>
-      <Modal visible={modalVisible} animationType='slide' transparent={true}>
-        <View styles={styles.centeredView}>
+    <View style={styles.container}>
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
+              <Pressable onPress={toggleModal}>
+                <AntDesign name='close' size={12} color='black' />
+              </Pressable>
+            </View>
             <Text style={styles.modalText}>Changes saved!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -94,22 +110,34 @@ function Edit({ navigation }) {
   );
 }
 
-Edit.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
-
 const styles = StyleSheet.create({
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#7DE093',
+  },
+  buttonClose: {
+    backgroundColor: '#7DE093',
+  },
   centeredView: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
   },
   modalView: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: 15,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -118,7 +146,26 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 5,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    padding: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
+
+Edit.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default Edit;
