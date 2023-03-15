@@ -33,6 +33,37 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 ## Release Notes
 
+### Version 0.3.0
+
+#### New Features
+
+* Create User on registration
+* Create API for logging in
+* Create API to see if account exists
+* Create UI pages with ReactNative and Expo
+  * Customer - Describe Materials
+  * Customer - Choose Schedule Frequency
+  * Customer - Box Request
+  * Customer - Active pickups
+  * Customer - Confirm pickup
+  * Driver - Active pickups
+  * Driver - Preview routes
+  * Forgot Password
+* Add drop-down menu to Customer home page
+
+#### Bug Fixes
+
+* Fixed button overflow on home screens for certain resolutions
+* User can no longer move to Register Information screen with blank input
+
+#### Known Bugs
+
+* Multiple crashes on Android related to text
+* Back button still appears after logging in
+* User can log in without successful credentials
+
+---
+
 ### Version 0.2.0
 
 #### New Features
