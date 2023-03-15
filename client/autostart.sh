@@ -43,4 +43,6 @@ fi
 
 echo -e "---Finishing Andrew's helper script, starting expo---\n"
 
+npm i
+
 npx expo start
