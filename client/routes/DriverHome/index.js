@@ -33,11 +33,11 @@ function DriverHome({ navigation }) {
         />
         <Button
           label='Begin Next Route'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('ActivePickupsDriver')}
         />
         <Button
           label='Request Assignment Changes'
-          onPress={() => navigation.navigate(null)}
+          onPress={() => navigation.navigate('RequestAssignmentChanges')}
         />
       </View>
       <View style={styles.currentRoutes}>

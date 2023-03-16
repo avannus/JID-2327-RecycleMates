@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import RMButton from '../../components/RMButton';
+import PropTypes from 'prop-types';
 
 function PickupConfirmation({ navigation }) {
   return (
@@ -26,5 +27,9 @@ function PickupConfirmation({ navigation }) {
     </View>
   );
 }
+
+PickupConfirmation.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 export default PickupConfirmation;
