@@ -19,9 +19,9 @@ const CustomerSchema = new Schema({
     type: Number,
     default: -1,
   },
-  schedule: {
-    type: Array,
-    default: [[], [], [], [], [], [], []],
+  scheduledTime: {
+    type: Date,
+    default: undefined,
   },
 });
 
