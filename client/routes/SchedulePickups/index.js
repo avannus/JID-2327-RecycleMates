@@ -25,9 +25,9 @@ function SchedulePickups({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Schedule a Pickup</RMText>
+      <RMText>Request Pickup Frequency Change</RMText>
       <RMText>
-        Select how often you would like your recyclables to be picked up:
+        How often would you like to have pickups?
       </RMText>
 
       <View style={{ width: '80%', paddingBottom: 10 }}>
@@ -52,7 +52,7 @@ function SchedulePickups({ navigation }) {
           theme='primary'
           label='Confirm'
           onPress={() => {
-            navigation.navigate('DescribeMaterial');
+            navigation.navigate('CustomerHome');
           }}
         />
       )}
