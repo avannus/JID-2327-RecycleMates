@@ -29,7 +29,7 @@ export function customerFreqReq(req, res) {
     update.scheduledTime = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
-      new Date().getDate() + Math.floor(Math.random() * 7) + 1, // dayOffset - new Date().getDay(),
+      new Date().getDate() + Math.floor(Math.random() * 7) + 1,
       8 + (Math.floor(Math.random() * 4) * 2),
       0,
       0,
