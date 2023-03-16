@@ -18,6 +18,9 @@ import BoxRequest from './BoxRequest';
 import DescribeMaterial from './DescribeMaterial';
 import SchedulePickups from './SchedulePickups';
 import PickupConfirmation from './PickupConfirmation';
+import CancelPickup from './CancelPickup';
+import RequestAssignmentChanges from './RequestAssignmentChanges';
+import InProgress from './InProgress';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +45,9 @@ function RMRoutes() {
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
         <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
         <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} />
+        <Stack.Screen name='CancelPickup' component={CancelPickup} />
+        <Stack.Screen name='RequestAssignmentChanges' component={RequestAssignmentChanges} />
+        <Stack.Screen name='InProgress' component={InProgress} />
       </Stack.Navigator>
     </NavigationContainer>
   );

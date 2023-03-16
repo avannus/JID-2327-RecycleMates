@@ -30,8 +30,8 @@ function CustomerHome({ navigation }) {
           onPress={() => navigation.navigate('SchedulePickups')}
         />
         <Button
-          label='Cancel Next Pickup'
-          onPress={() => navigation.navigate(null)}
+          label='Cancel Pickup'
+          onPress={() => navigation.navigate('CancelPickup')}
         />
         <Button
           label='Current Pickups'

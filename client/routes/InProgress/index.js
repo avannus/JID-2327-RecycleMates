@@ -5,25 +5,24 @@ import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function ActivePickups({ navigation }) {
+function InProgress({ navigation }) {
   return (
     <View
       style={{
         flex: 1,
         alignItems: 'center',
-        //justifyContent: 'center',
+        justifyContent: 'center',
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Current Pickup Frequency: (frequency)</RMText>
-      <RMText>Your next pickup is on (date)</RMText>
-      <Button label='Cancel Pickup' onPress={() => navigation.navigate('CancelPickup')}></Button>
+      <RMText>Page in progress</RMText>
+      <Button label='Go back' onPress={() => navigation.goBack()}></Button>
     </View>
   );
 }
 
-ActivePickups.propTypes = {
+InProgress.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default ActivePickups;
+export default InProgress;
