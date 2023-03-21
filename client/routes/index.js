@@ -22,6 +22,8 @@ import CancelPickup from './CancelPickup';
 import RequestAssignmentChanges from './RequestAssignmentChanges';
 import InProgress from './InProgress';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,8 +32,20 @@ const Tab = createBottomTabNavigator();
 function CustomerHomeTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name='Home' component={CustomerHome} />
-      <Tab.Screen name='Edit Account' component={Edit} />
+      <Tab.Screen
+        name='Home'
+        component={CustomerHome}
+        options={{
+          tabBarIcon: () => <FontAwesomeIcon icon={faHouse} />,
+        }}
+      />
+      <Tab.Screen
+        name='Account'
+        component={Edit}
+        options={{
+          tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
+        }}
+      />
     </Tab.Navigator>
   );
 }
