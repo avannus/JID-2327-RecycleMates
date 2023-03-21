@@ -21,8 +21,20 @@ import PickupConfirmation from './PickupConfirmation';
 import CancelPickup from './CancelPickup';
 import RequestAssignmentChanges from './RequestAssignmentChanges';
 import InProgress from './InProgress';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+function CustomerHomeTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name='Home' component={CustomerHome} />
+      <Tab.Screen name='Edit Account' component={Edit} />
+    </Tab.Navigator>
+  );
+}
 
 function RMRoutes() {
   return (
@@ -33,7 +45,11 @@ function RMRoutes() {
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
-        <Stack.Screen name='Customer Home' component={CustomerHome} />
+        <Stack.Screen
+          name='Customer Home'
+          component={CustomerHomeTabs}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name='Edit' component={Edit} />
         <Stack.Screen name='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
@@ -41,12 +57,21 @@ function RMRoutes() {
         <Stack.Screen name='ActivePickups' component={ActivePickups} />
         <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
-        <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
+        <Stack.Screen
+          name='ActivePickupsDriver'
+          component={ActivePickupsDriver}
+        />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
         <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
-        <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} />
+        <Stack.Screen
+          name='PickupConfirmation'
+          component={PickupConfirmation}
+        />
         <Stack.Screen name='CancelPickup' component={CancelPickup} />
-        <Stack.Screen name='RequestAssignmentChanges' component={RequestAssignmentChanges} />
+        <Stack.Screen
+          name='RequestAssignmentChanges'
+          component={RequestAssignmentChanges}
+        />
         <Stack.Screen name='InProgress' component={InProgress} />
       </Stack.Navigator>
     </NavigationContainer>

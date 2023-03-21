@@ -150,7 +150,7 @@ function CustomerHome({ navigation }) {
           <View style={styles.upcomingPickupsTitle}>
             <RMText
               style={{
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: 'bold',
                 alignSelf: 'center',
                 // textShadowColor: 'rgba(0, 0, 0, 0.75)',
@@ -170,14 +170,14 @@ function CustomerHome({ navigation }) {
             <RMText>April 24th (Monday), 6 pm - 8 pm</RMText>
           </View>
         </View>
-        <View style={styles.footer}>
+        {/* <View style={styles.footer}>
           <Button
             label='Edit Account Info'
             onPress={() => {
               navigation.navigate('Edit');
             }}
           />
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   );
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#399431',
     justifyContent: 'center',
-    height: '40%',
+    height: '50%',
     width: '100%',
   },
   banner: {

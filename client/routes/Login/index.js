@@ -42,10 +42,10 @@ function Login({ navigation }) {
           const homeScreenInfo = {
             firstName: 'John',
             city: 'Default City',
-            accountType: 'driver',
+            accountType: 'customer',
           };
           if (homeScreenInfo.accountType === 'customer') {
-            navigation.navigate('CustomerHome', homeScreenInfo);
+            navigation.navigate('Customer Home', homeScreenInfo);
           } else if (homeScreenInfo.accountType === 'driver') {
             navigation.navigate('DriverHome', homeScreenInfo);
           }
