@@ -50,22 +50,47 @@ function CustomerHomeTabs() {
   );
 }
 
+function DriverHomeTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name='Home'
+        component={DriverHome}
+        options={{
+          tabBarIcon: () => <FontAwesomeIcon icon={faHouse} />,
+        }}
+      />
+      <Tab.Screen
+        name='Account'
+        component={Edit}
+        options={{
+          tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 function RMRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Customer Home'>
+      <Stack.Navigator initialRouteName='DriverHome'>
         <Stack.Screen name='Landing' component={Landing} />
         <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
         <Stack.Screen
-          name='Customer Home'
+          name='CustomerHome'
           component={CustomerHomeTabs}
           options={{ headerShown: false }}
         />
         <Stack.Screen name='Edit' component={Edit} />
-        <Stack.Screen name='DriverHome' component={DriverHome} />
+        <Stack.Screen
+          name='DriverHome'
+          component={DriverHomeTabs}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
         <Stack.Screen name='ForgotPass' component={ForgotPass} />
         <Stack.Screen name='ActivePickups' component={ActivePickups} />
