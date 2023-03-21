@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, View, Pressable, Text, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
-import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
@@ -12,12 +11,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
-// It looks really bad on iOS simulator
 // Need to call pickups from backend and list them
-// Need to be able to scroll pickups when there's too many on the phone screen
 // Try to make pickups line up from the left
 // Add up pop ups when you click on a pickup
-// Add the navigation bar at the bottom
 function CustomerHome({ navigation }) {
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
@@ -43,7 +39,7 @@ function CustomerHome({ navigation }) {
               }}
             >
               Local drivers are available and ready to pickup your recyclable
-              packages with RecycleMates ♽
+              packages with RecycleMates
             </RMText>
             <Pressable
               style={{
@@ -53,8 +49,6 @@ function CustomerHome({ navigation }) {
                 width: 200,
                 height: 50,
                 justifyContent: 'center',
-                // shadowColor: RMStyle.colors.button.shadow,
-                // shadowOffset: { width: 1, height: 5 },
               }}
               onPress={() => navigation.navigate('DescribeMaterial')}
             >
@@ -69,10 +63,6 @@ function CustomerHome({ navigation }) {
                 {'Confirm your next pickup'}
               </Text>
             </Pressable>
-            {/* <Button
-            label='Confirm Your Next Pickup'
-            onPress={() => navigation.navigate('DescribeMaterial')}
-          /> */}
           </View>
         </View>
         <View style={styles.buttonContainer}>
@@ -146,19 +136,16 @@ function CustomerHome({ navigation }) {
             </Text>
           </Pressable>
         </View>
-        <View style={styles.upcomingPickupsContainer}>
-          <View style={styles.upcomingPickupsTitle}>
+        <View style={styles.currentPickupsContainer}>
+          <View style={styles.currentPickupsTitle}>
             <RMText
               style={{
-                fontSize: 25,
+                fontSize: 30,
                 fontWeight: 'bold',
                 alignSelf: 'center',
-                // textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                // textShadowOffset: { height: -2 },
-                // textShadowRadius: 1,
               }}
             >
-              Upcoming Pickups
+              Current Pickups
             </RMText>
             <Pressable onPress={() => navigation.navigate('ActivePickups')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
@@ -166,18 +153,11 @@ function CustomerHome({ navigation }) {
               </Text>
             </Pressable>
           </View>
-          <View style={styles.upcomingPickups}>
-            <RMText>April 24th (Monday), 6 pm - 8 pm</RMText>
-          </View>
+          <ScrollView style={styles.currentPickupsList}>
+            <RMText>Monday, 1 pm - 2 pm</RMText>
+            <RMText>Tuesday, 3 pm - 4 pm</RMText>
+          </ScrollView>
         </View>
-        {/* <View style={styles.footer}>
-          <Button
-            label='Edit Account Info'
-            onPress={() => {
-              navigation.navigate('Edit');
-            }}
-          />
-        </View> */}
       </View>
     </ScrollView>
   );
@@ -197,6 +177,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#399431',
     justifyContent: 'center',
     height: '50%',
+    maxHeight: 300,
     width: '100%',
   },
   banner: {
@@ -220,30 +201,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  upcomingPickupsContainer: {
+  currentPickupsContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     padding: 5,
+    marginBottom: 100, // to allow user to scroll to bottom of pickup list
+    height: '30%',
+    maxHeight: 300,
   },
-  upcomingPickupsTitle: {
+  currentPickupsTitle: {
     alignItems: 'center',
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  upcomingPickups: {
-    alignItems: 'left',
-  },
-  footer: {
-    alignItems: 'center',
-    backgroundColor: RMStyle.colors.background,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    padding: 10,
-    width: '100%',
+  currentPickupsList: {
+    persistentScrollbar: 'true',
+    showsVerticalScrollIndicator: 'true',
   },
 });
 

@@ -5,7 +5,10 @@ import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
-import { AntDesign } from '@expo/vector-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
 function Edit({ navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -14,9 +17,9 @@ function Edit({ navigation }) {
     setModalVisible(true);
   };
 
-  const returnHome = () => {
-    navigation.goBack();
-  };
+  // const returnHome = () => {
+  //   navigation.goBack();
+  // };
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -36,16 +39,17 @@ function Edit({ navigation }) {
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
               <Pressable onPress={toggleModal}>
-                <AntDesign name='close' size={12} color='black' />
+                <FontAwesomeIcon icon={faXmark} size={15} />
+                {/* <AntDesign name='close' size={15} color='black' /> */}
               </Pressable>
             </View>
             <Text style={styles.modalText}>Changes saved!</Text>
-            <Pressable
+            {/* <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={returnHome}
             >
               <Text style={styles.textStyle}>Return home</Text>
-            </Pressable>
+            </Pressable> */}
           </View>
         </View>
       </Modal>
@@ -104,7 +108,7 @@ function Edit({ navigation }) {
           autoCompleteType='zipcode'
           textContentType='zipcode'
         />
-        <RMButton theme='primary' label='Save' onPress={saveChanges} />
+        <RMButton theme='primary' label='Save changes' onPress={saveChanges} />
       </View>
     </View>
   );
@@ -154,8 +158,11 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   modalText: {
+    marginTop: 5,
     marginBottom: 15,
     textAlign: 'center',
+    flexWrap: 'wrap',
+    fontSize: 15,
   },
   textStyle: {
     color: 'white',
