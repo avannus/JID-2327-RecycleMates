@@ -27,13 +27,13 @@ const Stack = createNativeStackNavigator();
 function RMRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'>
+      <Stack.Navigator initialRouteName='Customer Home'>
         <Stack.Screen name='Landing' component={Landing} />
         <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Register' component={Register} />
         <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
-        <Stack.Screen name='CustomerHome' component={CustomerHome} />
+        <Stack.Screen name='Customer Home' component={CustomerHome} />
         <Stack.Screen name='Edit' component={Edit} />
         <Stack.Screen name='DriverHome' component={DriverHome} />
         <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />

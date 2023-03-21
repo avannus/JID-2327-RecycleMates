@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Pressable, Text } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faBox, faBoxesStacked, faCalendarDays, faTruckPickup } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 // Buttons need to navigate to pages
 // Make buttons match Figma
@@ -17,7 +20,7 @@ function CustomerHome({ navigation }) {
         </RMText>
         <RMText style={{ color: '#ffffff' }}>
           Local drivers are available and ready to pickup your recyclable
-          packages with Recycle Mates
+          packages with RecycleMates
         </RMText>
         <Button
           label='Confirm Your Next Pickup'
@@ -25,22 +28,95 @@ function CustomerHome({ navigation }) {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button
-          label='Change Frequency'
+        <Pressable
+          style={{
+            width: 100,
+            height: 100,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={() => navigation.navigate('SchedulePickups')}
-        />
-        <Button
-          label='Cancel Pickup'
+        >
+          <FontAwesomeIcon icon={faCalendarDays} size={50} />
+          <Text
+            style={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              textAlign: 'center',
+              fontSize: 15,
+              paddingTop: 5,
+            }}
+          >
+            {'Change Frequency'}
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            width: 100,
+            height: 100,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={() => navigation.navigate('CancelPickup')}
-        />
-        <Button
-          label='Current Pickups'
+        >
+          <FontAwesomeIcon icon={faCircleXmark} size={50} />
+          <Text
+            style={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              textAlign: 'center',
+              fontSize: 15,
+              paddingTop: 5,
+              width: 97,
+            }}
+          >
+            {'Cancel Pickup'}
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            width: 100,
+            height: 100,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={() => navigation.navigate('ActivePickups')}
-        />
-        <Button
-          label='Request Boxes'
+        >
+          <FontAwesomeIcon icon={faTruckPickup} size={50} />
+          <Text
+            style={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              textAlign: 'center',
+              fontSize: 15,
+              paddingTop: 5,
+            }}
+          >
+            {'Current Pickups'}
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            width: 100,
+            height: 100,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={() => navigation.navigate('BoxRequest')}
-        />
+        >
+          <FontAwesomeIcon icon={faBox} size={50} />
+          <Text
+            style={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              textAlign: 'center',
+              fontSize: 15,
+              paddingTop: 5,
+            }}
+          >
+            {'Request Boxes'}
+          </Text>
+        </Pressable>
       </View>
       <View style={styles.currentPickups}>
         <RMText style={{ fontSize: 40 }}>Current Pickups</RMText>
