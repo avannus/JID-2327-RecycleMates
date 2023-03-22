@@ -11,55 +11,25 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
-// Need to call pickups from backend and list them
+// Call pickups from backend and list them
 // Try to make pickups line up from the left
-// Add up pop ups when you click on a pickup
+// Add up pop ups with information when you click on a pickup (?)
 function CustomerHome({ navigation }) {
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
-            <RMText
-              style={{
-                color: '#ffffff',
-                fontSize: 30,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}
-            >
-              Schedule a pickup
-            </RMText>
-            <RMText
-              style={{
-                color: '#ffffff',
-                fontSize: 20,
-                paddingBottom: 10,
-                textAlign: 'center',
-              }}
-            >
+            <RMText style={styles.bannerTitle}>Schedule a pickup</RMText>
+            <RMText style={styles.bannerText}>
               Local drivers are available and ready to pickup your recyclable
-              packages with RecycleMates
+              packages with RecycleMates! ♻️
             </RMText>
             <Pressable
-              style={{
-                backgroundColor: '#ffffff',
-                borderRadius: 50,
-                alignItems: 'center',
-                width: 200,
-                height: 50,
-                justifyContent: 'center',
-              }}
+              style={styles.bannerButton}
               onPress={() => navigation.navigate('DescribeMaterial')}
             >
-              <Text
-                style={{
-                  color: '#000000',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                }}
-              >
+              <Text style={styles.bannerButtonLabel}>
                 {'Confirm your next pickup'}
               </Text>
             </Pressable>
@@ -71,33 +41,14 @@ function CustomerHome({ navigation }) {
             onPress={() => navigation.navigate('SchedulePickups')}
           >
             <FontAwesomeIcon icon={faCalendarDays} size={50} />
-            <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-              }}
-            >
-              {'Change Frequency'}
-            </Text>
+            <Text style={[styles.buttonText]}>{'Change Frequency'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
             onPress={() => navigation.navigate('CancelPickup')}
           >
             <FontAwesomeIcon icon={faCircleXmark} size={50} />
-            <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-                width: 97,
-              }}
-            >
+            <Text style={[styles.buttonText, { width: 97 }]}>
               {'Cancel Pickup'}
             </Text>
           </Pressable>
@@ -106,34 +57,14 @@ function CustomerHome({ navigation }) {
             onPress={() => navigation.navigate('ActivePickups')}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
-            <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-              }}
-            >
-              {'Current Pickups'}
-            </Text>
+            <Text style={styles.buttonText}>{'Current Pickups'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
             onPress={() => navigation.navigate('BoxRequest')}
           >
             <FontAwesomeIcon icon={faBox} size={50} />
-            <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-              }}
-            >
-              {'Request Boxes'}
-            </Text>
+            <Text style={styles.buttonText}>{'Request Boxes'}</Text>
           </Pressable>
         </View>
         <View style={styles.currentPickupsContainer}>
@@ -185,6 +116,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
+  bannerTitle: {
+    color: '#ffffff',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  bannerText: {
+    color: '#ffffff',
+    fontSize: 20,
+    paddingBottom: 10,
+    textAlign: 'center',
+  },
+  bannerButton: {
+    backgroundColor: '#ffffff',
+    borderRadius: 50,
+    alignItems: 'center',
+    width: 200,
+    height: 50,
+    justifyContent: 'center',
+  },
+  bannerButtonLabel: {
+    color: '#000000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   buttonContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
@@ -200,6 +157,13 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonText: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    textAlign: 'center',
+    fontSize: 15,
+    paddingTop: 5,
   },
   currentPickupsContainer: {
     alignItems: 'center',
