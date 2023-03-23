@@ -31,7 +31,7 @@ const Tab = createBottomTabNavigator();
 
 function CustomerHomeTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name='Home'
         component={CustomerHomeStack}
@@ -52,7 +52,7 @@ function CustomerHomeTabs() {
 
 function DriverHomeTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name='Home'
         component={DriverHomeStack}
@@ -73,25 +73,37 @@ function DriverHomeTabs() {
 
 function CustomerHomeStack() {
   return (
-    <Stack.Navigator initialRouteName='CustomerHome' screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='CustomerHome' component={CustomerHome} />
-      <Stack.Screen name='ActivePickups' component={ActivePickups} />
-      <Stack.Screen name='BoxRequest' component={BoxRequest} />
-      <Stack.Screen name='CancelPickup' component={CancelPickup} />
-      <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
-      <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} />
-      <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
+    <Stack.Navigator initialRouteName='CustomerHome'>
+      <Stack.Screen name='CustomerHome' component={CustomerHome} options={{ title: 'Home' }} />
+      <Stack.Screen name='ActivePickups' component={ActivePickups} options={{ title: 'Current Pickups' }} />
+      <Stack.Screen name='BoxRequest' component={BoxRequest} options={{ title: 'Request Boxes' }} />
+      <Stack.Screen name='CancelPickup' component={CancelPickup} options={{ title: 'Cancel a Pickup' }} />
+      <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} options={{ title: 'Describe Materials' }} />
+      <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} options={{ title: 'Pickup Confirmed' }}/>
+      <Stack.Screen name='SchedulePickups' component={SchedulePickups} options={{ title: 'Change Frequency' }} />
     </Stack.Navigator>
   );
 }
 
 function DriverHomeStack() {
   return (
-    <Stack.Navigator initialRouteName='DriverHome' screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='DriverHome' component={DriverHome} />
-      <Stack.Screen name='ActivePickupsDriver' component={ActivePickupsDriver} />
-      <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} />
-      <Stack.Screen name='RequestAssignmentChanges' component={RequestAssignmentChanges} />
+    <Stack.Navigator initialRouteName='DriverHome'>
+      <Stack.Screen
+        name='DriverHome'
+        component={DriverHome}
+        options={{ title: 'Home' }}
+      />
+      <Stack.Screen
+        name='ActivePickupsDriver'
+        component={ActivePickupsDriver}
+        options={{ title: 'Current Routes' }}
+      />
+      <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} options={{ title: 'Available Routes' }} />
+      <Stack.Screen
+        name='RequestAssignmentChanges'
+        component={RequestAssignmentChanges}
+        options={{ title: 'Request Changes' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -112,7 +124,7 @@ function RMRoutes() {
           component={CustomerHomeTabs}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen name='ActivePickups' component={ActivePickups} />
+        <Stack.Screen name='ActivePickups' component={ActivePickups} />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='CancelPickup' component={CancelPickup} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
@@ -120,13 +132,13 @@ function RMRoutes() {
           name='PickupConfirmation'
           component={PickupConfirmation}
         />
-        <Stack.Screen name='SchedulePickups' component={SchedulePickups} /> */}
+        <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
         <Stack.Screen
           name='DriverHome'
           component={DriverHomeTabs}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name='ActivePickupsDriver'
           component={ActivePickupsDriver}
         />
@@ -134,8 +146,8 @@ function RMRoutes() {
         <Stack.Screen
           name='RequestAssignmentChanges'
           component={RequestAssignmentChanges}
-        /> */}
-        {/* <Stack.Screen name='Edit' component={Edit} /> */}
+        />
+        <Stack.Screen name='Edit' component={Edit} />
         <Stack.Screen name='InProgress' component={InProgress} />
       </Stack.Navigator>
     </NavigationContainer>
