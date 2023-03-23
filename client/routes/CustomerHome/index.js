@@ -11,9 +11,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
-// Call pickups from backend and list them
-// Try to make pickups line up from the left
-// Add up pop ups with information when you click on a pickup (?)
 function CustomerHome({ navigation }) {
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
@@ -117,63 +114,63 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bannerTitle: {
-    color: '#ffffff',
+    color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   bannerText: {
-    color: '#ffffff',
+    color: 'white',
     fontSize: 20,
     paddingBottom: 10,
     textAlign: 'center',
   },
   bannerButton: {
-    backgroundColor: '#ffffff',
-    borderRadius: 50,
     alignItems: 'center',
-    width: 200,
+    backgroundColor: 'white',
+    borderRadius: 50,
     height: 50,
     justifyContent: 'center',
+    width: 200,
   },
   bannerButtonLabel: {
-    color: '#000000',
     alignItems: 'center',
+    color: 'black',
     justifyContent: 'center',
     textAlign: 'center',
   },
   buttonContainer: {
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     paddingTop: 20,
     width: '60%',
-    alignSelf: 'center',
   },
   buttonStyle: {
-    width: 100,
-    height: 100,
     alignItems: 'center',
+    height: 100,
     justifyContent: 'center',
+    width: 100,
   },
   buttonText: {
     flexDirection: 'column',
     flexWrap: 'wrap',
-    textAlign: 'center',
     fontSize: 15,
     paddingTop: 5,
+    textAlign: 'center',
   },
   currentPickupsContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
-    justifyContent: 'center',
-    padding: 5,
-    marginBottom: 100, // to allow user to scroll to bottom of pickup list
     height: '30%',
+    justifyContent: 'center',
     maxHeight: 300,
+    marginBottom: 100,
+    padding: 5,
   },
   currentPickupsTitle: {
     alignItems: 'center',
@@ -182,8 +179,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   currentPickupsList: {
-    persistentScrollbar: 'true',
     showsVerticalScrollIndicator: 'true',
+    persistentScrollbar: 'true',
   },
 });
 

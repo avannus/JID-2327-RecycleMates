@@ -16,46 +16,16 @@ function DriverHome({ navigation }) {
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
-            <RMText
-              style={{
-                color: '#ffffff',
-                fontSize: 30,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}
-            >
-              Confirm a pickup
-            </RMText>
-            <RMText
-              style={{
-                color: '#ffffff',
-                fontSize: 20,
-                paddingBottom: 10,
-                textAlign: 'center',
-              }}
-            >
+            <RMText style={styles.bannerTitle}>Confirm a pickup</RMText>
+            <RMText style={styles.bannerText}>
               RecycleMates customers are currently waiting for their recyclables
-              to be picked up.
+              to be picked up ♻️
             </RMText>
             <Pressable
-              style={{
-                backgroundColor: '#ffffff',
-                borderRadius: 50,
-                alignItems: 'center',
-                width: 200,
-                height: 50,
-                justifyContent: 'center',
-              }}
+              style={styles.bannerButton}
               onPress={() => navigation.navigate('ActivePickupsDriver')}
             >
-              <Text
-                style={{
-                  color: '#000000',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                }}
-              >
+              <Text style={styles.bannerButtonLabel}>
                 {'Begin your next route'}
               </Text>
             </Pressable>
@@ -68,13 +38,7 @@ function DriverHome({ navigation }) {
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
             <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-              }}
+              style={styles.buttonText}
             >
               {'View Available Routes'}
             </Text>
@@ -85,14 +49,7 @@ function DriverHome({ navigation }) {
           >
             <FontAwesomeIcon icon={faRoute} size={50} />
             <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-                width: 97,
-              }}
+              style={styles.buttonText}
             >
               {'Begin Next Route'}
             </Text>
@@ -103,13 +60,7 @@ function DriverHome({ navigation }) {
           >
             <FontAwesomeIcon icon={faMap} size={50} />
             <Text
-              style={{
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                fontSize: 15,
-                paddingTop: 5,
-              }}
+              style={styles.buttonText}
             >
               {'Request Assignment Changes'}
             </Text>
@@ -126,7 +77,9 @@ function DriverHome({ navigation }) {
             >
               Current Routes
             </RMText>
-            <Pressable onPress={() => navigation.navigate('ActivePickupsDriver')}>
+            <Pressable
+              onPress={() => navigation.navigate('ActivePickupsDriver')}
+            >
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'see more >'}
               </Text>
@@ -164,6 +117,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
+  bannerTitle: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  bannerText: {
+    color: 'white',
+    fontSize: 20,
+    paddingBottom: 10,
+    textAlign: 'center',
+  },
+  bannerButton: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 50,
+    height: 50,
+    justifyContent: 'center',
+    width: 200,
+  },
+  bannerButtonLabel: {
+    alignItems: 'center',
+    color: 'black',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   buttonContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
@@ -179,6 +158,13 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonText: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    fontSize: 15,
+    paddingTop: 5,
+    textAlign: 'center',
   },
   currentRoutesContainer: {
     alignItems: 'center',
