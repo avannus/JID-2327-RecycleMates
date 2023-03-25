@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
-function CustomerHomeTabs() {
+function CustomerTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
@@ -50,7 +50,7 @@ function CustomerHomeTabs() {
   );
 }
 
-function DriverHomeTabs() {
+function DriverTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
@@ -74,7 +74,7 @@ function DriverHomeTabs() {
 function CustomerHomeStack() {
   return (
     <Stack.Navigator initialRouteName='CustomerHome'>
-      <Stack.Screen name='CustomerHome' component={CustomerHome} options={{ title: 'Home' }} />
+      <Stack.Screen name='CustomerHome' component={CustomerHome} options={{ title: 'Home', headerLeft: () => null }} />
       <Stack.Screen name='ActivePickups' component={ActivePickups} options={{ title: 'Current Pickups' }} />
       <Stack.Screen name='BoxRequest' component={BoxRequest} options={{ title: 'Request Boxes' }} />
       <Stack.Screen name='CancelPickup' component={CancelPickup} options={{ title: 'Cancel a Pickup' }} />
@@ -91,7 +91,7 @@ function DriverHomeStack() {
       <Stack.Screen
         name='DriverHome'
         component={DriverHome}
-        options={{ title: 'Home' }}
+        options={{ title: 'Home', headerLeft: () => null }}
       />
       <Stack.Screen
         name='ActivePickupsDriver'
@@ -121,7 +121,7 @@ function RMRoutes() {
         <Stack.Screen name='ForgotPass' component={ForgotPass} />
         <Stack.Screen
           name='CustomerHome'
-          component={CustomerHomeTabs}
+          component={CustomerTabs}
           options={{ headerShown: false }}
         />
         <Stack.Screen name='ActivePickups' component={ActivePickups} />
@@ -135,7 +135,7 @@ function RMRoutes() {
         <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
         <Stack.Screen
           name='DriverHome'
-          component={DriverHomeTabs}
+          component={DriverTabs}
           options={{ headerShown: false }}
         />
         <Stack.Screen
