@@ -11,7 +11,7 @@ function ActivePickups({ navigation }) {
       style={{
         flex: 1,
         alignItems: 'center',
-        //justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: RMStyle.colors.background,
       }}
     >

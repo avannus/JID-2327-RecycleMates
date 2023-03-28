@@ -1,57 +1,95 @@
 import * as React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Pressable, Text } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
-import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  faMap,
+  faMapLocationDot,
+  faRoute,
+} from '@fortawesome/free-solid-svg-icons';
 
-// Buttons need to navigate to pages
-// Make buttons match Figma
-// Add the navigation bar at the bottom
 function DriverHome({ navigation }) {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <RMText style={{ color: '#ffffff', fontSize: 40 }}>
-          Confirm a pickup
-        </RMText>
-        <RMText style={{ color: '#ffffff' }}>
-          Recycle Mates customers are currently waiting for their recyclables to
-          be picked up.
-        </RMText>
-        <Button
-          label='Your Current Active Pickups'
-          onPress={() => {
-            navigation.navigate('ActivePickups');
-          }}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          label='View Available Routes'
-          onPress={() => navigation.navigate('AvailableRoutes')}
-        />
-        <Button
-          label='Begin Next Route'
-          onPress={() => navigation.navigate('ActivePickupsDriver')}
-        />
-        <Button
-          label='Request Assignment Changes'
-          onPress={() => navigation.navigate('RequestAssignmentChanges')}
-        />
-      </View>
-      <View style={styles.currentRoutes}>
-        <RMText style={{ fontSize: 40 }}>Current Routes</RMText>
-        <RMText>Monday, 4pm-8pm</RMText>
-        <RMText>Thursday, 8am-12pm</RMText>
-      </View>
-      <View style={styles.footer}>
-        <Button
-          label='Edit Account Info'
-          onPress={() => {
-            navigation.navigate('Edit');
-          }}
-        />
+    <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
+      <View style={styles.container}>
+        <View style={styles.bannerContainer}>
+          <View style={styles.banner}>
+            <RMText style={styles.bannerTitle}>Confirm a pickup</RMText>
+            <RMText style={styles.bannerText}>
+              RecycleMates customers are currently waiting for their recyclables
+              to be picked up ♻️
+            </RMText>
+            <Pressable
+              style={styles.bannerButton}
+              onPress={() => navigation.navigate('ActivePickupsDriver')}
+            >
+              <Text style={styles.bannerButtonLabel}>
+                {'Begin your next route'}
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Pressable
+            style={styles.buttonStyle}
+            onPress={() => navigation.navigate('AvailableRoutes')}
+          >
+            <FontAwesomeIcon icon={faMapLocationDot} size={50} />
+            <Text
+              style={styles.buttonText}
+            >
+              {'View Available Routes'}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={styles.buttonStyle}
+            onPress={() => navigation.navigate('ActivePickupsDriver')}
+          >
+            <FontAwesomeIcon icon={faRoute} size={50} />
+            <Text
+              style={styles.buttonText}
+            >
+              {'Begin Next Route'}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.buttonStyle, { height: 110 }]}
+            onPress={() => navigation.navigate('RequestAssignmentChanges')}
+          >
+            <FontAwesomeIcon icon={faMap} size={50} />
+            <Text
+              style={styles.buttonText}
+            >
+              {'Request Assignment Changes'}
+            </Text>
+          </Pressable>
+        </View>
+        <View style={styles.currentRoutesContainer}>
+          <View style={styles.currentRoutesTitle}>
+            <RMText
+              style={{
+                fontSize: 30,
+                fontWeight: 'bold',
+                alignSelf: 'center',
+              }}
+            >
+              Current Routes
+            </RMText>
+            <Pressable
+              onPress={() => navigation.navigate('ActivePickupsDriver')}
+            >
+              <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
+                {'see more >'}
+              </Text>
+            </Pressable>
+          </View>
+          <ScrollView style={styles.currentRoutesList}>
+            <RMText>Monday, 1 pm - 2 pm</RMText>
+            <RMText>Tuesday, 3 pm - 4 pm</RMText>
+          </ScrollView>
+        </View>
       </View>
     </ScrollView>
   );
@@ -63,39 +101,90 @@ DriverHome.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: RMStyle.colors.background,
+    flex: 1,
   },
-  header: {
+  bannerContainer: {
     alignItems: 'center',
     backgroundColor: '#399431',
     justifyContent: 'center',
-    height: 300,
+    height: '50%',
+    maxHeight: 300,
     width: '100%',
+  },
+  banner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  bannerTitle: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  bannerText: {
+    color: 'white',
+    fontSize: 20,
+    paddingBottom: 10,
+    textAlign: 'center',
+  },
+  bannerButton: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 50,
+    height: 50,
+    justifyContent: 'center',
+    width: 200,
+  },
+  bannerButtonLabel: {
+    alignItems: 'center',
+    color: 'black',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   buttonContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    padding: 10,
-    width: '100%',
+    justifyContent: 'space-evenly',
+    paddingTop: 20,
+    width: '60%',
+    alignSelf: 'center',
   },
-  currentRoutes: {
+  buttonStyle: {
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    fontSize: 15,
+    paddingTop: 5,
+    textAlign: 'center',
+  },
+  currentRoutesContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: 10,
+    padding: 5,
+    marginBottom: 100, // to allow user to scroll to bottom of pickup list
+    height: '30%',
+    maxHeight: 300,
   },
-  footer: {
+  currentRoutesTitle: {
     alignItems: 'center',
-    backgroundColor: RMStyle.colors.background,
-    flexDirection: 'row',
     flexWrap: 'wrap',
+    flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
+  },
+  currentRoutesList: {
+    persistentScrollbar: 'true',
+    showsVerticalScrollIndicator: 'true',
   },
 });
 
