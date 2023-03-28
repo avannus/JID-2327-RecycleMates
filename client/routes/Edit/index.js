@@ -10,7 +10,7 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Edit({ navigation }) {
+function Edit() {
   const [modalVisible, setModalVisible] = React.useState(false);
   const saveChanges = () => {
     // TODO: Save information to the server
