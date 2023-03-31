@@ -21,7 +21,7 @@ import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
 import DriverCurrentSchedule from './DriverCurrentSchedule';
-import RequestAssignmentChanges from './RequestAssignmentChanges';
+import RequestScheduleChanges from './RequestScheduleChanges';
 import EditAccount from './EditAccount';
 import InProgress from './InProgress';
 
@@ -140,9 +140,9 @@ function DriverHomeStack() {
         options={{ title: 'Current Schedule' }}
       />
       <Stack.Screen
-        name='RequestAssignmentChanges'
-        component={RequestAssignmentChanges}
-        options={{ title: 'Request Changes' }}
+        name='RequestScheduleChanges'
+        component={RequestScheduleChanges}
+        options={{ title: 'Request Schedule Changes' }}
       />
     </Stack.Navigator>
   );
@@ -184,8 +184,8 @@ function RMRoutes() {
         />
         <Stack.Screen name='DriverCurrentSchedule' component={DriverCurrentSchedule} />
         <Stack.Screen
-          name='RequestAssignmentChanges'
-          component={RequestAssignmentChanges}
+          name='RequestScheduleChanges'
+          component={RequestScheduleChanges}
         />
         <Stack.Screen name='EditAccount' component={EditAccount} />
         <Stack.Screen name='InProgress' component={InProgress} />

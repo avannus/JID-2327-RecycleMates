@@ -3,7 +3,7 @@ import { View, StyleSheet, Button, Alert } from 'react-native';
 import RMText from '../../components/RMText';
 import PropTypes from 'prop-types';
 
-function RequestAssignmentChanges() {
+function RequestScheduleChanges() {
   const createTwoButtonAlert = () =>
     Alert.alert(
       'Request Schedule?',
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
 });
 
-RequestAssignmentChanges.propTypes = {
+RequestScheduleChanges.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default RequestAssignmentChanges;
+export default RequestScheduleChanges;

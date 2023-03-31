@@ -57,7 +57,7 @@ function DriverHome({ navigation }) {
           </Pressable>
           <Pressable
             style={[styles.buttonStyle, { height: 110 }]}
-            onPress={() => navigation.navigate('RequestAssignmentChanges')}
+            onPress={() => navigation.navigate('RequestScheduleChanges')}
           >
             <FontAwesomeIcon icon={faMap} size={50} />
             <Text style={styles.buttonText}>{'Request Schedule Changes'}</Text>
@@ -72,17 +72,18 @@ function DriverHome({ navigation }) {
                 alignSelf: 'center',
               }}
             >
-              Current Schedule
+              Current Routes
             </RMText>
             <Pressable onPress={() => navigation.navigate('DriverCurrentSchedule')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
-                {'see details >'}
+                {'see more >'}
               </Text>
             </Pressable>
           </View>
           <ScrollView style={styles.currentRoutesList}>
-            <RMText>Monday, 1 pm - 2 pm</RMText>
-            <RMText>Tuesday, 3 pm - 4 pm</RMText>
+            <RMText>Monday, 2 pm - 3 pm</RMText>
+            <RMText>Tuesday, 4 pm - 5 pm</RMText>
+            <RMText>Wednesday 9 am - 11 am</RMText>
           </ScrollView>
         </View>
       </View>
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     paddingTop: 20,
-    // width: '60%',
+    width: '100%',
     alignSelf: 'center',
   },
   buttonStyle: {
