@@ -20,7 +20,7 @@ import PickupConfirmation from './PickupConfirmation';
 import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
-import DriverPickupList from './DriverPickupList';
+import DriverCurrentSchedule from './DriverCurrentSchedule';
 import RequestAssignmentChanges from './RequestAssignmentChanges';
 import EditAccount from './EditAccount';
 import InProgress from './InProgress';
@@ -135,9 +135,9 @@ function DriverHomeStack() {
         options={{ title: 'Current Pickup' }}
       />
       <Stack.Screen
-        name='DriverPickupList'
-        component={DriverPickupList}
-        options={{ title: 'Current Pickups' }}
+        name='DriverCurrentSchedule'
+        component={DriverCurrentSchedule}
+        options={{ title: 'Current Schedule' }}
       />
       <Stack.Screen
         name='RequestAssignmentChanges'
@@ -182,7 +182,7 @@ function RMRoutes() {
           name='DriverCurrentPickup'
           component={DriverCurrentPickup}
         />
-        <Stack.Screen name='DriverPickupList' component={DriverPickupList} />
+        <Stack.Screen name='DriverCurrentSchedule' component={DriverCurrentSchedule} />
         <Stack.Screen
           name='RequestAssignmentChanges'
           component={RequestAssignmentChanges}

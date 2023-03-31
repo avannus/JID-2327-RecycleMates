@@ -43,37 +43,24 @@ function DriverHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('RequestAssignmentChanges')}
+            onPress={() => navigation.navigate('DriverCurrentSchedule')}
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'View Current Schedule'}
-            </Text>
+            <Text style={styles.buttonText}>{'View Current Schedule'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
             onPress={() => navigation.navigate('DriverCurrentPickup')}
           >
             <FontAwesomeIcon icon={faRoute} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'Begin Next Pickup'}
-            </Text>
+            <Text style={styles.buttonText}>{'Begin Next Pickup'}</Text>
           </Pressable>
           <Pressable
             style={[styles.buttonStyle, { height: 110 }]}
-            onPress={() => navigation.navigate('AvailableRoutes')}
-            
+            onPress={() => navigation.navigate('RequestAssignmentChanges')}
           >
             <FontAwesomeIcon icon={faMap} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'Request Schedule Changes'}
-            </Text>
+            <Text style={styles.buttonText}>{'Request Schedule Changes'}</Text>
           </Pressable>
         </View>
         <View style={styles.currentRoutesContainer}>
@@ -85,13 +72,11 @@ function DriverHome({ navigation }) {
                 alignSelf: 'center',
               }}
             >
-              Current Routes
+              Current Schedule
             </RMText>
-            <Pressable
-              onPress={() => navigation.navigate('InProgress')}
-            >
+            <Pressable onPress={() => navigation.navigate('DriverCurrentSchedule')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
-                {'see more >'}
+                {'see details >'}
               </Text>
             </Pressable>
           </View>

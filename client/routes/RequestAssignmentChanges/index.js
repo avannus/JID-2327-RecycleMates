@@ -1,32 +1,56 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Button, Alert } from 'react-native';
 import RMText from '../../components/RMText';
-import RMStyle from '../../RMStyle';
-import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function RequestAssignmentChanges({ navigation }) {
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: RMStyle.colors.background,
-      }}
-    >
-      <RMText style={{
-          fontSize: 25,
-          textAlign: 'center',
-        }}>Your Current Schedules and Pickups</RMText>
-      <RMText>Monday 2 - 3pm : 2 pickups</RMText>
-      <RMText>Tuesday 4-5pm : 1 pickup</RMText>
-      <RMText>Wednesday 9 - 11am : 3 pickups</RMText>
+function RequestAssignmentChanges() {
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      'Request Schedule?',
+      'You will be notified if your schedule change request is approved.',
+      [
+        {
+          text: 'Cancel',
 
-      <Button label='Go back' onPress={() => navigation.goBack()}></Button>
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'Confirm', onPress: () => console.log('Confirm Pressed') },
+      ],
+    );
+
+  return (
+    <View style={styles.container}>
+      <RMText style={{ color: '#000000', fontSize: 35 }}>
+        Available Schedules
+      </RMText>
+      <Button
+        title={'Schedule Option 1: Mon and Tue 12-5pm'}
+        onPress={createTwoButtonAlert}
+      />
+      <Button
+        title={'Schedule Option 2: Tue and Sat 12-5pm'}
+        onPress={createTwoButtonAlert}
+      />
+      <Button
+        title={'Schedule Option 3: Thurs and Fri 3-6pm'}
+        onPress={createTwoButtonAlert}
+      />
+      <Button
+        title={'Schedule Option 4: Sat and Sun 8-11am'}
+        onPress={createTwoButtonAlert}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 0.7,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});
 
 RequestAssignmentChanges.propTypes = {
   navigation: PropTypes.object.isRequired,
