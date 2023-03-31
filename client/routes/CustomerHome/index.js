@@ -12,6 +12,14 @@ import {
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 function CustomerHome({ navigation }) {
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+      }),
+    [navigation],
+  );
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
       <View style={styles.container}>
@@ -94,6 +102,11 @@ function CustomerHome({ navigation }) {
 CustomerHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
+
+// CustomerHome.navigationOptions = {
+//   gestureEnabled: false,
+//   gestureDirection: 'horizontal',
+// };
 
 const styles = StyleSheet.create({
   container: {

@@ -52,7 +52,9 @@ function CustomerTabs() {
 
 function DriverTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false, gestureEnabled: false }}
+    >
       <Tab.Screen
         name='Home'
         component={DriverHomeStack}
@@ -74,13 +76,44 @@ function DriverTabs() {
 function CustomerHomeStack() {
   return (
     <Stack.Navigator initialRouteName='CustomerHome'>
-      <Stack.Screen name='CustomerHome' component={CustomerHome} options={{ title: 'Home', headerLeft: () => null }} />
-      <Stack.Screen name='ActivePickups' component={ActivePickups} options={{ title: 'Current Pickups' }} />
-      <Stack.Screen name='BoxRequest' component={BoxRequest} options={{ title: 'Request Boxes' }} />
-      <Stack.Screen name='CancelPickup' component={CancelPickup} options={{ title: 'Cancel a Pickup' }} />
-      <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} options={{ title: 'Describe Materials' }} />
-      <Stack.Screen name='PickupConfirmation' component={PickupConfirmation} options={{ title: 'Pickup Confirmed' }}/>
-      <Stack.Screen name='SchedulePickups' component={SchedulePickups} options={{ title: 'Change Frequency' }} />
+      <Stack.Screen
+        name='CustomerHome'
+        component={CustomerHome}
+        options={{
+          title: 'Home',
+          headerLeft: () => null,
+        }}
+      />
+      <Stack.Screen
+        name='ActivePickups'
+        component={ActivePickups}
+        options={{ title: 'Current Pickups' }}
+      />
+      <Stack.Screen
+        name='BoxRequest'
+        component={BoxRequest}
+        options={{ title: 'Request Boxes' }}
+      />
+      <Stack.Screen
+        name='CancelPickup'
+        component={CancelPickup}
+        options={{ title: 'Cancel a Pickup' }}
+      />
+      <Stack.Screen
+        name='DescribeMaterial'
+        component={DescribeMaterial}
+        options={{ title: 'Describe Materials' }}
+      />
+      <Stack.Screen
+        name='PickupConfirmation'
+        component={PickupConfirmation}
+        options={{ title: 'Pickup Confirmed' }}
+      />
+      <Stack.Screen
+        name='SchedulePickups'
+        component={SchedulePickups}
+        options={{ title: 'Change Frequency' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -91,14 +124,21 @@ function DriverHomeStack() {
       <Stack.Screen
         name='DriverHome'
         component={DriverHome}
-        options={{ title: 'Home', headerLeft: () => null }}
+        options={{
+          title: 'Home',
+          headerLeft: () => null,
+        }}
       />
       <Stack.Screen
         name='ActivePickupsDriver'
         component={ActivePickupsDriver}
         options={{ title: 'Current Routes' }}
       />
-      <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} options={{ title: 'Available Routes' }} />
+      <Stack.Screen
+        name='AvailableRoutes'
+        component={AvailableRoutes}
+        options={{ title: 'Available Routes' }}
+      />
       <Stack.Screen
         name='RequestAssignmentChanges'
         component={RequestAssignmentChanges}
@@ -122,7 +162,7 @@ function RMRoutes() {
         <Stack.Screen
           name='CustomerHome'
           component={CustomerTabs}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen name='ActivePickups' component={ActivePickups} />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
@@ -136,7 +176,7 @@ function RMRoutes() {
         <Stack.Screen
           name='DriverHome'
           component={DriverTabs}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
           name='ActivePickupsDriver'
