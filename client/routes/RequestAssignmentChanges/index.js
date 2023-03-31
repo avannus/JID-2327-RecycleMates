@@ -15,7 +15,14 @@ function RequestAssignmentChanges({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Page in progress</RMText>
+      <RMText style={{
+          fontSize: 25,
+          textAlign: 'center',
+        }}>Your Current Schedules and Pickups</RMText>
+      <RMText>Monday 2 - 3pm : 2 pickups</RMText>
+      <RMText>Tuesday 4-5pm : 1 pickup</RMText>
+      <RMText>Wednesday 9 - 11am : 3 pickups</RMText>
+
       <Button label='Go back' onPress={() => navigation.goBack()}></Button>
     </View>
   );
