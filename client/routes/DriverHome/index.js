@@ -28,7 +28,7 @@ function DriverHome({ navigation }) {
             <RMText style={styles.bannerTitle}>Confirm a pickup</RMText>
             <RMText style={styles.bannerText}>
               RecycleMates customers are currently waiting for their recyclables
-              to be picked up ♻️
+              to be picked up!
             </RMText>
             <Pressable
               style={styles.bannerButton}
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     paddingTop: 20,
-    width: '60%',
+    // width: '60%',
     alignSelf: 'center',
   },
   buttonStyle: {

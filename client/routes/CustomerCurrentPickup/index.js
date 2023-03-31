@@ -5,7 +5,7 @@ import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function ActivePickups({ navigation }) {
+function CustomerCurrentPickup({ navigation }) {
   return (
     <View
       style={{
@@ -22,8 +22,8 @@ function ActivePickups({ navigation }) {
   );
 }
 
-ActivePickups.propTypes = {
+CustomerCurrentPickup.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default ActivePickups;
+export default CustomerCurrentPickup;

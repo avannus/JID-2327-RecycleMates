@@ -5,14 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
 import Landing from './Landing';
-import AccountType from './Account Type';
+import AccountType from './AccountType';
 import Register from './Register';
 import RegisterInfo from './RegisterInfo';
 import ConfirmEmail from './ConfirmEmail';
 import Login from './Login';
 import ForgotPass from './ForgotPass';
 import CustomerHome from './CustomerHome';
-import ActivePickups from './ActivePickups';
+import CustomerCurrentPickup from './CustomerCurrentPickup';
 import BoxRequest from './BoxRequest';
 import CancelPickup from './CancelPickup';
 import DescribeMaterial from './DescribeMaterial';
@@ -22,7 +22,7 @@ import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
 import DriverPickupList from './DriverPickupList';
 import RequestAssignmentChanges from './RequestAssignmentChanges';
-import Edit from './Edit';
+import EditAccount from './EditAccount';
 import InProgress from './InProgress';
 
 const Stack = createNativeStackNavigator();
@@ -41,7 +41,7 @@ function CustomerTabs() {
       />
       <Tab.Screen
         name='Account'
-        component={Edit}
+        component={EditAccount}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
         }}
@@ -64,7 +64,7 @@ function DriverTabs() {
       />
       <Tab.Screen
         name='Account'
-        component={Edit}
+        component={EditAccount}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
         }}
@@ -85,8 +85,8 @@ function CustomerHomeStack() {
         }}
       />
       <Stack.Screen
-        name='ActivePickups'
-        component={ActivePickups}
+        name='CustomerCurrentPickup'
+        component={CustomerCurrentPickup}
         options={{ title: 'Current Pickups' }}
       />
       <Stack.Screen
@@ -151,7 +151,7 @@ function DriverHomeStack() {
 function RMRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='CustomerHome'>
+      <Stack.Navigator initialRouteName='Landing'>
         <Stack.Screen name='Landing' component={Landing} />
         <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Register' component={Register} />
@@ -164,7 +164,7 @@ function RMRoutes() {
           component={CustomerTabs}
           options={{ headerShown: false, gestureEnabled: false }}
         />
-        <Stack.Screen name='ActivePickups' component={ActivePickups} />
+        <Stack.Screen name='CustomerCurrentPickup' component={CustomerCurrentPickup} />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='CancelPickup' component={CancelPickup} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
@@ -187,7 +187,7 @@ function RMRoutes() {
           name='RequestAssignmentChanges'
           component={RequestAssignmentChanges}
         />
-        <Stack.Screen name='Edit' component={Edit} />
+        <Stack.Screen name='EditAccount' component={EditAccount} />
         <Stack.Screen name='InProgress' component={InProgress} />
       </Stack.Navigator>
     </NavigationContainer>
