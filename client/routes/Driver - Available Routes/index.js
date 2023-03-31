@@ -29,10 +29,10 @@ function AvailableRoutes() {
       <RMText style={{ color: '#000000', fontSize: 35}}>
           Available Schedules
     </RMText>
-      <Button title={'Schedule Option 1: Mon 12-5pm'} onPress={createTwoButtonAlert} />
-      <Button title={'Schedule Option 2: Tue 12-5pm'} onPress={createTwoButtonAlert} />
-      <Button title={'Schedule Option 3: Thurs 3-6pm'} onPress={createTwoButtonAlert} />
-      <Button title={'Schedule Option 4: Sat 8-11am'} onPress={createTwoButtonAlert} />
+      <Button title={'Schedule Option 1: Mon and Tue 12-5pm'} onPress={createTwoButtonAlert} />
+      <Button title={'Schedule Option 2: Tue and Sat 12-5pm'} onPress={createTwoButtonAlert} />
+      <Button title={'Schedule Option 3: Thurs and Fri 3-6pm'} onPress={createTwoButtonAlert} />
+      <Button title={'Schedule Option 4: Sat and Sun 8-11am'} onPress={createTwoButtonAlert} />
     </View>
 
     
