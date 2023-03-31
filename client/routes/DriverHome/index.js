@@ -43,13 +43,13 @@ function DriverHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('InProgress')} // DriverCurrentPickup
+            onPress={() => navigation.navigate('RequestAssignmentChanges')}
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
             <Text
               style={styles.buttonText}
             >
-              {'View Current Pickups'}
+              {'View Current Schedule'}
             </Text>
           </Pressable>
           <Pressable
@@ -65,13 +65,14 @@ function DriverHome({ navigation }) {
           </Pressable>
           <Pressable
             style={[styles.buttonStyle, { height: 110 }]}
-            onPress={() => navigation.navigate('RequestAssignmentChanges')}
+            onPress={() => navigation.navigate('AvailableRoutes')}
+            
           >
             <FontAwesomeIcon icon={faMap} size={50} />
             <Text
               style={styles.buttonText}
             >
-              {'Request Assignment Changes'}
+              {'Request Schedule Changes'}
             </Text>
           </Pressable>
         </View>
