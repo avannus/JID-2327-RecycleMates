@@ -16,8 +16,7 @@ function DescribeMaterial({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Describe Material</RMText>
-      <RMText>Your current scheduled pickup: (date + time)</RMText>
+      <RMText>Describe Materials:</RMText>
       <RMTextInput
         label='Type pickup material description'
         placeholder='Type pickup material description'
@@ -39,7 +38,7 @@ function DescribeMaterial({ navigation }) {
         theme='primary'
         label='Confirm Pickup'
         onPress={() => {
-          navigation.navigate('CustomerHome');
+          navigation.navigate('PickupConfirmation');
         }}
       />
     </View>

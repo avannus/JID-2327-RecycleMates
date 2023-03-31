@@ -2,10 +2,10 @@ import * as React from 'react';
 import { View } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
-import Button from '../../components/RMButton';
+import RMButton from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function ActivePickups({ navigation }) {
+function PickupConfirmation({ navigation }) {
   return (
     <View
       style={{
@@ -15,15 +15,21 @@ function ActivePickups({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <RMText>Current Pickup Frequency: (frequency)</RMText>
-      <RMText>Your next pickup is on (date)</RMText>
-      <Button label='Cancel Pickup' onPress={() => navigation.navigate('CancelPickup')}></Button>
+      <RMText>Your pickup frequency has been scheduled!</RMText>
+      <RMText>(display pickup frequency)</RMText>
+      <RMButton
+        theme='primary'
+        label='Return Home'
+        onPress={() => {
+          navigation.navigate('CustomerHome');
+        }}
+      />
     </View>
   );
 }
 
-ActivePickups.propTypes = {
+PickupConfirmation.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default ActivePickups;
+export default PickupConfirmation;

@@ -28,7 +28,7 @@ then
   fi
 else
   echo "'ifconfig' found. Parsing for ip"
-  ip=$(ifconfig en0 inet | grep inet | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | head -n 1)
+  ip="localhost"
   ip_found
 fi
 
@@ -42,5 +42,7 @@ else
 fi
 
 echo -e "---Finishing Andrew's helper script, starting expo---\n"
+
+npm i
 
 npx expo start
