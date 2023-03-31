@@ -11,6 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function DriverHome({ navigation }) {
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+      }),
+    [navigation],
+  );
+
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
       <View style={styles.container}>
@@ -98,6 +107,11 @@ function DriverHome({ navigation }) {
 DriverHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
+
+// DriverHome.navigationOptions = {
+//   gestureEnabled: false,
+//   gestureDirection: 'horizontal',
+// };
 
 const styles = StyleSheet.create({
   container: {
