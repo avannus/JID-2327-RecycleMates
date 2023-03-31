@@ -32,10 +32,10 @@ function DriverHome({ navigation }) {
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('ActivePickupsDriver')}
+              onPress={() => navigation.navigate('DriverCurrentPickup')}
             >
               <Text style={styles.bannerButtonLabel}>
-                {'Begin your next route'}
+                {'Begin your next pickup'}
               </Text>
             </Pressable>
           </View>
@@ -43,24 +43,24 @@ function DriverHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('AvailableRoutes')}
+            onPress={() => navigation.navigate('InProgress')} // DriverCurrentPickup
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
             <Text
               style={styles.buttonText}
             >
-              {'View Available Routes'}
+              {'View Current Pickups'}
             </Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('ActivePickupsDriver')}
+            onPress={() => navigation.navigate('DriverCurrentPickup')}
           >
             <FontAwesomeIcon icon={faRoute} size={50} />
             <Text
               style={styles.buttonText}
             >
-              {'Begin Next Route'}
+              {'Begin Next Pickup'}
             </Text>
           </Pressable>
           <Pressable
@@ -87,7 +87,7 @@ function DriverHome({ navigation }) {
               Current Routes
             </RMText>
             <Pressable
-              onPress={() => navigation.navigate('ActivePickupsDriver')}
+              onPress={() => navigation.navigate('InProgress')}
             >
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'see more >'}

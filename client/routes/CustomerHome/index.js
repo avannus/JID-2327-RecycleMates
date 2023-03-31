@@ -32,10 +32,10 @@ function CustomerHome({ navigation }) {
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('DescribeMaterial')}
+              onPress={() => navigation.navigate('SchedulePickups')}
             >
               <Text style={styles.bannerButtonLabel}>
-                {'Confirm your next pickup'}
+                {'Set your schedule frequency'}
               </Text>
             </Pressable>
           </View>

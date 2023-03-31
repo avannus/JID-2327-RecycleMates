@@ -19,8 +19,8 @@ import DescribeMaterial from './DescribeMaterial';
 import PickupConfirmation from './PickupConfirmation';
 import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
-import ActivePickupsDriver from './ActivePickupsDriver';
-import AvailableRoutes from './Driver - Available Routes';
+import DriverCurrentPickup from './DriverCurrentPickup';
+import DriverPickupList from './DriverPickupList';
 import RequestAssignmentChanges from './RequestAssignmentChanges';
 import Edit from './Edit';
 import InProgress from './InProgress';
@@ -112,7 +112,7 @@ function CustomerHomeStack() {
       <Stack.Screen
         name='SchedulePickups'
         component={SchedulePickups}
-        options={{ title: 'Change Frequency' }}
+        options={{ title: 'Set Frequency' }}
       />
     </Stack.Navigator>
   );
@@ -130,14 +130,14 @@ function DriverHomeStack() {
         }}
       />
       <Stack.Screen
-        name='ActivePickupsDriver'
-        component={ActivePickupsDriver}
-        options={{ title: 'Current Routes' }}
+        name='DriverCurrentPickup'
+        component={DriverCurrentPickup}
+        options={{ title: 'Current Pickup' }}
       />
       <Stack.Screen
-        name='AvailableRoutes'
-        component={AvailableRoutes}
-        options={{ title: 'Available Routes' }}
+        name='DriverPickupList'
+        component={DriverPickupList}
+        options={{ title: 'Current Pickups' }}
       />
       <Stack.Screen
         name='RequestAssignmentChanges'
@@ -151,7 +151,7 @@ function DriverHomeStack() {
 function RMRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'>
+      <Stack.Navigator initialRouteName='CustomerHome'>
         <Stack.Screen name='Landing' component={Landing} />
         <Stack.Screen name='Account Type' component={AccountType} />
         <Stack.Screen name='Register' component={Register} />
@@ -179,10 +179,10 @@ function RMRoutes() {
           options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
-          name='ActivePickupsDriver'
-          component={ActivePickupsDriver}
+          name='DriverCurrentPickup'
+          component={DriverCurrentPickup}
         />
-        <Stack.Screen name='AvailableRoutes' component={AvailableRoutes} />
+        <Stack.Screen name='DriverPickupList' component={DriverPickupList} />
         <Stack.Screen
           name='RequestAssignmentChanges'
           component={RequestAssignmentChanges}

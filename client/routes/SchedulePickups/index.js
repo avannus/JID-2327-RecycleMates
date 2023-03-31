@@ -66,7 +66,7 @@ function SchedulePickups({ navigation }) {
           </View>
         </View>
       </Modal>
-      <RMText>Request Pickup Frequency Change</RMText>
+      <RMText>Request Pickup Frequency</RMText>
       <RMText>
         How often would you like to have pickups?
       </RMText>
