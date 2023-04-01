@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function DriverCurrentPickup({ navigation }) {
-  const startDelivery = () => {
-    navigation.navigate('DriverPickupInProgress');
-  };
-
+function DriverPickupInProgress({ navigation }) {
   return (
     <View
       style={{
@@ -31,12 +27,17 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
       >
-        Status: Not Begun
+        Status: In Progress
       </RMText>
 
       <RMText>(Map Shown Here)</RMText>
 
-      <Button label='Start Pickup' onPress={startDelivery} />
+      <Button
+        label='Mark Complete'
+        onPress={() => {
+          navigation.navigate('DriverPickupComplete'); // Removed drop-off materials to recycling facility
+        }}
+      />
 
       <Button
         label='Cancel Pickup'
@@ -48,8 +49,8 @@ function DriverCurrentPickup({ navigation }) {
   );
 }
 
-DriverCurrentPickup.propTypes = {
+DriverPickupInProgress.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default DriverCurrentPickup;
+export default DriverPickupInProgress;

@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function DriverCurrentPickup({ navigation }) {
-  const startDelivery = () => {
-    navigation.navigate('DriverPickupInProgress');
-  };
-
+function DriverPickupComplete({ navigation }) {
   return (
     <View
       style={{
@@ -31,25 +27,36 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
       >
-        Status: Not Begun
+        Status: Complete ✔️
       </RMText>
 
       <RMText>(Map Shown Here)</RMText>
 
-      <Button label='Start Pickup' onPress={startDelivery} />
+      {/* <View style={{ width: '80%' }}>
+        <RMText style={{ textAlign: 'center', fontSize: 20 }}>
+          Thank you for making the world a healthier place for us all!
+        </RMText>
+      </View> */}
 
       <Button
-        label='Cancel Pickup'
+        label='Begin Next Pickup'
         onPress={() => {
-          navigation.navigate('InProgress');
+          navigation.navigate('DriverCurrentPickup');
+        }}
+      />
+
+      <Button
+        label='Return Home'
+        onPress={() => {
+          navigation.navigate('DriverHome');
         }}
       />
     </View>
   );
 }
 
-DriverCurrentPickup.propTypes = {
+DriverPickupComplete.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default DriverCurrentPickup;
+export default DriverPickupComplete;
