@@ -24,7 +24,7 @@ function DriverCurrentPickup({ navigation }) {
   };
 
   const cancellationAlert = () =>
-    Alert.alert('Cancellation successful', 'This pickup has been cancelled.', [
+    Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
       {
         text: 'Return Home',
         onPress: returnHome,
@@ -73,14 +73,6 @@ function DriverCurrentPickup({ navigation }) {
             >
               <View style={{ paddingHorizontal: 5 }}>
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={cancelPickup}
-                >
-                  <Text style={styles.textStyle}>Confirm</Text>
-                </Pressable>
-              </View>
-              <View style={{ paddingHorizontal: 5 }}>
-                <Pressable
                   style={{
                     backgroundColor: '#D3D3D3',
                     borderRadius: 20,
@@ -90,6 +82,14 @@ function DriverCurrentPickup({ navigation }) {
                   onPress={toggleModal}
                 >
                   <Text style={{ color: 'black' }}>Dismiss</Text>
+                </Pressable>
+              </View>
+              <View style={{ paddingHorizontal: 5 }}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={cancelPickup}
+                >
+                  <Text style={styles.textStyle}>Confirm</Text>
                 </Pressable>
               </View>
             </View>
