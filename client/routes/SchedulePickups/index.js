@@ -5,6 +5,8 @@ import RMStyle from '../../RMStyle';
 import RMButton from '../../components/RMButton';
 import PropTypes from 'prop-types';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { SERVER } from 'RMenv';
+import { currentLogin } from '../../currentLogin';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,10 +14,10 @@ function SchedulePickups({ navigation }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(null);
   const [items, setItems] = React.useState([
-    { label: 'Weekly', value: 'weekly' },
-    { label: 'Biweekly', value: 'biweekly' },
-    { label: 'Monthly', value: 'monthly' },
-    { label: 'Bimonthly', value: 'bimonthly' },
+    { label: 'Weekly', value: 1 },
+    { label: 'Biweekly', value: 2 },
+    { label: 'Monthly', value: 4 },
+    { label: 'Bimonthly', value: 8 },
   ]);
   const [visible, setVisible] = React.useState(true);
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -92,7 +94,32 @@ function SchedulePickups({ navigation }) {
         <RMButton
           theme='primary'
           label='Confirm'
-          onPress={confirmPickup}
+          onPress={() => {
+            const freqRequest = {
+              username: currentLogin.username,
+              password: currentLogin.password,
+              freqReq: value,
+            };
+            fetch(`${SERVER}customer/freqRequest`, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+              },
+              body: JSON.stringify(freqRequest),
+            })
+              .then((response) => response.json())
+              .then((body) => {
+                console.log('body: ', body);
+                navigation.navigate('CustomerHome');
+              })
+              .catch((error) => {
+                // TODO handle failure
+                console.log('Error Sending Frequency Update Request: ');
+                console.log(error);
+              });
+          }}
         />
       )}
     </View>

@@ -1,6 +1,8 @@
 ########## Custom ##########
 .idea/
 
+test.*
+
 ########## MACOS ##########
 
 # General

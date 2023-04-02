@@ -3,18 +3,18 @@ import { authUser } from './utils/authUser.js';
 /**
  * User login
  *
- * @param {*} req http request data, the userID
- * @param {*} res { accountType, isVerified }
+ * @param {*} req { username, password }
+ * @param {*} res { accountType }
  */
 
 export function userLogin(req, res) {
   authUser(req).then((usrAuth) => {
     if (usrAuth.error) {
-      res.status(403).send(usrAuth);
+      res.status(usrAuth.error.code).send(usrAuth.error.message);
       return;
     }
 
-    const { accountType, isVerified } = usrAuth.usr;
-    res.json({ accountType, isVerified });
+    const { accountType } = usrAuth.usr;
+    res.json({ accountType });
   });
 }
