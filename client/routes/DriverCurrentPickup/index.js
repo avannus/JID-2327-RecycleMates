@@ -5,7 +5,7 @@ import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 
-function ActivePickupsDriver({ navigation }) {
+function DriverCurrentPickup({ navigation }) {
   return (
     <View
       style={{
@@ -24,37 +24,37 @@ function ActivePickupsDriver({ navigation }) {
 
         }}
       >
-        Active Pickups
+        Current Pickup
       </RMText>
 
       <RMText>(Map Shown Here)</RMText>
 
       <Button
-        label='Confirm Pickup'
+        label='Start delivery'
         onPress={() => {
-          navigation.navigate('Final Route');
+          navigation.navigate('InProgress');
         }}
       />
       <Button
-        label='Drop off Recycled Goods'
+        label='End delivery'
         onPress={() => {
-          navigation.navigate('Drop Off Goods');
+          navigation.navigate('InProgress'); // Removed drop-off materials to recycling facility
         }}
       />
 
       <Button
-        label='Cancel Pickup'
+        label='Cancel delivery'
         onPress={() => {
-          navigation.navigate('Cancel Route');
+          navigation.navigate('InProgress');
         }}
       />
     </View>
   );
 }
 
-ActivePickupsDriver.propTypes = {
+DriverCurrentPickup.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default ActivePickupsDriver;
+export default DriverCurrentPickup;
 

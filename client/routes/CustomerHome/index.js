@@ -9,9 +9,17 @@ import {
   faCalendarDays,
   faTruckPickup,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+// import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 function CustomerHome({ navigation }) {
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+      }),
+    [navigation],
+  );
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
       <View style={styles.container}>
@@ -20,14 +28,14 @@ function CustomerHome({ navigation }) {
             <RMText style={styles.bannerTitle}>Schedule a pickup</RMText>
             <RMText style={styles.bannerText}>
               Local drivers are available and ready to pickup your recyclable
-              packages with RecycleMates! ♻️
+              packages with RecycleMates!
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('DescribeMaterial')}
+              onPress={() => navigation.navigate('SchedulePickups')}
             >
               <Text style={styles.bannerButtonLabel}>
-                {'Confirm your next pickup'}
+                {'Schedule your pickup frequency'}
               </Text>
             </Pressable>
           </View>
@@ -38,9 +46,9 @@ function CustomerHome({ navigation }) {
             onPress={() => navigation.navigate('SchedulePickups')}
           >
             <FontAwesomeIcon icon={faCalendarDays} size={50} />
-            <Text style={[styles.buttonText]}>{'Change Frequency'}</Text>
+            <Text style={[styles.buttonText]}>{'Set Pickup Frequency'}</Text>
           </Pressable>
-          <Pressable
+          {/* <Pressable
             style={styles.buttonStyle}
             onPress={() => navigation.navigate('CancelPickup')}
           >
@@ -48,10 +56,10 @@ function CustomerHome({ navigation }) {
             <Text style={[styles.buttonText, { width: 97 }]}>
               {'Cancel Pickup'}
             </Text>
-          </Pressable>
+          </Pressable> */}
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('ActivePickups')}
+            onPress={() => navigation.navigate('CustomerCurrentPickup')}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
             <Text style={styles.buttonText}>{'Current Pickups'}</Text>
@@ -75,9 +83,9 @@ function CustomerHome({ navigation }) {
             >
               Current Pickups
             </RMText>
-            <Pressable onPress={() => navigation.navigate('ActivePickups')}>
+            <Pressable onPress={() => navigation.navigate('CustomerCurrentPickup')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
-                {'see more >'}
+                {'see details >'}
               </Text>
             </Pressable>
           </View>
@@ -94,6 +102,11 @@ function CustomerHome({ navigation }) {
 CustomerHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
+
+// CustomerHome.navigationOptions = {
+//   gestureEnabled: false,
+//   gestureDirection: 'horizontal',
+// };
 
 const styles = StyleSheet.create({
   container: {
@@ -138,6 +151,7 @@ const styles = StyleSheet.create({
     color: 'black',
     justifyContent: 'center',
     textAlign: 'center',
+    width: '80%',
   },
   buttonContainer: {
     alignItems: 'center',
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     paddingTop: 20,
-    width: '60%',
+    width: '100%',
   },
   buttonStyle: {
     alignItems: 'center',
@@ -170,7 +184,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     maxHeight: 300,
     marginBottom: 100,
-    padding: 5,
+    // padding: 5,
   },
   currentPickupsTitle: {
     alignItems: 'center',
@@ -178,10 +192,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  currentPickupsList: {
-    showsVerticalScrollIndicator: 'true',
-    persistentScrollbar: 'true',
-  },
+  // currentPickupsList: {
+  //   showsVerticalScrollIndicator: 'true',
+  //   persistentScrollbar: 'true',
+  // },
 });
 
 export default CustomerHome;

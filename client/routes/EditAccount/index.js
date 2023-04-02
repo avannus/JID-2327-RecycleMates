@@ -10,7 +10,7 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-function Edit() {
+function EditAccount() {
   const [modalVisible, setModalVisible] = React.useState(false);
   const saveChanges = () => {
     // TODO: Save information to the server
@@ -171,8 +171,8 @@ const styles = StyleSheet.create({
   },
 });
 
-Edit.propTypes = {
+EditAccount.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default Edit;
+export default EditAccount;

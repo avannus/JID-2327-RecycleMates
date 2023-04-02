@@ -11,6 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function DriverHome({ navigation }) {
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+      }),
+    [navigation],
+  );
+
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
       <View style={styles.container}>
@@ -19,14 +28,14 @@ function DriverHome({ navigation }) {
             <RMText style={styles.bannerTitle}>Confirm a pickup</RMText>
             <RMText style={styles.bannerText}>
               RecycleMates customers are currently waiting for their recyclables
-              to be picked up ♻️
+              to be picked up!
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('ActivePickupsDriver')}
+              onPress={() => navigation.navigate('DriverCurrentPickup')}
             >
               <Text style={styles.bannerButtonLabel}>
-                {'Begin your next route'}
+                {'Begin your next pickup'}
               </Text>
             </Pressable>
           </View>
@@ -34,36 +43,24 @@ function DriverHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('AvailableRoutes')}
+            onPress={() => navigation.navigate('DriverCurrentSchedule')}
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'View Available Routes'}
-            </Text>
+            <Text style={styles.buttonText}>{'View Current Schedule'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('ActivePickupsDriver')}
+            onPress={() => navigation.navigate('DriverCurrentPickup')}
           >
             <FontAwesomeIcon icon={faRoute} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'Begin Next Route'}
-            </Text>
+            <Text style={styles.buttonText}>{'Begin Next Pickup'}</Text>
           </Pressable>
           <Pressable
             style={[styles.buttonStyle, { height: 110 }]}
-            onPress={() => navigation.navigate('RequestAssignmentChanges')}
+            onPress={() => navigation.navigate('RequestScheduleChanges')}
           >
             <FontAwesomeIcon icon={faMap} size={50} />
-            <Text
-              style={styles.buttonText}
-            >
-              {'Request Assignment Changes'}
-            </Text>
+            <Text style={styles.buttonText}>{'Request Schedule Changes'}</Text>
           </Pressable>
         </View>
         <View style={styles.currentRoutesContainer}>
@@ -77,17 +74,16 @@ function DriverHome({ navigation }) {
             >
               Current Routes
             </RMText>
-            <Pressable
-              onPress={() => navigation.navigate('ActivePickupsDriver')}
-            >
+            <Pressable onPress={() => navigation.navigate('DriverCurrentSchedule')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'see more >'}
               </Text>
             </Pressable>
           </View>
           <ScrollView style={styles.currentRoutesList}>
-            <RMText>Monday, 1 pm - 2 pm</RMText>
-            <RMText>Tuesday, 3 pm - 4 pm</RMText>
+            <RMText>Monday, 2 pm - 3 pm</RMText>
+            <RMText>Tuesday, 4 pm - 5 pm</RMText>
+            <RMText>Wednesday 9 am - 11 am</RMText>
           </ScrollView>
         </View>
       </View>
@@ -98,6 +94,11 @@ function DriverHome({ navigation }) {
 DriverHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
+
+// DriverHome.navigationOptions = {
+//   gestureEnabled: false,
+//   gestureDirection: 'horizontal',
+// };
 
 const styles = StyleSheet.create({
   container: {
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     paddingTop: 20,
-    width: '60%',
+    width: '100%',
     alignSelf: 'center',
   },
   buttonStyle: {
