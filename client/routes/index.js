@@ -21,6 +21,8 @@ import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
 import DriverCurrentSchedule from './DriverCurrentSchedule';
+import DriverPickupInProgress from './DriverPickupInProgress';
+import DriverPickupComplete from './DriverPickupComplete';
 import RequestScheduleChanges from './RequestScheduleChanges';
 import EditAccount from './EditAccount';
 import InProgress from './InProgress';
@@ -135,6 +137,24 @@ function DriverHomeStack() {
         options={{ title: 'Current Pickup' }}
       />
       <Stack.Screen
+        name='DriverPickupInProgress'
+        component={DriverPickupInProgress}
+        options={{
+          title: 'Pickup In Progress',
+          headerLeft: () => null,
+          gestureEnabled: false,
+        }}
+      ></Stack.Screen>
+      <Stack.Screen
+        name='DriverPickupComplete'
+        component={DriverPickupComplete}
+        options={{
+          title: 'Pickup Complete',
+          headerLeft: () => null,
+          gestureEnabled: false,
+        }}
+      ></Stack.Screen>
+      <Stack.Screen
         name='DriverCurrentSchedule'
         component={DriverCurrentSchedule}
         options={{ title: 'Current Schedule' }}
@@ -164,7 +184,10 @@ function RMRoutes() {
           component={CustomerTabs}
           options={{ headerShown: false, gestureEnabled: false }}
         />
-        <Stack.Screen name='CustomerCurrentPickup' component={CustomerCurrentPickup} />
+        <Stack.Screen
+          name='CustomerCurrentPickup'
+          component={CustomerCurrentPickup}
+        />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
         <Stack.Screen name='CancelPickup' component={CancelPickup} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
@@ -182,7 +205,18 @@ function RMRoutes() {
           name='DriverCurrentPickup'
           component={DriverCurrentPickup}
         />
-        <Stack.Screen name='DriverCurrentSchedule' component={DriverCurrentSchedule} />
+        <Stack.Screen
+          name='DriverPickupInProgress'
+          component={DriverPickupInProgress}
+        />
+        <Stack.Screen
+          name='DriverPickupComplete'
+          component={DriverPickupComplete}
+        />
+        <Stack.Screen
+          name='DriverCurrentSchedule'
+          component={DriverCurrentSchedule}
+        />
         <Stack.Screen
           name='RequestScheduleChanges'
           component={RequestScheduleChanges}

@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { View, Modal, StyleSheet, Pressable, Text, Alert } from 'react-native';
-import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-function DriverCurrentPickup({ navigation }) {
+function DriverPickupInProgress({ navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
-  };
-
-  const startPickup = () => {
-    navigation.navigate('DriverPickupInProgress');
   };
 
   const cancelPickup = () => {
@@ -108,17 +104,26 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
       >
-        Status: Not Begun
+        Status: In Progress
       </RMText>
 
       <RMText>(Map Shown Here)</RMText>
 
-      <Button label='Start Pickup' onPress={startPickup} />
+      <Button
+        label='Mark Complete'
+        onPress={() => {
+          navigation.navigate('DriverPickupComplete'); // Removed drop-off materials to recycling facility
+        }}
+      />
 
       <Button label='Cancel Pickup' onPress={toggleModal} />
     </View>
   );
 }
+
+DriverPickupInProgress.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -178,8 +183,4 @@ const styles = StyleSheet.create({
   },
 });
 
-DriverCurrentPickup.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
-
-export default DriverCurrentPickup;
+export default DriverPickupInProgress;
