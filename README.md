@@ -33,6 +33,36 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 ## Release Notes
 
+### Version 0.4.0
+
+#### New Features
+
+* Revamp UI design for Customer and Driver Home Pages
+* Update terminology in Home Pages to increase user clarity
+* Create UI pages with ReactNative and Expo
+  * Driver - Current Pickup
+  * Driver - Request Schedule Changes
+  * Driver - View Current Schedule
+* Include status changes for pickups (Not Begun/In Progress/Complete)
+* Include popup message for drivers when confirming the cancellation of their current pickup
+* Include popup message for drivers when requesting a schedule change
+
+#### Bug Fixes
+
+* Back button disappears after user logs in!
+* User cannot swipe left to go back after logging in
+* Fix button routes on driver home screen to redirect to correct pages
+* Fix crash on Android when user navigates to Customer - Choose Schedule Frequency page
+
+#### Known Bugs
+
+* Existing crashes on Android related to text
+* Driver can revert pickup status
+* User can log in without successful credentials
+* User does not have a way to log out
+
+---
+
 ### Version 0.3.0
 
 #### New Features
@@ -49,7 +79,7 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
   * Driver - Active pickups
   * Driver - Preview routes
   * Forgot Password
-* Add drop-down menu to Customer home page
+* Add drop-down menu to Customer - Choose Schedule Frequency page
 
 #### Bug Fixes
 
