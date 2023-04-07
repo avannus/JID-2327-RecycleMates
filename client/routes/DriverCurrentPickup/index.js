@@ -8,22 +8,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function DriverCurrentPickup({ navigation }) {
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [status, setStatus] = React.useState('Not Begun');
 
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
+  const [popupVisible, setPopupVisible] = React.useState(false);
+
+  const togglePopup = () => {
+    setPopupVisible(!popupVisible);
   };
 
   const startPickup = () => {
-    navigation.navigate('DriverPickupInProgress');
+    setStatus('In Progress');
+  };
+
+  const markComplete = () => {
+    setStatus('Complete');
+  };
+
+  const beginNextPickup = () => {
+    // TODO: Get next pickup and its status
+    setStatus('Not Begun');
   };
 
   const cancelPickup = () => {
-    toggleModal();
+    togglePopup();
     cancellationAlert();
   };
 
-  const cancellationAlert = () =>
+  const cancellationAlert = () => {
+    setStatus('Cancelled');
     Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
       {
         text: 'Return Home',
@@ -31,6 +43,7 @@ function DriverCurrentPickup({ navigation }) {
         style: 'default',
       },
     ]);
+  };
 
   const returnHome = () => {
     navigation.navigate('DriverHome');
@@ -48,15 +61,15 @@ function DriverCurrentPickup({ navigation }) {
       <Modal
         animationType='slide'
         transparent={true}
-        visible={modalVisible}
+        visible={popupVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setPopupVisible(!popupVisible);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
-              <Pressable onPress={toggleModal}>
+              <Pressable onPress={togglePopup}>
                 <FontAwesomeIcon icon={faXmark} size={15} />
               </Pressable>
             </View>
@@ -79,7 +92,7 @@ function DriverCurrentPickup({ navigation }) {
                     padding: 10,
                     elevation: 2,
                   }}
-                  onPress={toggleModal}
+                  onPress={togglePopup}
                 >
                   <Text style={{ color: 'black' }}>Dismiss</Text>
                 </Pressable>
@@ -108,14 +121,38 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
       >
-        Status: Not Begun
+        Status: {status}
       </RMText>
 
       <RMText>(Map Shown Here)</RMText>
 
-      <Button label='Start Pickup' onPress={startPickup} />
+      {status === 'Not Begun' && (
+        <Button label='Start Pickup' onPress={startPickup} />
+      )}
 
-      <Button label='Cancel Pickup' onPress={toggleModal} />
+      {status === 'In Progress' && (
+        <Button label='Mark Complete' onPress={markComplete} />
+      )}
+
+      {(status === 'Not Begun' || status === 'In Progress') && (
+        <Button label='Cancel Pickup' onPress={togglePopup} />
+      )}
+
+      {status === 'Complete' && (
+        <Button
+          label='Begin Next Pickup'
+          onPress={beginNextPickup}
+        />
+      )}
+
+      {status === 'Complete' && (
+        <Button
+          label='Return Home'
+          onPress={() => {
+            navigation.navigate('DriverHome');
+          }}
+        />
+      )}
     </View>
   );
 }
