@@ -9,7 +9,6 @@ import {
   faCalendarDays,
   faTruckPickup,
 } from '@fortawesome/free-solid-svg-icons';
-// import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 function CustomerHome({ navigation }) {
   React.useEffect(
@@ -48,15 +47,6 @@ function CustomerHome({ navigation }) {
             <FontAwesomeIcon icon={faCalendarDays} size={50} />
             <Text style={[styles.buttonText]}>{'Set Pickup Frequency'}</Text>
           </Pressable>
-          {/* <Pressable
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('CancelPickup')}
-          >
-            <FontAwesomeIcon icon={faCircleXmark} size={50} />
-            <Text style={[styles.buttonText, { width: 97 }]}>
-              {'Cancel Pickup'}
-            </Text>
-          </Pressable> */}
           <Pressable
             style={styles.buttonStyle}
             onPress={() => navigation.navigate('CustomerCurrentPickup')}
@@ -102,11 +92,6 @@ function CustomerHome({ navigation }) {
 CustomerHome.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
-
-// CustomerHome.navigationOptions = {
-//   gestureEnabled: false,
-//   gestureDirection: 'horizontal',
-// };
 
 const styles = StyleSheet.create({
   container: {
@@ -184,7 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     maxHeight: 300,
     marginBottom: 100,
-    // padding: 5,
+    padding: 5,
   },
   currentPickupsTitle: {
     alignItems: 'center',
@@ -192,10 +177,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  // currentPickupsList: {
-  //   showsVerticalScrollIndicator: 'true',
-  //   persistentScrollbar: 'true',
-  // },
 });
 
 export default CustomerHome;
