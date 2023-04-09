@@ -152,13 +152,53 @@ function RMRoutes() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Landing'>
-        <Stack.Screen name='Landing' component={Landing} />
-        <Stack.Screen name='Account Type' component={AccountType} />
-        <Stack.Screen name='Register' component={Register} />
-        <Stack.Screen name='RegisterInfo' component={RegisterInfo} />
-        <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='ForgotPass' component={ForgotPass} />
+        <Stack.Screen
+          name='Landing'
+          component={Landing}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name='Account Type'
+          component={AccountType}
+          options={{ title: 'Account Type' }}
+        />
+        <Stack.Screen
+          name='Register'
+          component={Register}
+          options={{
+            title: 'Register Account',
+          }}
+        />
+        <Stack.Screen
+          name='RegisterInfo'
+          component={RegisterInfo}
+          options={{
+            title: 'Account Info',
+          }}
+        />
+        <Stack.Screen
+          name='ConfirmEmail'
+          component={ConfirmEmail}
+          options={{
+            title: 'Confirm Email',
+          }}
+        />
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={{
+            title: 'Log in',
+          }}
+        />
+        <Stack.Screen
+          name='ForgotPass'
+          component={ForgotPass}
+          options={{
+            title: 'Reset Password',
+          }}
+        />
         <Stack.Screen
           name='CustomerHome'
           component={CustomerTabs}
