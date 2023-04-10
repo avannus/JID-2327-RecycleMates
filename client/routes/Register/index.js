@@ -87,7 +87,7 @@ function Register({ route, navigation }) {
         }}
       />
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <RMText style={{ color: 'red' }}>{errorMessage}</RMText>}
 
     </View>
   );

@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 import { SERVER } from 'RMenv';
 
 function Register({ route, navigation }) {
-  const [firstName, setFirstName] = React.useState();
-  const [lastName, setLastName] = React.useState();
-  const [address, setAddress] = React.useState();
-  const [city, setCity] = React.useState();
-  const [zip, setZip] = React.useState();
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [address, setAddress] = React.useState('');
+  const [city, setCity] = React.useState('');
+  const [zip, setZip] = React.useState('');
 
   return (
     <View
