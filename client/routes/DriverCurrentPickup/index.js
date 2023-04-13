@@ -6,6 +6,7 @@ import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import MapView from 'react-native-maps';
 
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
@@ -118,13 +119,19 @@ function DriverCurrentPickup({ navigation }) {
       >
         Current Pickup
       </RMText>
-      <RMText
-        style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
-      >
+      <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
         Status: {status}
       </RMText>
 
-      <RMText>(Map Shown Here)</RMText>
+      <MapView
+        style={{ width: '100%', height: '50%' }}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
 
       {status === 'Not Begun' && (
         <Button label='Start Pickup' onPress={startPickup} />
@@ -139,13 +146,10 @@ function DriverCurrentPickup({ navigation }) {
       )}
 
       {status === 'Complete' && (
-        <Button
-          label='Begin Next Pickup'
-          onPress={beginNextPickup}
-        />
+        <Button label='Begin Next Pickup' onPress={beginNextPickup} />
       )}
 
-      {status === 'Complete' && (
+      {(status === 'Complete' || status === 'Cancelled') && (
         <Button
           label='Return Home'
           onPress={() => {
@@ -179,6 +183,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
+  },
+  map: {
+    width: 300,
+    height: 300,
   },
   modalView: {
     margin: 20,
