@@ -63,8 +63,8 @@ function DriverHome({ navigation }) {
             <Text style={styles.buttonText}>{'Request Schedule Changes'}</Text>
           </Pressable>
         </View>
-        <View style={styles.currentRoutesContainer}>
-          <View style={styles.currentRoutesTitle}>
+        <View style={styles.currentScheduleContainer}>
+          <View style={styles.currentScheduleTitle}>
             <RMText
               style={{
                 fontSize: 30,
@@ -72,7 +72,7 @@ function DriverHome({ navigation }) {
                 alignSelf: 'center',
               }}
             >
-              Current Routes
+              Current Schedule
             </RMText>
             <Pressable onPress={() => navigation.navigate('DriverCurrentSchedule')}>
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
@@ -80,7 +80,7 @@ function DriverHome({ navigation }) {
               </Text>
             </Pressable>
           </View>
-          <ScrollView style={styles.currentRoutesList}>
+          <ScrollView style={styles.currentScheduleList}>
             <RMText>Monday, 2 pm - 3 pm</RMText>
             <RMText>Tuesday, 4 pm - 5 pm</RMText>
             <RMText>Wednesday 9 am - 11 am</RMText>
@@ -167,23 +167,23 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     textAlign: 'center',
   },
-  currentRoutesContainer: {
+  currentScheduleContainer: {
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 5,
-    marginBottom: 100, // to allow user to scroll to bottom of pickup list
+    marginBottom: 100,
     height: '30%',
     maxHeight: 300,
   },
-  currentRoutesTitle: {
+  currentScheduleTitle: {
     alignItems: 'center',
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  currentRoutesList: {
+  currentScheduleList: {
     persistentScrollbar: 'true',
     showsVerticalScrollIndicator: 'true',
   },
