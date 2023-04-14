@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Modal, StyleSheet, Pressable, Text, Alert } from 'react-native';
+import { View, Modal, StyleSheet, Pressable, Text } from 'react-native';
 import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
@@ -9,12 +9,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
-
-  const [popupVisible, setPopupVisible] = React.useState(false);
-
-  const togglePopup = () => {
-    setPopupVisible(!popupVisible);
-  };
+  const [confirmPopupVisible, setConfirmPopupVisible] = React.useState(false);
+  const [successPopupVisible, setSuccessPopupVisible] = React.useState(false);
 
   const startPickup = () => {
     setStatus('In Progress');
@@ -30,24 +26,21 @@ function DriverCurrentPickup({ navigation }) {
   };
 
   const cancelPickup = () => {
-    togglePopup();
-    cancellationAlert();
-  };
-
-  const cancellationAlert = () => {
+    setConfirmPopupVisible(false);
     setStatus('Cancelled');
-    Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
-      {
-        text: 'Return Home',
-        onPress: returnHome,
-        style: 'default',
-      },
-    ]);
+    setSuccessPopupVisible(true);
   };
 
-  const returnHome = () => {
-    navigation.navigate('DriverHome');
-  };
+  // const cancellationAlert = () => {
+  //   setStatus('Cancelled');
+  //   Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
+  //     {
+  //       text: 'Return Home',
+  //       onPress: returnHome,
+  //       style: 'default',
+  //     },
+  //   ]);
+  // };
 
   return (
     <View
@@ -61,15 +54,19 @@ function DriverCurrentPickup({ navigation }) {
       <Modal
         animationType='slide'
         transparent={true}
-        visible={popupVisible}
+        visible={confirmPopupVisible}
         onRequestClose={() => {
-          setPopupVisible(!popupVisible);
+          setConfirmPopupVisible(false);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
-              <Pressable onPress={togglePopup}>
+              <Pressable
+                onPress={() => {
+                  setConfirmPopupVisible(false);
+                }}
+              >
                 <FontAwesomeIcon icon={faXmark} size={15} />
               </Pressable>
             </View>
@@ -92,7 +89,9 @@ function DriverCurrentPickup({ navigation }) {
                     padding: 10,
                     elevation: 2,
                   }}
-                  onPress={togglePopup}
+                  onPress={() => {
+                    setConfirmPopupVisible(false);
+                  }}
                 >
                   <Text style={{ color: 'black' }}>Dismiss</Text>
                 </Pressable>
@@ -103,6 +102,50 @@ function DriverCurrentPickup({ navigation }) {
                   onPress={cancelPickup}
                 >
                   <Text style={styles.textStyle}>Confirm</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={successPopupVisible}
+        onRequestClose={() => {
+          setSuccessPopupVisible(false);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
+              <Pressable
+                onPress={() => {
+                  setSuccessPopupVisible(false);
+                }}
+              >
+                <FontAwesomeIcon icon={faXmark} size={15} />
+              </Pressable>
+            </View>
+            <Text style={styles.modalText}>
+              This pickup has been cancelled successfully.
+            </Text>
+            <View
+              style={{
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <View style={{ paddingHorizontal: 5 }}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => {
+                    navigation.navigate('DriverHome');
+                  }}
+                >
+                  <Text style={styles.textStyle}>Return home</Text>
                 </Pressable>
               </View>
             </View>
@@ -135,14 +178,16 @@ function DriverCurrentPickup({ navigation }) {
       )}
 
       {(status === 'Not Begun' || status === 'In Progress') && (
-        <Button label='Cancel Pickup' onPress={togglePopup} />
+        <Button
+          label='Cancel Pickup'
+          onPress={() => {
+            setConfirmPopupVisible(true);
+          }}
+        />
       )}
 
       {status === 'Complete' && (
-        <Button
-          label='Begin Next Pickup'
-          onPress={beginNextPickup}
-        />
+        <Button label='Begin Next Pickup' onPress={beginNextPickup} />
       )}
 
       {status === 'Complete' && (
