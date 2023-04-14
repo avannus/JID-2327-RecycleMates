@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Modal, StyleSheet, Pressable, Text, Alert } from 'react-native';
+import { View, Modal, StyleSheet, Pressable, Text } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
@@ -8,29 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function CustomerCurrentPickup({ navigation }) {
-  const [popupVisible, setPopupVisible] = React.useState(false);
-
-  const togglePopup = () => {
-    setPopupVisible(!popupVisible);
-  };
+  const [confirmPopup, setConfirmPopupVisible] = React.useState(false);
+  const [successPopup, setSuccessPopupVisible] = React.useState(false);
 
   const cancelPickup = () => {
-    togglePopup();
-    cancellationAlert();
-  };
-
-  const cancellationAlert = () => {
-    Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
-      {
-        text: 'Return Home',
-        onPress: returnHome,
-        style: 'default',
-      },
-    ]);
-  };
-
-  const returnHome = () => {
-    navigation.navigate('CustomerHome');
+    setConfirmPopupVisible(false);
+    setSuccessPopupVisible(true);
   };
 
   return (
@@ -38,22 +21,25 @@ function CustomerCurrentPickup({ navigation }) {
       style={{
         flex: 1,
         alignItems: 'center',
-        // justifyContent: 'center',
         backgroundColor: RMStyle.colors.background,
       }}
     >
       <Modal
         animationType='slide'
         transparent={true}
-        visible={popupVisible}
+        visible={confirmPopup}
         onRequestClose={() => {
-          setPopupVisible(!popupVisible);
+          setConfirmPopupVisible(false);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
-              <Pressable onPress={togglePopup}>
+              <Pressable
+                onPress={() => {
+                  setConfirmPopupVisible(false);
+                }}
+              >
                 <FontAwesomeIcon icon={faXmark} size={15} />
               </Pressable>
             </View>
@@ -76,7 +62,9 @@ function CustomerCurrentPickup({ navigation }) {
                     padding: 10,
                     elevation: 2,
                   }}
-                  onPress={togglePopup}
+                  onPress={() => {
+                    setConfirmPopupVisible(false);
+                  }}
                 >
                   <Text style={{ color: 'black' }}>Dismiss</Text>
                 </Pressable>
@@ -93,11 +81,57 @@ function CustomerCurrentPickup({ navigation }) {
           </View>
         </View>
       </Modal>
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={successPopup}
+        onRequestClose={() => {
+          setSuccessPopupVisible(false);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
+              <Pressable
+                onPress={() => {
+                  setSuccessPopupVisible(false);
+                }}
+              >
+                <FontAwesomeIcon icon={faXmark} size={15} />
+              </Pressable>
+            </View>
+            <Text style={styles.modalText}>
+              This pickup has been cancelled successfully.
+            </Text>
+            <View
+              style={{
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <View>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => {
+                    navigation.navigate('CustomerHome');
+                  }}
+                >
+                  <Text style={styles.textStyle}>Return home</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <RMText>Your pickups are currently scheduled to occur (frequency)</RMText>
       <RMText>Your next pickup is scheduled for (date)</RMText>
       <Button
         label='Cancel Pickup'
-        onPress={togglePopup}
+        onPress={() => {
+          setConfirmPopupVisible(true);
+        }}
       ></Button>
     </View>
   );
