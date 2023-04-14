@@ -18,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "ios.bundleIdentifier": "com.jid2327.recyclemates",
+      "ios.config.googleMapsApiKey": "AIzaSyAbaGbH63VZAhz_nE8IMkJpUlKKBDiVO4M"
     },
     "android": {
       "adaptiveIcon": {

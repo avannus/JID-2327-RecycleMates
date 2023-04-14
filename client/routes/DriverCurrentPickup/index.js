@@ -6,7 +6,7 @@ import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
@@ -31,17 +31,6 @@ function DriverCurrentPickup({ navigation }) {
     setStatus('Cancelled');
     setSuccessPopupVisible(true);
   };
-
-  // const cancellationAlert = () => {
-  //   setStatus('Cancelled');
-  //   Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
-  //     {
-  //       text: 'Return Home',
-  //       onPress: returnHome,
-  //       style: 'default',
-  //     },
-  //   ]);
-  // };
 
   return (
     <View
@@ -168,6 +157,7 @@ function DriverCurrentPickup({ navigation }) {
 
       <MapView
         style={{ width: '100%', height: '50%' }}
+        provider={PROVIDER_GOOGLE}
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
@@ -197,7 +187,7 @@ function DriverCurrentPickup({ navigation }) {
         <Button label='Begin Next Pickup' onPress={beginNextPickup} />
       )}
 
-      {(status === 'Complete' || status === 'Cancelled') && (
+      {status === 'Complete' && (
         <Button
           label='Return Home'
           onPress={() => {
