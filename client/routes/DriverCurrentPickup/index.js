@@ -6,7 +6,7 @@ import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
@@ -159,12 +159,16 @@ function DriverCurrentPickup({ navigation }) {
         style={{ width: '100%', height: '50%' }}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 36.6499974,
+          longitude: -87.4666648,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      />
+      >
+        <Marker
+          coordinate={{ latitude: 36.6499974, longitude: -87.4666648 }} pinColor='green'
+        ><Callout><Text>Fort Campbell</Text></Callout></Marker>
+      </MapView>
 
       {status === 'Not Begun' && (
         <Button label='Start Pickup' onPress={startPickup} />
