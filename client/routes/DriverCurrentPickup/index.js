@@ -136,7 +136,7 @@ function DriverCurrentPickup({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <View style={{ paddingHorizontal: 5 }}>
+              {/* <View style={{ paddingHorizontal: 5 }}>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => {
@@ -145,7 +145,7 @@ function DriverCurrentPickup({ navigation }) {
                 >
                   <Text style={styles.textStyle}>Return home</Text>
                 </Pressable>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>
@@ -199,7 +199,7 @@ function DriverCurrentPickup({ navigation }) {
       <MapView
         style={{ width: '100%', height: '50%' }}
         provider={PROVIDER_GOOGLE}
-        initialRegion={region}
+        region={region}
       >
         <Marker
           coordinate={{
@@ -247,11 +247,11 @@ function DriverCurrentPickup({ navigation }) {
           />
         )}
 
-        {status === 'Complete' && (
+        {(status === 'Complete' || status === 'Cancelled') && (
           <Button label='Begin Next Pickup' onPress={beginNextPickup} />
         )}
 
-        {status === 'Complete' && (
+        {(status === 'Complete' || status === 'Cancelled') && (
           <Button
             label='Return Home'
             onPress={() => {
