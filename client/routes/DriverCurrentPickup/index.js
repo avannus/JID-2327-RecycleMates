@@ -7,11 +7,19 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
+// TODO: Include API key from .env
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
   const [confirmPopupVisible, setConfirmPopupVisible] = React.useState(false);
   const [successPopupVisible, setSuccessPopupVisible] = React.useState(false);
+  const [region, setRegion] = React.useState({
+    latitude: 36.6499974,
+    longitude: -87.4666648,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
 
   const startPickup = () => {
     setStatus('In Progress');
@@ -145,7 +153,7 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{
           justifyContent: 'center',
-          fontSize: 36,
+          fontSize: 20,
           textAlign: 'center',
         }}
       >
@@ -155,50 +163,103 @@ function DriverCurrentPickup({ navigation }) {
         Status: {status}
       </RMText>
 
+      <GooglePlacesAutocomplete
+        placeholder='Search for pickup location'
+        fetchDetails={true}
+        GooglePlacesSearchQuery={{
+          rankby: 'distance',
+        }}
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          console.log(data, details);
+          setRegion({
+            latitude: details.geometry.location.lat,
+            longitude: details.geometry.location.lng,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          });
+        }}
+        query={{
+          key: 'API_KEY',
+          language: 'en',
+          components: 'country:us',
+          types: 'establishment',
+          radius: 1000,
+          location: `${region.latitude}, ${region.longitude}`,
+        }}
+        styles={{
+          container: {
+            flex: 1,
+            width: '100%',
+            zIndex: 1000,
+          },
+          listView: { backgroundColor: 'white' },
+        }}
+      />
       <MapView
         style={{ width: '100%', height: '50%' }}
         provider={PROVIDER_GOOGLE}
-        initialRegion={{
-          latitude: 36.6499974,
-          longitude: -87.4666648,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        initialRegion={region}
       >
         <Marker
-          coordinate={{ latitude: 36.6499974, longitude: -87.4666648 }} pinColor='green'
-        ><Callout><Text>Fort Campbell</Text></Callout></Marker>
+          coordinate={{
+            latitude: region.latitude,
+            longitude: region.longitude,
+          }}
+          pinColor='green'
+        >
+          <Callout>
+            <Text>Pickup Location</Text>
+          </Callout>
+        </Marker>
+        <Marker
+          coordinate={{ latitude: 36.6499974, longitude: -87.4666648 }}
+          pinColor='red'
+        >
+          <Callout>
+            <Text>Fort Campbell</Text>
+          </Callout>
+        </Marker>
       </MapView>
 
-      {status === 'Not Begun' && (
-        <Button label='Start Pickup' onPress={startPickup} />
-      )}
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+        }}
+      >
+        {status === 'Not Begun' && (
+          <Button label='Start Pickup' onPress={startPickup} />
+        )}
 
-      {status === 'In Progress' && (
-        <Button label='Mark Complete' onPress={markComplete} />
-      )}
+        {status === 'In Progress' && (
+          <Button label='Mark Complete' onPress={markComplete} />
+        )}
 
-      {(status === 'Not Begun' || status === 'In Progress') && (
-        <Button
-          label='Cancel Pickup'
-          onPress={() => {
-            setConfirmPopupVisible(true);
-          }}
-        />
-      )}
+        {(status === 'Not Begun' || status === 'In Progress') && (
+          <Button
+            label='Cancel Pickup'
+            onPress={() => {
+              setConfirmPopupVisible(true);
+            }}
+          />
+        )}
 
-      {status === 'Complete' && (
-        <Button label='Begin Next Pickup' onPress={beginNextPickup} />
-      )}
+        {status === 'Complete' && (
+          <Button label='Begin Next Pickup' onPress={beginNextPickup} />
+        )}
 
-      {status === 'Complete' && (
-        <Button
-          label='Return Home'
-          onPress={() => {
-            navigation.navigate('DriverHome');
-          }}
-        />
-      )}
+        {status === 'Complete' && (
+          <Button
+            label='Return Home'
+            onPress={() => {
+              navigation.navigate('DriverHome');
+            }}
+          />
+        )}
+      </View>
     </View>
   );
 }
@@ -270,3 +331,4 @@ DriverCurrentPickup.propTypes = {
 };
 
 export default DriverCurrentPickup;
+
