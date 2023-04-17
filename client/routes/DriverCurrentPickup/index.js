@@ -69,6 +69,8 @@ function DriverCurrentPickup({ navigation }) {
     setSuccessPopupVisible(true);
   };
 
+  const { API_KEY } = process.env;
+
   return (
     <View style={styles.container}>
       <Modal
@@ -239,7 +241,7 @@ function DriverCurrentPickup({ navigation }) {
           });
         }}
         query={{
-          key: 'API_KEY',
+          key: API_KEY,
           language: 'en',
           components: 'country:us',
           radius: 10000,
