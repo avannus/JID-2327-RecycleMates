@@ -36,6 +36,12 @@ function DriverCurrentPickup({ navigation }) {
 
   const markComplete = () => {
     setStatus('Complete');
+    const updatedData = [...scheduleData];
+    const dayToUpdate = updatedData[0].days[0];
+    const lastPickup = dayToUpdate.numOfPickups === 1;
+    if (lastPickup) {
+      setFinishPopup(true);
+    }
   };
 
   const beginNextPickup = () => {
@@ -129,7 +135,12 @@ function DriverCurrentPickup({ navigation }) {
         visible={successPopupVisible}
         onRequestClose={() => {
           setSuccessPopupVisible(false);
-          beginNextPickup();
+          const updatedData = [...scheduleData];
+          const dayToUpdate = updatedData[0].days[0];
+          const lastPickup = dayToUpdate.numOfPickups === 1;
+          if (lastPickup) {
+            setFinishPopup(true);
+          }
         }}
       >
         <View style={styles.centeredView}>
@@ -138,7 +149,12 @@ function DriverCurrentPickup({ navigation }) {
               <Pressable
                 onPress={() => {
                   setSuccessPopupVisible(false);
-                  beginNextPickup();
+                  const updatedData = [...scheduleData];
+                  const dayToUpdate = updatedData[0].days[0];
+                  const lastPickup = dayToUpdate.numOfPickups === 1;
+                  if (lastPickup) {
+                    setFinishPopup(true);
+                  }
                 }}
               >
                 <FontAwesomeIcon icon={faXmark} size={15} />
@@ -164,19 +180,14 @@ function DriverCurrentPickup({ navigation }) {
         transparent={true}
         visible={finishPopup}
         onRequestClose={() => {
+          beginNextPickup();
+          setFinishPopup(false);
           navigation.navigate('DriverHome');
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
-              {/* <Pressable
-                onPress={() => {
-                  navigation.navigate('DriverHome');
-                }}
-              >
-                <FontAwesomeIcon icon={faXmark} size={15} />
-              </Pressable> */}
             </View>
             <Text style={styles.modalText}>
               You have completed all your pickups for today.{'\n\n'}
@@ -185,6 +196,8 @@ function DriverCurrentPickup({ navigation }) {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
+                beginNextPickup();
+                setFinishPopup(false);
                 navigation.navigate('DriverHome');
               }}
             >
@@ -204,9 +217,9 @@ function DriverCurrentPickup({ navigation }) {
         >
           <Text style={{ fontWeight: 'bold' }}>Pickup Address:</Text> {currentAddress}
         </RMText>
-        <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
+        { currentAddress !== 'No address found' && <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
           <Text style={{ fontWeight: 'bold' }}>Status:</Text> {status}
-        </RMText>
+        </RMText> }
       </View>
 
       <GooglePlacesAutocomplete
@@ -264,13 +277,14 @@ function DriverCurrentPickup({ navigation }) {
         </Marker>
       </MapView>
 
-      <View
+      { currentAddress !== 'No address found'
+      && <View
         style={{
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
           flexDirection: 'row',
-          flex: 1,
+          flex: 0.75,
         }}
       >
         {status === 'Not Begun' && (
@@ -303,12 +317,13 @@ function DriverCurrentPickup({ navigation }) {
           <Button
             label='Return Home'
             onPress={() => {
+              beginNextPickup();
               navigation.navigate('DriverHome');
             }}
             width={150}
           />
         )}
-      </View>
+      </View> }
     </View>
   );
 }
