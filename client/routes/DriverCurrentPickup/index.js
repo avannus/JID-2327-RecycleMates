@@ -6,11 +6,20 @@ import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
+// TODO: Include API key from .env
 function DriverCurrentPickup({ navigation }) {
   const [status, setStatus] = React.useState('Not Begun');
   const [confirmPopupVisible, setConfirmPopupVisible] = React.useState(false);
   const [successPopupVisible, setSuccessPopupVisible] = React.useState(false);
+  const [region, setRegion] = React.useState({
+    latitude: 36.6499974,
+    longitude: -87.4666648,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
 
   const startPickup = () => {
     setStatus('In Progress');
@@ -30,17 +39,6 @@ function DriverCurrentPickup({ navigation }) {
     setStatus('Cancelled');
     setSuccessPopupVisible(true);
   };
-
-  // const cancellationAlert = () => {
-  //   setStatus('Cancelled');
-  //   Alert.alert('Cancellation Successful', 'This pickup has been cancelled.', [
-  //     {
-  //       text: 'Return Home',
-  //       onPress: returnHome,
-  //       style: 'default',
-  //     },
-  //   ]);
-  // };
 
   return (
     <View
@@ -138,7 +136,7 @@ function DriverCurrentPickup({ navigation }) {
                 alignItems: 'center',
               }}
             >
-              <View style={{ paddingHorizontal: 5 }}>
+              {/* <View style={{ paddingHorizontal: 5 }}>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => {
@@ -147,7 +145,7 @@ function DriverCurrentPickup({ navigation }) {
                 >
                   <Text style={styles.textStyle}>Return home</Text>
                 </Pressable>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>
@@ -155,49 +153,113 @@ function DriverCurrentPickup({ navigation }) {
       <RMText
         style={{
           justifyContent: 'center',
-          fontSize: 36,
+          fontSize: 20,
           textAlign: 'center',
         }}
       >
         Current Pickup
       </RMText>
-      <RMText
-        style={{ justifyContent: 'center', fontSize: 20, marginBottom: 100 }}
-      >
+      <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
         Status: {status}
       </RMText>
 
-      <RMText>(Map Shown Here)</RMText>
-
-      {status === 'Not Begun' && (
-        <Button label='Start Pickup' onPress={startPickup} />
-      )}
-
-      {status === 'In Progress' && (
-        <Button label='Mark Complete' onPress={markComplete} />
-      )}
-
-      {(status === 'Not Begun' || status === 'In Progress') && (
-        <Button
-          label='Cancel Pickup'
-          onPress={() => {
-            setConfirmPopupVisible(true);
+      <GooglePlacesAutocomplete
+        placeholder='Search for pickup location'
+        fetchDetails={true}
+        GooglePlacesSearchQuery={{
+          rankby: 'distance',
+        }}
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          console.log(data, details);
+          setRegion({
+            latitude: details.geometry.location.lat,
+            longitude: details.geometry.location.lng,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          });
+        }}
+        query={{
+          key: 'API_KEY',
+          language: 'en',
+          components: 'country:us',
+          types: 'establishment',
+          radius: 1000,
+          location: `${region.latitude}, ${region.longitude}`,
+        }}
+        styles={{
+          container: {
+            flex: 1,
+            width: '100%',
+            zIndex: 1000,
+          },
+          listView: { backgroundColor: 'white' },
+        }}
+      />
+      <MapView
+        style={{ width: '100%', height: '50%' }}
+        provider={PROVIDER_GOOGLE}
+        region={region}
+      >
+        <Marker
+          coordinate={{
+            latitude: region.latitude,
+            longitude: region.longitude,
           }}
-        />
-      )}
+          pinColor='green'
+        >
+          <Callout>
+            <Text>Pickup Location</Text>
+          </Callout>
+        </Marker>
+        <Marker
+          coordinate={{ latitude: 36.6499974, longitude: -87.4666648 }}
+          pinColor='red'
+        >
+          <Callout>
+            <Text>Fort Campbell</Text>
+          </Callout>
+        </Marker>
+      </MapView>
 
-      {status === 'Complete' && (
-        <Button label='Begin Next Pickup' onPress={beginNextPickup} />
-      )}
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+        }}
+      >
+        {status === 'Not Begun' && (
+          <Button label='Start Pickup' onPress={startPickup} />
+        )}
 
-      {status === 'Complete' && (
-        <Button
-          label='Return Home'
-          onPress={() => {
-            navigation.navigate('DriverHome');
-          }}
-        />
-      )}
+        {status === 'In Progress' && (
+          <Button label='Mark Complete' onPress={markComplete} />
+        )}
+
+        {(status === 'Not Begun' || status === 'In Progress') && (
+          <Button
+            label='Cancel Pickup'
+            onPress={() => {
+              setConfirmPopupVisible(true);
+            }}
+          />
+        )}
+
+        {(status === 'Complete' || status === 'Cancelled') && (
+          <Button label='Begin Next Pickup' onPress={beginNextPickup} />
+        )}
+
+        {(status === 'Complete' || status === 'Cancelled') && (
+          <Button
+            label='Return Home'
+            onPress={() => {
+              navigation.navigate('DriverHome');
+            }}
+          />
+        )}
+      </View>
     </View>
   );
 }
@@ -224,6 +286,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
+  },
+  map: {
+    width: 300,
+    height: 300,
   },
   modalView: {
     margin: 20,
@@ -265,3 +331,4 @@ DriverCurrentPickup.propTypes = {
 };
 
 export default DriverCurrentPickup;
+
