@@ -56,7 +56,7 @@ function DriverCurrentPickup({ navigation }) {
     setStatus('Not Begun');
 
     if (!pickupsLeft) {
-      updatedData[0].days.shift();
+      // updatedData[0].days.shift();
       setFinishPopup(true);
     }
 

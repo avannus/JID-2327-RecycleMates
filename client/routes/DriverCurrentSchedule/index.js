@@ -29,7 +29,7 @@ function DriverCurrentSchedule() {
           </RMText>
           {week.days.map((day) => (
             <RMText key={day.dayOfWeek}>
-              {day.dayOfWeek}, {day.timePeriod} : {day.numOfPickups} pickups
+              {day.dayOfWeek}, {day.timePeriod} : {day.numOfPickups > 0 ? day.numOfPickups + ' pickups' : 'Complete'}
             </RMText>
           ))}
         </View>
