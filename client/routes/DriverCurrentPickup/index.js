@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import exampleSchedule from '../exampleScheduleData';
 
 // TODO: Include API key from .env
 function DriverCurrentPickup({ navigation }) {
@@ -20,6 +21,14 @@ function DriverCurrentPickup({ navigation }) {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+  const [scheduleData, setScheduleData] = React.useState(exampleSchedule);
+  const [finishPopup, setFinishPopup] = React.useState(false);
+  const currentAddress
+    = scheduleData.length > 0
+    && scheduleData[0].days.length > 0
+    && scheduleData[0].days[0].addresses.length > 0
+      ? scheduleData[0].days[0].addresses[0]
+      : 'No address found';
 
   const startPickup = () => {
     setStatus('In Progress');
@@ -30,8 +39,22 @@ function DriverCurrentPickup({ navigation }) {
   };
 
   const beginNextPickup = () => {
-    // TODO: Get next pickup and its status
+    const updatedData = [...scheduleData];
+    const dayToUpdate = updatedData[0].days[0];
+
+    dayToUpdate.numOfPickups -= 1;
+    dayToUpdate.addresses.shift();
+
+    const pickupsLeft = dayToUpdate.numOfPickups > 0;
+
     setStatus('Not Begun');
+
+    if (!pickupsLeft) {
+      updatedData[0].days.shift();
+      setFinishPopup(true);
+    }
+
+    setScheduleData(updatedData);
   };
 
   const cancelPickup = () => {
@@ -41,14 +64,7 @@ function DriverCurrentPickup({ navigation }) {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: RMStyle.colors.background,
-      }}
-    >
+    <View style={styles.container}>
       <Modal
         animationType='slide'
         transparent={true}
@@ -106,12 +122,14 @@ function DriverCurrentPickup({ navigation }) {
           </View>
         </View>
       </Modal>
+
       <Modal
         animationType='slide'
         transparent={true}
         visible={successPopupVisible}
         onRequestClose={() => {
           setSuccessPopupVisible(false);
+          beginNextPickup();
         }}
       >
         <View style={styles.centeredView}>
@@ -120,6 +138,7 @@ function DriverCurrentPickup({ navigation }) {
               <Pressable
                 onPress={() => {
                   setSuccessPopupVisible(false);
+                  beginNextPickup();
                 }}
               >
                 <FontAwesomeIcon icon={faXmark} size={15} />
@@ -135,36 +154,63 @@ function DriverCurrentPickup({ navigation }) {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
-            >
-              {/* <View style={{ paddingHorizontal: 5 }}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                    navigation.navigate('DriverHome');
-                  }}
-                >
-                  <Text style={styles.textStyle}>Return home</Text>
-                </Pressable>
-              </View> */}
-            </View>
+            ></View>
           </View>
         </View>
       </Modal>
-      <RMText
-        style={{
-          justifyContent: 'center',
-          fontSize: 20,
-          textAlign: 'center',
+
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={finishPopup}
+        onRequestClose={() => {
+          navigation.navigate('DriverHome');
         }}
       >
-        Current Pickup
-      </RMText>
-      <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
-        Status: {status}
-      </RMText>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
+              {/* <Pressable
+                onPress={() => {
+                  navigation.navigate('DriverHome');
+                }}
+              >
+                <FontAwesomeIcon icon={faXmark} size={15} />
+              </Pressable> */}
+            </View>
+            <Text style={styles.modalText}>
+              You have completed all your pickups for today.{'\n\n'}
+              Thank you for making the world a healthier place for us all!
+            </Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                navigation.navigate('DriverHome');
+              }}
+            >
+              <Text style={styles.textStyle}>Return Home</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <View style={{ flex: 1 }}>
+        <RMText
+          style={{
+            justifyContent: 'center',
+            fontSize: 20,
+            textAlign: 'center',
+          }}
+        >
+          <Text style={{ fontWeight: 'bold' }}>Pickup Address:</Text> {currentAddress}
+        </RMText>
+        <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
+          <Text style={{ fontWeight: 'bold' }}>Status:</Text> {status}
+        </RMText>
+      </View>
 
       <GooglePlacesAutocomplete
-        placeholder='Search for pickup location'
+        placeholder='Search for pickup addresses'
         fetchDetails={true}
         GooglePlacesSearchQuery={{
           rankby: 'distance',
@@ -183,24 +229,20 @@ function DriverCurrentPickup({ navigation }) {
           key: 'API_KEY',
           language: 'en',
           components: 'country:us',
-          types: 'establishment',
-          radius: 1000,
+          radius: 10000,
           location: `${region.latitude}, ${region.longitude}`,
         }}
         styles={{
           container: {
-            flex: 1,
+            flex: 0.6,
+            position: 'relative',
             width: '100%',
-            zIndex: 1000,
+            zIndex: 1,
           },
           listView: { backgroundColor: 'white' },
         }}
       />
-      <MapView
-        style={{ width: '100%', height: '50%' }}
-        provider={PROVIDER_GOOGLE}
-        region={region}
-      >
+      <MapView style={styles.map} provider={PROVIDER_GOOGLE} region={region}>
         <Marker
           coordinate={{
             latitude: region.latitude,
@@ -228,14 +270,15 @@ function DriverCurrentPickup({ navigation }) {
           justifyContent: 'center',
           flexWrap: 'wrap',
           flexDirection: 'row',
+          flex: 1,
         }}
       >
         {status === 'Not Begun' && (
-          <Button label='Start Pickup' onPress={startPickup} />
+          <Button label='Start Pickup' onPress={startPickup} width={150} />
         )}
 
         {status === 'In Progress' && (
-          <Button label='Mark Complete' onPress={markComplete} />
+          <Button label='Mark Complete' onPress={markComplete} width={150} />
         )}
 
         {(status === 'Not Begun' || status === 'In Progress') && (
@@ -244,11 +287,16 @@ function DriverCurrentPickup({ navigation }) {
             onPress={() => {
               setConfirmPopupVisible(true);
             }}
+            width={150}
           />
         )}
 
         {(status === 'Complete' || status === 'Cancelled') && (
-          <Button label='Begin Next Pickup' onPress={beginNextPickup} />
+          <Button
+            label='Begin Next Pickup'
+            onPress={beginNextPickup}
+            width={150}
+          />
         )}
 
         {(status === 'Complete' || status === 'Cancelled') && (
@@ -257,6 +305,7 @@ function DriverCurrentPickup({ navigation }) {
             onPress={() => {
               navigation.navigate('DriverHome');
             }}
+            width={150}
           />
         )}
       </View>
@@ -288,8 +337,8 @@ const styles = StyleSheet.create({
     backgroundColor: RMStyle.colors.background,
   },
   map: {
-    width: 300,
-    height: 300,
+    width: '100%',
+    height: '50%',
   },
   modalView: {
     margin: 20,
@@ -331,4 +380,3 @@ DriverCurrentPickup.propTypes = {
 };
 
 export default DriverCurrentPickup;
-
