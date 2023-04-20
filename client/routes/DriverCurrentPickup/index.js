@@ -24,10 +24,10 @@ function DriverCurrentPickup({ navigation }) {
   });
 
   const { API_KEY } = process.env;
-  const currentAddress =
-    scheduleData.length > 0 &&
-    scheduleData[0].days.length > 0 &&
-    scheduleData[0].days[0].addresses.length > 0
+  const currentAddress
+    = scheduleData.length > 0
+    && scheduleData[0].days.length > 0
+    && scheduleData[0].days[0].addresses.length > 0
       ? scheduleData[0].days[0].addresses[0]
       : 'No address found';
 

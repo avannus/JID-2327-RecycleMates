@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Pressable, Text, ScrollView } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
+import RMPickupScheduler from '../../components/RMPickupScheduler';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
@@ -11,6 +12,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function CustomerHome({ navigation }) {
+  const [scheduleFrequencyVisible, setScheduleFrequencyVisible] = React.useState(false);
+
   React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -21,6 +24,7 @@ function CustomerHome({ navigation }) {
   );
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
+      <RMPickupScheduler visible={scheduleFrequencyVisible} onClose={() => setScheduleFrequencyVisible(false)}></RMPickupScheduler>
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
@@ -31,7 +35,7 @@ function CustomerHome({ navigation }) {
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('SchedulePickups')}
+              onPress={() => setScheduleFrequencyVisible(true)}
             >
               <Text style={styles.bannerButtonLabel}>
                 {'Schedule your pickup frequency'}

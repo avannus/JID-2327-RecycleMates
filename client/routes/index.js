@@ -14,9 +14,7 @@ import ForgotPass from './ForgotPass';
 import CustomerHome from './CustomerHome';
 import CustomerCurrentPickup from './CustomerCurrentPickup';
 import BoxRequest from './BoxRequest';
-import CancelPickup from './CancelPickup';
 import DescribeMaterial from './DescribeMaterial';
-import PickupConfirmation from './PickupConfirmation';
 import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
@@ -95,19 +93,9 @@ function CustomerHomeStack() {
         options={{ title: 'Request Boxes' }}
       />
       <Stack.Screen
-        name='CancelPickup'
-        component={CancelPickup}
-        options={{ title: 'Cancel a Pickup' }}
-      />
-      <Stack.Screen
         name='DescribeMaterial'
         component={DescribeMaterial}
         options={{ title: 'Describe Materials' }}
-      />
-      <Stack.Screen
-        name='PickupConfirmation'
-        component={PickupConfirmation}
-        options={{ title: 'Pickup Confirmed' }}
       />
       <Stack.Screen
         name='SchedulePickups'
@@ -209,12 +197,7 @@ function RMRoutes() {
           component={CustomerCurrentPickup}
         />
         <Stack.Screen name='BoxRequest' component={BoxRequest} />
-        <Stack.Screen name='CancelPickup' component={CancelPickup} />
         <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
-        <Stack.Screen
-          name='PickupConfirmation'
-          component={PickupConfirmation}
-        />
         <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
         <Stack.Screen
           name='DriverHome'
