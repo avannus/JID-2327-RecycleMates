@@ -125,8 +125,10 @@ function CustomerCurrentPickup({ navigation }) {
           </View>
         </View>
       </Modal>
-      <RMText>Your pickups are currently scheduled to occur (frequency)</RMText>
-      <RMText>Your next pickup is scheduled for (date)</RMText>
+      <View style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+        <RMText>Your pickups are currently scheduled to occur weekly.</RMText>
+        <RMText>Your next pickup is scheduled for April 24th, 2023</RMText>
+      </View>
       <Button
         label='Cancel Pickup'
         onPress={() => {

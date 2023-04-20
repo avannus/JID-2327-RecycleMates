@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Pressable, Modal, Text } from 'react-native';
+import { View, StyleSheet, Pressable, Modal, Text, Alert } from 'react-native';
 import RMText from '../../components/RMText';
 import RMStyle from '../../RMStyle';
 import RMButton from '../../components/RMButton';
@@ -17,20 +17,23 @@ function SchedulePickups({ navigation }) {
     { label: 'Monthly', value: 'monthly' },
     { label: 'Bimonthly', value: 'bimonthly' },
   ]);
-  const [visible, setVisible] = React.useState(true);
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [buttonVisible, setButtonVisible] = React.useState(true);
+  const [popupVisible, setPopupVisible] = React.useState(false);
   const confirmPickup = () => {
-    setModalVisible(true);
+    if (!value) {
+      Alert.alert('Please select a pickup frequency.');
+      return;
+    }
+
+    setPopupVisible(true);
   };
 
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-    navigation.goBack();
+  const closePopup = () => {
+    setPopupVisible(false);
+    if (value) {
+      navigation.navigate('CustomerCurrentPickup', { pickupFrequency: value });
+    }
   };
-
-  // const returnHome = () => {
-  //   navigation.goBack();
-  // };
 
   return (
     <View
@@ -44,32 +47,26 @@ function SchedulePickups({ navigation }) {
       <Modal
         animationType='slide'
         transparent={true}
-        visible={modalVisible}
+        visible={popupVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setPopupVisible(!popupVisible);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
-              <Pressable onPress={toggleModal}>
+              <Pressable onPress={closePopup}>
                 <FontAwesomeIcon icon={faXmark} size={15} />
               </Pressable>
             </View>
-            <Text style={styles.modalText}>Your pickup frequency has been scheduled!</Text>
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={returnHome}
-            >
-              <Text style={styles.textStyle}>Return home</Text>
-            </Pressable> */}
+            <Text style={styles.modalText}>
+              Your pickup frequency has been scheduled!
+            </Text>
           </View>
         </View>
       </Modal>
       <RMText>Request Pickup Frequency</RMText>
-      <RMText>
-        How often would you like to have pickups?
-      </RMText>
+      <RMText>How often would you like to have pickups?</RMText>
 
       <View style={{ width: '80%', paddingBottom: 10 }}>
         <DropDownPicker
@@ -80,20 +77,16 @@ function SchedulePickups({ navigation }) {
           setValue={setValue}
           setItems={setItems}
           onOpen={() => {
-            setVisible(false);
+            setButtonVisible(false);
           }}
           onClose={() => {
-            setVisible(true);
+            setButtonVisible(true);
           }}
         />
       </View>
 
-      {visible && (
-        <RMButton
-          theme='primary'
-          label='Confirm'
-          onPress={confirmPickup}
-        />
+      {buttonVisible && (
+        <RMButton theme='primary' label='Confirm' onPress={confirmPickup} />
       )}
     </View>
   );
