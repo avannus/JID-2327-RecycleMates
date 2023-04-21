@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import RMTextInput from '../../components/RMTextInput';
 import RMButton from '../../components/RMButton';
 import RMText from '../../components/RMText';
+import RMPopup from '../../components/RMPopup';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
 
 function EditAccount() {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -17,43 +14,30 @@ function EditAccount() {
     setModalVisible(true);
   };
 
-  // const returnHome = () => {
-  //   navigation.goBack();
-  // };
-
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-  };
-
   return (
-    <View style={styles.container}>
-      <Modal
-        animationType='slide'
-        transparent={true}
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: RMStyle.colors.background,
+      }}
+    >
+      <RMPopup
         visible={modalVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
+        }}
+        description='Changes saved!'
+      />
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: RMStyle.colors.background,
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.modalHeader}>
-              <Pressable onPress={toggleModal}>
-                <FontAwesomeIcon icon={faXmark} size={15} />
-                {/* <AntDesign name='close' size={15} color='black' /> */}
-              </Pressable>
-            </View>
-            <Text style={styles.modalText}>Changes saved!</Text>
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={returnHome}
-            >
-              <Text style={styles.textStyle}>Return home</Text>
-            </Pressable> */}
-          </View>
-        </View>
-      </Modal>
-      <View style={styles.container}>
         <RMText>Edit Account Info</RMText>
         <RMTextInput
           label='Name'
@@ -113,63 +97,6 @@ function EditAccount() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#7DE093',
-  },
-  buttonClose: {
-    backgroundColor: '#7DE093',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: RMStyle.colors.background,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 15,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-    padding: 5,
-  },
-  modalText: {
-    marginTop: 5,
-    marginBottom: 15,
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    fontSize: 15,
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
 
 EditAccount.propTypes = {
   navigation: PropTypes.object.isRequired,

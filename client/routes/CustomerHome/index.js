@@ -9,8 +9,15 @@ import {
   faCalendarDays,
   faTruckPickup,
 } from '@fortawesome/free-solid-svg-icons';
+import customerData from '../exampleCustomerData';
+import RMPickupScheduler from '../../components/RMPickupScheduler';
 
 function CustomerHome({ navigation }) {
+  const [schedulerVisible, setSchedulerVisible] = React.useState(false);
+  const [frequency, setFrequency] = React.useState('weekly');
+  const day = customerData[frequency].dayOfTheWeek;
+  const time = customerData[frequency].timePeriod;
+  const nextPickup = customerData[frequency].dates[0];
   React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -21,6 +28,11 @@ function CustomerHome({ navigation }) {
   );
   return (
     <ScrollView style={{ backgroundColor: RMStyle.colors.background }}>
+      <RMPickupScheduler
+        visible={schedulerVisible}
+        onClose={() => setSchedulerVisible(false)}
+        setFrequency={setFrequency}
+      ></RMPickupScheduler>
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
@@ -31,7 +43,10 @@ function CustomerHome({ navigation }) {
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('SchedulePickups')}
+              onPress={() => {
+                setSchedulerVisible(true);
+                // console.log(frequency);
+              }}
             >
               <Text style={styles.bannerButtonLabel}>
                 {'Schedule your pickup frequency'}
@@ -42,47 +57,73 @@ function CustomerHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('SchedulePickups')}
+            onPress={() => {
+              setSchedulerVisible(true);
+            }}
           >
             <FontAwesomeIcon icon={faCalendarDays} size={50} />
             <Text style={[styles.buttonText]}>{'Set Pickup Frequency'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('CustomerCurrentPickup')}
+            onPress={() => navigation.navigate('CustomerCurrentPickup', { frequency })}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
-            <Text style={styles.buttonText}>{'Current Pickups'}</Text>
+            <Text style={styles.buttonText}>{'Upcoming Pickups'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('BoxRequest')}
+            onPress={() => navigation.navigate('BoxRequest', { frequency })}
           >
             <FontAwesomeIcon icon={faBox} size={50} />
             <Text style={styles.buttonText}>{'Request Boxes'}</Text>
           </Pressable>
         </View>
         <View style={styles.currentPickupsContainer}>
-          <View style={styles.currentPickupsTitle}>
+          <View
+            style={{
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              width: '80%',
+            }}
+          >
             <RMText
               style={{
-                fontSize: 30,
-                fontWeight: 'bold',
+                fontSize: 20,
+                // fontWeight: 'bold',
                 alignSelf: 'center',
+                textAlign: 'center',
               }}
             >
-              Current Pickups
+              Your pickups are currently scheduled to occur{' '}
+              <Text style={{ fontWeight: 'bold' }}>
+                {frequency}</Text> on {day} during {time}.
             </RMText>
-            <Pressable onPress={() => navigation.navigate('CustomerCurrentPickup')}>
-              <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
-                {'see details >'}
+            <RMText
+              style={{
+                fontSize: 20,
+                // fontWeight: 'bold',
+                alignSelf: 'center',
+                textAlign: 'center',
+              }}
+            >
+              Your next pickup is scheduled for{' '}
+              <Text style={{ fontWeight: 'bold' }}>{nextPickup}</Text>.
+            </RMText>
+            {/* <Pressable
+              onPress={() => navigation.navigate('CustomerCurrentPickup')}
+            >
+              <Text style={{ fontSize: 20, color: 'rgba(50, 57, 65, 0.38)' }}>
+                {'view more >'}
               </Text>
-            </Pressable>
+            </Pressable> */}
           </View>
-          <ScrollView style={styles.currentPickupsList}>
+          {/* <ScrollView style={styles.currentPickupsList}>
             <RMText>Monday, 1 pm - 2 pm</RMText>
             <RMText>Tuesday, 3 pm - 4 pm</RMText>
-          </ScrollView>
+          </ScrollView> */}
         </View>
       </View>
     </ScrollView>
@@ -147,6 +188,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     paddingTop: 20,
     width: '100%',
+    paddingBottom: 10,
   },
   buttonStyle: {
     alignItems: 'center',
@@ -165,17 +207,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: RMStyle.colors.background,
     flexDirection: 'column',
-    height: '30%',
     justifyContent: 'center',
-    maxHeight: 300,
-    marginBottom: 100,
     padding: 5,
-  },
-  currentPickupsTitle: {
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
 });
 

@@ -9,8 +9,10 @@ import {
   faMapLocationDot,
   faRoute,
 } from '@fortawesome/free-solid-svg-icons';
+import exampleSchedule from '../exampleScheduleData';
 
 function DriverHome({ navigation }) {
+  const currentWeek = exampleSchedule[0];
   React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -74,16 +76,20 @@ function DriverHome({ navigation }) {
             >
               Current Schedule
             </RMText>
-            <Pressable onPress={() => navigation.navigate('DriverCurrentSchedule')}>
+            <Pressable
+              onPress={() => navigation.navigate('DriverCurrentSchedule')}
+            >
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'see more >'}
               </Text>
             </Pressable>
           </View>
           <ScrollView style={styles.currentScheduleList}>
-            <RMText>Monday, 2 pm - 3 pm</RMText>
-            <RMText>Tuesday, 4 pm - 5 pm</RMText>
-            <RMText>Wednesday 9 am - 11 am</RMText>
+            {currentWeek.days.map((day, index) => (
+              <RMText
+                key={index}
+              >{`${day.dayOfWeek}, ${day.timePeriod}`}</RMText>
+            ))}
           </ScrollView>
         </View>
       </View>

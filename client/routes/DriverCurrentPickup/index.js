@@ -1,19 +1,21 @@
 import * as React from 'react';
-import { View, Modal, StyleSheet, Pressable, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Button from '../../components/RMButton';
 import RMText from '../../components/RMText';
+import RMPopup from '../../components/RMPopup';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import exampleSchedule from '../exampleScheduleData';
 
-// TODO: Include API key from .env
 function DriverCurrentPickup({ navigation }) {
-  const [status, setStatus] = React.useState('Not Begun');
   const [confirmPopupVisible, setConfirmPopupVisible] = React.useState(false);
   const [successPopupVisible, setSuccessPopupVisible] = React.useState(false);
+  const [finishPopup, setFinishPopup] = React.useState(false);
+
+  const [scheduleData, setScheduleData] = React.useState(exampleSchedule);
+  const [status, setStatus] = React.useState('Not Begun');
   const [region, setRegion] = React.useState({
     latitude: 36.6499974,
     longitude: -87.4666648,
@@ -21,17 +23,42 @@ function DriverCurrentPickup({ navigation }) {
     longitudeDelta: 0.0421,
   });
 
+  const { API_KEY } = process.env;
+  const currentAddress
+    = scheduleData.length > 0
+    && scheduleData[0].days.length > 0
+    && scheduleData[0].days[0].addresses.length > 0
+      ? scheduleData[0].days[0].addresses[0]
+      : 'No address found';
+
   const startPickup = () => {
     setStatus('In Progress');
   };
 
   const markComplete = () => {
     setStatus('Complete');
+    if (scheduleData[0].days[0].numOfPickups === 1) {
+      setFinishPopup(true);
+    }
   };
 
   const beginNextPickup = () => {
-    // TODO: Get next pickup and its status
+    const updatedData = [...scheduleData];
+    const dayToUpdate = updatedData[0].days[0];
+
+    dayToUpdate.numOfPickups -= 1;
+    dayToUpdate.addresses.shift();
+
+    const pickupsLeft = dayToUpdate.numOfPickups > 0;
+
     setStatus('Not Begun');
+
+    if (!pickupsLeft) {
+      // updatedData[0].days.shift();
+      setFinishPopup(true);
+    }
+
+    setScheduleData(updatedData);
   };
 
   const cancelPickup = () => {
@@ -41,136 +68,76 @@ function DriverCurrentPickup({ navigation }) {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: RMStyle.colors.background,
-      }}
-    >
-      <Modal
-        animationType='slide'
-        transparent={true}
+    <View style={styles.container}>
+      <RMPopup
         visible={confirmPopupVisible}
         onRequestClose={() => {
           setConfirmPopupVisible(false);
         }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.modalHeader}>
-              <Pressable
-                onPress={() => {
-                  setConfirmPopupVisible(false);
-                }}
-              >
-                <FontAwesomeIcon icon={faXmark} size={15} />
-              </Pressable>
-            </View>
-            <Text style={styles.modalText}>
-              Are you sure you want to cancel this pickup?
-            </Text>
-            <View
-              style={{
-                flexWrap: 'wrap',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <View style={{ paddingHorizontal: 5 }}>
-                <Pressable
-                  style={{
-                    backgroundColor: '#D3D3D3',
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                  }}
-                  onPress={() => {
-                    setConfirmPopupVisible(false);
-                  }}
-                >
-                  <Text style={{ color: 'black' }}>Dismiss</Text>
-                </Pressable>
-              </View>
-              <View style={{ paddingHorizontal: 5 }}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={cancelPickup}
-                >
-                  <Text style={styles.textStyle}>Confirm</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <Modal
-        animationType='slide'
-        transparent={true}
+        description={'Are you sure you want to cancel this pickup?'}
+        buttonOneText={'Dismiss'}
+        buttonOneFunction={() => {
+          setConfirmPopupVisible(false);
+        }}
+        buttonTwoText={'Confirm'}
+        buttonTwoFunction={cancelPickup}
+      />
+
+      <RMPopup
         visible={successPopupVisible}
         onRequestClose={() => {
           setSuccessPopupVisible(false);
+          if (scheduleData[0].days[0].numOfPickups === 1) {
+            setFinishPopup(true);
+          }
         }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.modalHeader}>
-              <Pressable
-                onPress={() => {
-                  setSuccessPopupVisible(false);
-                }}
-              >
-                <FontAwesomeIcon icon={faXmark} size={15} />
-              </Pressable>
-            </View>
-            <Text style={styles.modalText}>
-              This pickup has been cancelled successfully.
-            </Text>
-            <View
-              style={{
-                flexWrap: 'wrap',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              {/* <View style={{ paddingHorizontal: 5 }}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                    navigation.navigate('DriverHome');
-                  }}
-                >
-                  <Text style={styles.textStyle}>Return home</Text>
-                </Pressable>
-              </View> */}
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <RMText
-        style={{
-          justifyContent: 'center',
-          fontSize: 20,
-          textAlign: 'center',
+        description='This pickup has been cancelled successfully.'
+      />
+
+      <RMPopup
+        visible={finishPopup}
+        onRequestClose={() => {
+          beginNextPickup();
+          setFinishPopup(false);
+          navigation.navigate('DriverHome');
         }}
-      >
-        Current Pickup
-      </RMText>
-      <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
-        Status: {status}
-      </RMText>
+        xVisibility={false}
+        description={
+          'You have completed all your pickups for today.\n\nThank you for making the world a healthier place for us all!'
+        }
+        buttonOneText={'Return Home'}
+        buttonOneFunction={() => {
+          beginNextPickup();
+          setFinishPopup(false);
+          navigation.navigate('DriverHome');
+        }}
+      />
+
+      <View style={{ flex: 1 }}>
+        <RMText
+          style={{
+            justifyContent: 'center',
+            fontSize: 20,
+            textAlign: 'center',
+          }}
+        >
+          <Text style={{ fontWeight: 'bold' }}>Pickup Address:</Text>{' '}
+          {currentAddress}
+        </RMText>
+        {currentAddress !== 'No address found' && (
+          <RMText style={{ justifyContent: 'center', fontSize: 20 }}>
+            <Text style={{ fontWeight: 'bold' }}>Status:</Text> {status}
+          </RMText>
+        )}
+      </View>
 
       <GooglePlacesAutocomplete
-        placeholder='Search for pickup location'
+        placeholder='Search for pickup addresses'
         fetchDetails={true}
         GooglePlacesSearchQuery={{
           rankby: 'distance',
         }}
         onPress={(data, details = null) => {
-          // 'details' is provided when fetchDetails = true
           console.log(data, details);
           setRegion({
             latitude: details.geometry.location.lat,
@@ -180,27 +147,24 @@ function DriverCurrentPickup({ navigation }) {
           });
         }}
         query={{
-          key: 'API_KEY',
+          key: API_KEY,
           language: 'en',
           components: 'country:us',
-          types: 'establishment',
-          radius: 1000,
+          radius: 10000,
           location: `${region.latitude}, ${region.longitude}`,
         }}
         styles={{
           container: {
-            flex: 1,
+            flex: 0.6,
+            position: 'relative',
             width: '100%',
-            zIndex: 1000,
+            zIndex: 1,
           },
           listView: { backgroundColor: 'white' },
         }}
       />
-      <MapView
-        style={{ width: '100%', height: '50%' }}
-        provider={PROVIDER_GOOGLE}
-        region={region}
-      >
+
+      <MapView style={styles.map} provider={PROVIDER_GOOGLE} region={region}>
         <Marker
           coordinate={{
             latitude: region.latitude,
@@ -222,65 +186,59 @@ function DriverCurrentPickup({ navigation }) {
         </Marker>
       </MapView>
 
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          flexDirection: 'row',
-        }}
-      >
-        {status === 'Not Begun' && (
-          <Button label='Start Pickup' onPress={startPickup} />
-        )}
+      {currentAddress !== 'No address found' && (
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            flex: 0.75,
+          }}
+        >
+          {status === 'Not Begun' && (
+            <Button label='Start Pickup' onPress={startPickup} width={150} />
+          )}
 
-        {status === 'In Progress' && (
-          <Button label='Mark Complete' onPress={markComplete} />
-        )}
+          {status === 'In Progress' && (
+            <Button label='Mark Complete' onPress={markComplete} width={150} />
+          )}
 
-        {(status === 'Not Begun' || status === 'In Progress') && (
-          <Button
-            label='Cancel Pickup'
-            onPress={() => {
-              setConfirmPopupVisible(true);
-            }}
-          />
-        )}
+          {(status === 'Not Begun' || status === 'In Progress') && (
+            <Button
+              label='Cancel Pickup'
+              onPress={() => {
+                setConfirmPopupVisible(true);
+              }}
+              width={150}
+            />
+          )}
 
-        {(status === 'Complete' || status === 'Cancelled') && (
-          <Button label='Begin Next Pickup' onPress={beginNextPickup} />
-        )}
+          {(status === 'Complete' || status === 'Cancelled') && (
+            <Button
+              label='Begin Next Pickup'
+              onPress={beginNextPickup}
+              width={150}
+            />
+          )}
 
-        {(status === 'Complete' || status === 'Cancelled') && (
-          <Button
-            label='Return Home'
-            onPress={() => {
-              navigation.navigate('DriverHome');
-            }}
-          />
-        )}
-      </View>
+          {(status === 'Complete' || status === 'Cancelled') && (
+            <Button
+              label='Return Home'
+              onPress={() => {
+                beginNextPickup();
+                navigation.navigate('DriverHome');
+              }}
+              width={150}
+            />
+          )}
+        </View>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#7DE093',
-  },
-  buttonClose: {
-    backgroundColor: '#7DE093',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -288,41 +246,8 @@ const styles = StyleSheet.create({
     backgroundColor: RMStyle.colors.background,
   },
   map: {
-    width: 300,
-    height: 300,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 15,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    width: '50%',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-    padding: 5,
-  },
-  modalText: {
-    marginTop: 5,
-    marginBottom: 15,
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    fontSize: 15,
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    width: '100%',
+    height: '50%',
   },
 });
 
@@ -331,4 +256,3 @@ DriverCurrentPickup.propTypes = {
 };
 
 export default DriverCurrentPickup;
-
