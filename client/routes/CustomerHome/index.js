@@ -45,7 +45,7 @@ function CustomerHome({ navigation }) {
               style={styles.bannerButton}
               onPress={() => {
                 setSchedulerVisible(true);
-                console.log(frequency);
+                // console.log(frequency);
               }}
             >
               <Text style={styles.bannerButtonLabel}>
@@ -73,7 +73,7 @@ function CustomerHome({ navigation }) {
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('BoxRequest')}
+            onPress={() => navigation.navigate('BoxRequest', { frequency })}
           >
             <FontAwesomeIcon icon={faBox} size={50} />
             <Text style={styles.buttonText}>{'Request Boxes'}</Text>

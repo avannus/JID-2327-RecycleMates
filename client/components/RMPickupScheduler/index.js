@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { View, Alert, Modal, StyleSheet } from 'react-native';
+import { View, Alert, Modal, StyleSheet, Pressable } from 'react-native';
 import RMText from '../../components/RMText';
 import RMButton from '../../components/RMButton';
 import RMPopup from '../../components/RMPopup';
 import PropTypes from 'prop-types';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function RMPickupScheduler({ visible, onClose, setFrequency }) {
   const [open, setOpen] = React.useState(false);
@@ -38,6 +40,11 @@ function RMPickupScheduler({ visible, onClose, setFrequency }) {
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <View style={styles.modalHeader}>
+            <Pressable onPress={onClose}>
+              <FontAwesomeIcon icon={faTimes} size={20} />
+            </Pressable>
+          </View>
           <RMPopup
             visible={popupVisible}
             onRequestClose={() => {
@@ -80,6 +87,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  modalHeader: {
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    padding: 5,
+  },
   modalView: {
     margin: 20,
     backgroundColor: 'white',
@@ -95,7 +107,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     width: '80%',
-    height: 275,
+    height: 300,
   },
 });
 
