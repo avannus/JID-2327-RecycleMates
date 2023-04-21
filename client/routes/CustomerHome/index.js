@@ -46,7 +46,7 @@ function CustomerHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('SchedulePickups')}
+            onPress={() => setScheduleFrequencyVisible(true)}
           >
             <FontAwesomeIcon icon={faCalendarDays} size={50} />
             <Text style={[styles.buttonText]}>{'Set Pickup Frequency'}</Text>
