@@ -36,7 +36,13 @@ function CustomerHome({ navigation }) {
         onClose={() => setSchedulerVisible(false)}
         setFrequency={setFrequency}
       />
-      <RMUpcomingPickups visible={pickupsVisible} onClose={() => setPickupsVisible(false)} frequency={frequency} data={data} setData={setData} />
+      <RMUpcomingPickups
+        visible={pickupsVisible}
+        onClose={() => setPickupsVisible(false)}
+        frequency={frequency}
+        data={data}
+        setData={setData}
+      />
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
@@ -70,7 +76,10 @@ function CustomerHome({ navigation }) {
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => setPickupsVisible(true)}
+            onPress={() => {
+              setPickupsVisible(true);
+              console.log(nextPickup);
+            }}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
             <Text style={styles.buttonText}>{'Upcoming Pickups'}</Text>
@@ -102,20 +111,26 @@ function CustomerHome({ navigation }) {
               }}
             >
               Your pickups are currently scheduled to occur{' '}
-              <Text style={{ fontWeight: 'bold' }}>
-                {frequency}</Text> on {day} during {time}.
+              <Text style={{ fontWeight: 'bold' }}>{frequency}</Text> on {day}{' '}
+              during {time}.
             </RMText>
             <RMText
               style={{
                 fontSize: 20,
-                // fontWeight: 'bold',
                 alignSelf: 'center',
                 textAlign: 'center',
               }}
             >
-              Your next pickup is scheduled for{' '}
-              <Text style={{ fontWeight: 'bold' }}>{nextPickup}</Text>.
+              {nextPickup ? (
+                <Text>
+                  Your next pickup is scheduled for{' '}
+                  <Text style={{ fontWeight: 'bold' }}>{nextPickup}</Text>.
+                </Text>
+              ) : (
+                <Text>You have no upcoming pickups.</Text>
+              )}
             </RMText>
+
             {/* <Pressable
               onPress={() => navigation.navigate('CustomerCurrentPickup')}
             >

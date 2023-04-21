@@ -15,7 +15,7 @@ function RMUpcomingPickups({ visible, onClose, frequency, data, setData }) {
   const cancelPickup = (cancelledDate) => {
     const updatedData = { ...data };
     updatedData[frequency].dates = updatedData[frequency].dates.filter(
-      (date) => date !== cancelledDate
+      (date) => date !== cancelledDate,
     );
     setData(updatedData);
     setConfirmPopupVisible(false);
@@ -69,26 +69,30 @@ function RMUpcomingPickups({ visible, onClose, frequency, data, setData }) {
             {'Upcoming Pickups'}
           </RMText>
 
-          {data[frequency].dates.map((date, index) => (
-            <View
-              key={index}
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <RMText>{date}</RMText>
-              <Pressable
-                onPress={() => {
-                  setConfirmPopupVisible(true);
-                  setCancelledDate(date);
+          {data[frequency].dates.length > 0 ? (
+            data[frequency].dates.map((date, index) => (
+              <View
+                key={index}
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <FontAwesomeIcon icon={faBan} size={15} />
-              </Pressable>
-            </View>
-          ))}
+                <RMText>{date}</RMText>
+                <Pressable
+                  onPress={() => {
+                    setConfirmPopupVisible(true);
+                    setCancelledDate(date);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faBan} size={15} />
+                </Pressable>
+              </View>
+            ))
+          ) : (
+            <RMText>No upcoming pickups.</RMText>
+          )}
         </View>
       </View>
     </Modal>
