@@ -12,10 +12,12 @@ import {
 import customerData from '../exampleCustomerData';
 import RMPickupScheduler from '../../components/RMPickupScheduler';
 import RMUpcomingPickups from '../../components/RMUpcomingPickups';
+import RMBoxRequest from '../../components/RMBoxRequest';
 
 function CustomerHome({ navigation }) {
   const [schedulerVisible, setSchedulerVisible] = React.useState(false);
   const [pickupsVisible, setPickupsVisible] = React.useState(false);
+  const [boxRequestVisible, setBoxRequestVisible] = React.useState(false);
   const [data, setData] = React.useState(customerData);
   const [frequency, setFrequency] = React.useState('weekly');
   const day = data[frequency].dayOfTheWeek;
@@ -42,6 +44,12 @@ function CustomerHome({ navigation }) {
         frequency={frequency}
         data={data}
         setData={setData}
+      />
+      <RMBoxRequest
+        visible={boxRequestVisible}
+        onClose={() => {
+          setBoxRequestVisible(false);
+        }}
       />
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
@@ -86,7 +94,7 @@ function CustomerHome({ navigation }) {
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('BoxRequest', { frequency })}
+            onPress={() => setBoxRequestVisible(true)}
           >
             <FontAwesomeIcon icon={faBox} size={50} />
             <Text style={styles.buttonText}>{'Request Boxes'}</Text>
