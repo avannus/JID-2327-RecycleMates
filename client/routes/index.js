@@ -12,14 +12,15 @@ import ConfirmEmail from './ConfirmEmail';
 import Login from './Login';
 import ForgotPass from './ForgotPass';
 import CustomerHome from './CustomerHome';
-import CustomerCurrentPickup from './CustomerCurrentPickup';
-import BoxRequest from './BoxRequest';
-import DescribeMaterial from './DescribeMaterial';
-import SchedulePickups from './SchedulePickups';
+// import CustomerCurrentPickup from './CustomerCurrentPickup';
+// import BoxRequest from './BoxRequest';
+// import DescribeMaterial from './DescribeMaterial';
+// import SchedulePickups from './SchedulePickups';
 import DriverHome from './DriverHome';
 import DriverCurrentPickup from './DriverCurrentPickup';
 import DriverCurrentSchedule from './DriverCurrentSchedule';
 import RequestScheduleChanges from './RequestScheduleChanges';
+import Settings from './Settings';
 import EditAccount from './EditAccount';
 import InProgress from './InProgress';
 
@@ -39,7 +40,7 @@ function CustomerTabs() {
       />
       <Tab.Screen
         name='Account'
-        component={EditAccount}
+        component={SettingsStack}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
         }}
@@ -62,7 +63,7 @@ function DriverTabs() {
       />
       <Tab.Screen
         name='Account'
-        component={EditAccount}
+        component={SettingsStack}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
         }}
@@ -82,26 +83,26 @@ function CustomerHomeStack() {
           headerLeft: () => null,
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name='CustomerCurrentPickup'
         component={CustomerCurrentPickup}
         options={{ title: 'Upcoming Pickups' }}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name='BoxRequest'
         component={BoxRequest}
         options={{ title: 'Request Boxes' }}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name='DescribeMaterial'
         component={DescribeMaterial}
         options={{ title: 'Describe Materials' }}
-      />
-      <Stack.Screen
+      /> */}
+      {/* <Stack.Screen
         name='SchedulePickups'
         component={SchedulePickups}
         options={{ title: 'Set Frequency' }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }
@@ -132,6 +133,35 @@ function DriverHomeStack() {
         component={RequestScheduleChanges}
         options={{ title: 'Request Schedule Changes' }}
       />
+    </Stack.Navigator>
+  );
+}
+
+function SettingsStack() {
+  return (
+    <Stack.Navigator initialRouteName='Settings'>
+      <Stack.Screen
+        name='Settings'
+        component={Settings}
+      />
+      <Stack.Screen
+        name='InProgress'
+        component={InProgress}
+      />
+      <Stack.Screen
+        name='EditAccount'
+        component={EditAccount}
+      />
+      {/* <Stack.Screen
+        name='DescribeMaterial'
+        component={DescribeMaterial}
+        options={{ title: 'Describe Materials' }}
+      /> */}
+      {/* <Stack.Screen
+        name='SchedulePickups'
+        component={SchedulePickups}
+        options={{ title: 'Set Frequency' }}
+      /> */}
     </Stack.Navigator>
   );
 }
@@ -192,13 +222,13 @@ function RMRoutes() {
           component={CustomerTabs}
           options={{ headerShown: false, gestureEnabled: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name='CustomerCurrentPickup'
           component={CustomerCurrentPickup}
-        />
-        <Stack.Screen name='BoxRequest' component={BoxRequest} />
-        <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
-        <Stack.Screen name='SchedulePickups' component={SchedulePickups} />
+        /> */}
+        {/* <Stack.Screen name='BoxRequest' component={BoxRequest} /> */}
+        {/* <Stack.Screen name='DescribeMaterial' component={DescribeMaterial} />
+        <Stack.Screen name='SchedulePickups' component={SchedulePickups} /> */}
         <Stack.Screen
           name='DriverHome'
           component={DriverTabs}

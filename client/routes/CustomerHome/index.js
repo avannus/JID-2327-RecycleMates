@@ -11,13 +11,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import customerData from '../exampleCustomerData';
 import RMPickupScheduler from '../../components/RMPickupScheduler';
+import RMUpcomingPickups from '../../components/RMUpcomingPickups';
+import RMBoxRequest from '../../components/RMBoxRequest';
 
 function CustomerHome({ navigation }) {
   const [schedulerVisible, setSchedulerVisible] = React.useState(false);
+  const [pickupsVisible, setPickupsVisible] = React.useState(false);
+  const [boxRequestVisible, setBoxRequestVisible] = React.useState(false);
+  const [data, setData] = React.useState(customerData);
   const [frequency, setFrequency] = React.useState('weekly');
-  const day = customerData[frequency].dayOfTheWeek;
-  const time = customerData[frequency].timePeriod;
-  const nextPickup = customerData[frequency].dates[0];
+  const day = data[frequency].dayOfTheWeek;
+  const time = data[frequency].timePeriod;
+  const nextPickup = data[frequency].dates[0];
   React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -32,7 +37,20 @@ function CustomerHome({ navigation }) {
         visible={schedulerVisible}
         onClose={() => setSchedulerVisible(false)}
         setFrequency={setFrequency}
-      ></RMPickupScheduler>
+      />
+      <RMUpcomingPickups
+        visible={pickupsVisible}
+        onClose={() => setPickupsVisible(false)}
+        frequency={frequency}
+        data={data}
+        setData={setData}
+      />
+      <RMBoxRequest
+        visible={boxRequestVisible}
+        onClose={() => {
+          setBoxRequestVisible(false);
+        }}
+      />
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
@@ -66,14 +84,17 @@ function CustomerHome({ navigation }) {
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('CustomerCurrentPickup', { frequency })}
+            onPress={() => {
+              setPickupsVisible(true);
+              console.log(nextPickup);
+            }}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
             <Text style={styles.buttonText}>{'Upcoming Pickups'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('BoxRequest', { frequency })}
+            onPress={() => setBoxRequestVisible(true)}
           >
             <FontAwesomeIcon icon={faBox} size={50} />
             <Text style={styles.buttonText}>{'Request Boxes'}</Text>
@@ -98,20 +119,26 @@ function CustomerHome({ navigation }) {
               }}
             >
               Your pickups are currently scheduled to occur{' '}
-              <Text style={{ fontWeight: 'bold' }}>
-                {frequency}</Text> on {day} during {time}.
+              <Text style={{ fontWeight: 'bold' }}>{frequency}</Text> on {day}{' '}
+              during {time}.
             </RMText>
             <RMText
               style={{
                 fontSize: 20,
-                // fontWeight: 'bold',
                 alignSelf: 'center',
                 textAlign: 'center',
               }}
             >
-              Your next pickup is scheduled for{' '}
-              <Text style={{ fontWeight: 'bold' }}>{nextPickup}</Text>.
+              {nextPickup ? (
+                <Text>
+                  Your next pickup is scheduled for{' '}
+                  <Text style={{ fontWeight: 'bold' }}>{nextPickup}</Text>.
+                </Text>
+              ) : (
+                <Text>You have no upcoming pickups.</Text>
+              )}
             </RMText>
+
             {/* <Pressable
               onPress={() => navigation.navigate('CustomerCurrentPickup')}
             >

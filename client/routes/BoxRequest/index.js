@@ -6,13 +6,13 @@ import RMStyle from '../../RMStyle';
 import Button from '../../components/RMButton';
 import RMPopup from '../../components/RMPopup';
 import PropTypes from 'prop-types';
-import customerData from '../exampleCustomerData';
+// import customerData from '../exampleCustomerData';
 
-function BoxRequest({ navigation, route }) {
-  const { frequency } = route.params;
-  const day = customerData[frequency].dayOfTheWeek;
-  const time = customerData[frequency].timePeriod;
-  const nextPickup = customerData[frequency].dates[0];
+function BoxRequest({ navigation }) {
+  // const { frequency } = route.params;
+  // const day = customerData[frequency].dayOfTheWeek;
+  // const time = customerData[frequency].timePeriod;
+  // const nextPickup = customerData[frequency].dates[0];
   const [popupVisible, setPopupVisible] = React.useState(false);
 
   const confirm = () => {
@@ -42,9 +42,9 @@ function BoxRequest({ navigation, route }) {
         <RMText style={{ fontSize: 20 }}>
           Boxes will be dropped off at your next scheduled pickup.
         </RMText>
-        <RMText style={{ fontSize: 20 }}>
+        {/* <RMText style={{ fontSize: 20 }}>
           Your next scheduled pickup is: {'\n'} {day}, {nextPickup}, {time}.
-        </RMText>
+        </RMText> */}
         <RMText style={{ fontSize: 20 }}>
           Please describe the number of boxes you wish to request and any
           additional notes.
