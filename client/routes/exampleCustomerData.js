@@ -1,5 +1,4 @@
 const customerData = {
-  frequencySet: 'false',
   weekly: {
     timePeriod: '2 pm - 4 pm',
     dayOfTheWeek: 'Monday',

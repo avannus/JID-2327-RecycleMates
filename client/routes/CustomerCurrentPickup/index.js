@@ -6,7 +6,8 @@ import RMPopup from '../../components/RMPopup';
 import Button from '../../components/RMButton';
 import PropTypes from 'prop-types';
 
-function CustomerCurrentPickup({ navigation }) {
+function CustomerCurrentPickup({ navigation, route }) {
+  const { frequency } = route.params;
   const [confirmPopup, setConfirmPopupVisible] = React.useState(false);
   const [successPopup, setSuccessPopupVisible] = React.useState(false);
 
@@ -44,7 +45,7 @@ function CustomerCurrentPickup({ navigation }) {
       />
 
       <View style={styles.container}>
-        <RMText>Your pickups are currently scheduled to occur weekly.</RMText>
+        <RMText>Your pickups are currently scheduled to occur {frequency}.</RMText>
         <RMText>Your next pickup is scheduled for April 24th, 2023</RMText>
         <Button
           label='Cancel Pickup'
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
 
 CustomerCurrentPickup.propTypes = {
   navigation: PropTypes.object.isRequired,
+  frequency: PropTypes.string,
 };
 
 export default CustomerCurrentPickup;

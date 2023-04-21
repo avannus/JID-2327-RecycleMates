@@ -85,7 +85,7 @@ function CustomerHomeStack() {
       <Stack.Screen
         name='CustomerCurrentPickup'
         component={CustomerCurrentPickup}
-        options={{ title: 'Current Pickups' }}
+        options={{ title: 'Upcoming Pickups' }}
       />
       <Stack.Screen
         name='BoxRequest'

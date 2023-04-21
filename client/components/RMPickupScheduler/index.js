@@ -6,7 +6,7 @@ import RMPopup from '../../components/RMPopup';
 import PropTypes from 'prop-types';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-function RMPickupScheduler({ visible, onClose }) {
+function RMPickupScheduler({ visible, onClose, setFrequency }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(null);
   const [items, setItems] = React.useState([
@@ -24,7 +24,9 @@ function RMPickupScheduler({ visible, onClose }) {
       return;
     }
 
+    setFrequency(value);
     setPopupVisible(true);
+    console.log(value);
   };
 
   return (
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
 RMPickupScheduler.propTypes = {
   visible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  setFrequency: PropTypes.func,
 };
 
 export default RMPickupScheduler;
