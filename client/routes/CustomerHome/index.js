@@ -11,13 +11,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import customerData from '../exampleCustomerData';
 import RMPickupScheduler from '../../components/RMPickupScheduler';
+import RMUpcomingPickups from '../../components/RMUpcomingPickups';
 
 function CustomerHome({ navigation }) {
   const [schedulerVisible, setSchedulerVisible] = React.useState(false);
+  const [pickupsVisible, setPickupsVisible] = React.useState(false);
+  const [data, setData] = React.useState(customerData);
   const [frequency, setFrequency] = React.useState('weekly');
-  const day = customerData[frequency].dayOfTheWeek;
-  const time = customerData[frequency].timePeriod;
-  const nextPickup = customerData[frequency].dates[0];
+  const day = data[frequency].dayOfTheWeek;
+  const time = data[frequency].timePeriod;
+  const nextPickup = data[frequency].dates[0];
   React.useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
@@ -32,7 +35,8 @@ function CustomerHome({ navigation }) {
         visible={schedulerVisible}
         onClose={() => setSchedulerVisible(false)}
         setFrequency={setFrequency}
-      ></RMPickupScheduler>
+      />
+      <RMUpcomingPickups visible={pickupsVisible} onClose={() => setPickupsVisible(false)} frequency={frequency} data={data} setData={setData} />
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
@@ -66,7 +70,7 @@ function CustomerHome({ navigation }) {
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('CustomerCurrentPickup', { frequency })}
+            onPress={() => setPickupsVisible(true)}
           >
             <FontAwesomeIcon icon={faTruckPickup} size={50} />
             <Text style={styles.buttonText}>{'Upcoming Pickups'}</Text>
