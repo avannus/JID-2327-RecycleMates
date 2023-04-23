@@ -45,9 +45,9 @@ function Login({ navigation }) {
             accountType: 'customer',
           };
           if (homeScreenInfo.accountType === 'customer') {
-            navigation.navigate('CustomerHome', homeScreenInfo);
+            navigation.navigate('CustomerHome');
           } else if (homeScreenInfo.accountType === 'driver') {
-            navigation.navigate('DriverHome', homeScreenInfo);
+            navigation.navigate('DriverHome');
           }
         }}
       />

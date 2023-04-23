@@ -30,10 +30,10 @@ const Tab = createBottomTabNavigator();
 
 function CustomerTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator>
       <Tab.Screen
         name='Home'
-        component={CustomerHomeStack}
+        component={CustomerHome}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faHouse} />,
         }}
@@ -43,6 +43,7 @@ function CustomerTabs() {
         component={SettingsStack}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
@@ -72,40 +73,40 @@ function DriverTabs() {
   );
 }
 
-function CustomerHomeStack() {
-  return (
-    <Stack.Navigator initialRouteName='CustomerHome'>
-      <Stack.Screen
-        name='CustomerHome'
-        component={CustomerHome}
-        options={{
-          title: 'Home',
-          headerLeft: () => null,
-        }}
-      />
-      {/* <Stack.Screen
-        name='CustomerCurrentPickup'
-        component={CustomerCurrentPickup}
-        options={{ title: 'Upcoming Pickups' }}
-      /> */}
-      {/* <Stack.Screen
-        name='BoxRequest'
-        component={BoxRequest}
-        options={{ title: 'Request Boxes' }}
-      /> */}
-      {/* <Stack.Screen
-        name='DescribeMaterial'
-        component={DescribeMaterial}
-        options={{ title: 'Describe Materials' }}
-      /> */}
-      {/* <Stack.Screen
-        name='SchedulePickups'
-        component={SchedulePickups}
-        options={{ title: 'Set Frequency' }}
-      /> */}
-    </Stack.Navigator>
-  );
-}
+// function CustomerHomeStack() {
+//   return (
+//     <Stack.Navigator initialRouteName='CustomerHome'>
+//       <Stack.Screen
+//         name='CustomerHome'
+//         component={CustomerHome}
+//         options={{
+//           title: 'Home',
+//           headerLeft: () => null,
+//         }}
+//       />
+//       {/* <Stack.Screen
+//         name='CustomerCurrentPickup'
+//         component={CustomerCurrentPickup}
+//         options={{ title: 'Upcoming Pickups' }}
+//       /> */}
+//       {/* <Stack.Screen
+//         name='BoxRequest'
+//         component={BoxRequest}
+//         options={{ title: 'Request Boxes' }}
+//       /> */}
+//       {/* <Stack.Screen
+//         name='DescribeMaterial'
+//         component={DescribeMaterial}
+//         options={{ title: 'Describe Materials' }}
+//       /> */}
+//       {/* <Stack.Screen
+//         name='SchedulePickups'
+//         component={SchedulePickups}
+//         options={{ title: 'Set Frequency' }}
+//       /> */}
+//     </Stack.Navigator>
+//   );
+// }
 
 function DriverHomeStack() {
   return (
@@ -140,18 +141,9 @@ function DriverHomeStack() {
 function SettingsStack() {
   return (
     <Stack.Navigator initialRouteName='Settings'>
-      <Stack.Screen
-        name='Settings'
-        component={Settings}
-      />
-      <Stack.Screen
-        name='InProgress'
-        component={InProgress}
-      />
-      <Stack.Screen
-        name='EditAccount'
-        component={EditAccount}
-      />
+      <Stack.Screen name='Settings' component={Settings} />
+      <Stack.Screen name='InProgress' component={InProgress} />
+      <Stack.Screen name='EditAccount' component={EditAccount} />
       {/* <Stack.Screen
         name='DescribeMaterial'
         component={DescribeMaterial}
@@ -203,13 +195,7 @@ function RMRoutes() {
             title: 'Confirm Email',
           }}
         />
-        <Stack.Screen
-          name='Login'
-          component={Login}
-          options={{
-            title: 'Log in',
-          }}
-        />
+        <Stack.Screen name='Login' component={Login} />
         <Stack.Screen
           name='ForgotPass'
           component={ForgotPass}

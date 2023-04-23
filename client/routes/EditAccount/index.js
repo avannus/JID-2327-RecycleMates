@@ -7,7 +7,7 @@ import RMPopup from '../../components/RMPopup';
 import RMStyle from '../../RMStyle';
 import PropTypes from 'prop-types';
 
-function EditAccount() {
+function EditAccount({ navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
   const saveChanges = () => {
     // TODO: Save information to the server

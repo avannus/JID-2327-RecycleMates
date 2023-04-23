@@ -80,10 +80,14 @@ function Settings({ navigation }) {
           </Pressable>
         </View>
       </View>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
           label='Log out'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => {
+            console.log('Beginning');
+            navigation.navigate('Landing');
+            console.log('End');
+          }}
         ></Button>
       </View>
     </View>
