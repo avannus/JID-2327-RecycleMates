@@ -17,7 +17,7 @@ function Landing({ route, navigation }) {
 
   React.useEffect(() => {
     if (timer === 0) {
-      navigation.navigate('Landing');
+      navigation.push('Landing');
     }
   }, [timer]);
 
@@ -49,7 +49,7 @@ function Landing({ route, navigation }) {
       <RMButton
         label='Continue'
         onPress={() => {
-          navigation.navigate('Landing');
+          navigation.push('Landing');
         }}
       />
     </View>

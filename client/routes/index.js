@@ -30,7 +30,7 @@ const Tab = createBottomTabNavigator();
 
 function CustomerTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRoute={{ screen: 'Home' }} backBehavior>
       <Tab.Screen
         name='Home'
         component={CustomerHome}

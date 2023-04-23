@@ -46,7 +46,7 @@ function CustomerCurrentPickup({ navigation, route }) {
         description='This pickup has been cancelled successfully.'
         buttonOneText={'Return Home'}
         buttonOneFunction={() => {
-          navigation.navigate('CustomerHome');
+          navigation.push('CustomerHome');
         }}
       />
 

@@ -140,7 +140,7 @@ function CustomerHome({ navigation }) {
             </RMText>
 
             {/* <Pressable
-              onPress={() => navigation.navigate('CustomerCurrentPickup')}
+              onPress={() => navigation.push('CustomerCurrentPickup')}
             >
               <Text style={{ fontSize: 20, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'view more >'}

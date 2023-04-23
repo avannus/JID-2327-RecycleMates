@@ -21,7 +21,7 @@ function ForgotPass({ navigation }) {
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
-          navigation.navigate('Login');
+          navigation.push('Login');
         }}
       >
         <View style={styles.centeredView}>
@@ -29,7 +29,7 @@ function ForgotPass({ navigation }) {
             <View style={styles.modalHeader}>
               <Pressable
                 onPress={() => {
-                  navigation.navigate('Login');
+                  navigation.push('Login');
                 }}
               >
                 <FontAwesomeIcon icon={faXmark} size={15} />

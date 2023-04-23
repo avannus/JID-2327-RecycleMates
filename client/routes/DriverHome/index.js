@@ -34,7 +34,7 @@ function DriverHome({ navigation }) {
             </RMText>
             <Pressable
               style={styles.bannerButton}
-              onPress={() => navigation.navigate('DriverCurrentPickup')}
+              onPress={() => navigation.push('DriverCurrentPickup')}
             >
               <Text style={styles.bannerButtonLabel}>
                 {'Begin your next pickup'}
@@ -45,21 +45,21 @@ function DriverHome({ navigation }) {
         <View style={styles.buttonContainer}>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('DriverCurrentSchedule')}
+            onPress={() => navigation.push('DriverCurrentSchedule')}
           >
             <FontAwesomeIcon icon={faMapLocationDot} size={50} />
             <Text style={styles.buttonText}>{'View Current Schedule'}</Text>
           </Pressable>
           <Pressable
             style={styles.buttonStyle}
-            onPress={() => navigation.navigate('DriverCurrentPickup')}
+            onPress={() => navigation.push('DriverCurrentPickup')}
           >
             <FontAwesomeIcon icon={faRoute} size={50} />
             <Text style={styles.buttonText}>{'Begin Next Pickup'}</Text>
           </Pressable>
           <Pressable
             style={[styles.buttonStyle, { height: 110 }]}
-            onPress={() => navigation.navigate('RequestScheduleChanges')}
+            onPress={() => navigation.push('RequestScheduleChanges')}
           >
             <FontAwesomeIcon icon={faMap} size={50} />
             <Text style={styles.buttonText}>{'Request Schedule Changes'}</Text>
@@ -77,7 +77,7 @@ function DriverHome({ navigation }) {
               Current Schedule
             </RMText>
             <Pressable
-              onPress={() => navigation.navigate('DriverCurrentSchedule')}
+              onPress={() => navigation.push('DriverCurrentSchedule')}
             >
               <Text style={{ fontSize: 12, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'see more >'}

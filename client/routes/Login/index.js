@@ -45,16 +45,16 @@ function Login({ navigation }) {
             accountType: 'customer',
           };
           if (homeScreenInfo.accountType === 'customer') {
-            navigation.navigate('CustomerHome');
+            navigation.push('CustomerHome');
           } else if (homeScreenInfo.accountType === 'driver') {
-            navigation.navigate('DriverHome');
+            navigation.push('DriverHome');
           }
         }}
       />
       <Button
         label='Forgot Password?'
         onPress={() => {
-          navigation.navigate('ForgotPass');
+          navigation.push('ForgotPass');
         }}
       />
     </View>
