@@ -4,7 +4,6 @@ import {
   Pressable,
   Text,
   StyleSheet,
-  NavigationActions,
 } from 'react-native';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
@@ -90,9 +89,7 @@ function Settings({ navigation }) {
         <Button
           label='Log out'
           onPress={() => {
-            console.log('Beginning');
             navigation.push('Landing');
-            console.log('End');
           }}
         ></Button>
       </View>

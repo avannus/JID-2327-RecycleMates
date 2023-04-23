@@ -7,6 +7,9 @@ import RMText from '../../components/RMText';
 import PropTypes from 'prop-types';
 
 function Login({ navigation }) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   return (
     <View
       style={{
@@ -24,6 +27,7 @@ function Login({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='email'
         textContentType='emailAddress'
+        onChangeText={(newText) => setEmail(newText)}
       />
       <RMTextInput
         label='Password'
@@ -33,21 +37,20 @@ function Login({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='password'
         textContentType='password'
+        onChangeText={(newText) => setPassword(newText)}
       />
       <Button
         theme='primary'
         label='Login'
         onPress={() => {
-          // TODO api call
-          const homeScreenInfo = {
-            firstName: 'John',
-            city: 'Default City',
-            accountType: 'customer',
-          };
-          if (homeScreenInfo.accountType === 'customer') {
-            navigation.push('CustomerHome');
-          } else if (homeScreenInfo.accountType === 'driver') {
+          if (!password || !email) {
+            return;
+          }
+
+          if (email.startsWith('d')) {
             navigation.push('DriverHome');
+          } else {
+            navigation.push('CustomerHome');
           }
         }}
       />
