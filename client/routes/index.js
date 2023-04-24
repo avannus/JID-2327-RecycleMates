@@ -28,11 +28,12 @@ function CustomerTabs() {
   return (
     <Tab.Navigator initialRoute={{ screen: 'Home' }} backBehavior>
       <Tab.Screen
-        name='Home'
+        name='Customer Home'
         component={CustomerHome}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faHouse} />,
-          title: 'Home',
+          tabBarLabel: 'Home',
+          headerTitle: 'Customer Home',
         }}
       />
       <Tab.Screen

@@ -12,15 +12,13 @@ function ForgotPass({ navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   return (
-    <View
-      style={styles.container}
-    >
+    <View style={styles.container}>
       <Modal
         animationType='slide'
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
           navigation.push('Login');
         }}
       >
@@ -29,6 +27,7 @@ function ForgotPass({ navigation }) {
             <View style={styles.modalHeader}>
               <Pressable
                 onPress={() => {
+                  setModalVisible(false);
                   navigation.push('Login');
                 }}
               >
