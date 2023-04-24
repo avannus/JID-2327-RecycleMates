@@ -11,8 +11,6 @@ import Button from '../../components/RMButton';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faCircleQuestion,
-  faLock,
-  faHandshakeAngle,
   faCircleInfo,
 } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
@@ -27,7 +25,7 @@ function Settings({ navigation }) {
         backgroundColor: RMStyle.colors.background,
       }}
     >
-      <View style={{ flex: 1, width: '100%', backgroundColor: '#399431' }}>
+      <View style={{ flex: 1, width: '100%', backgroundColor: '#399431', marginBottom: 50, minHeight: 40 }}>
         <RMText
           style={{
             color: 'white',
@@ -48,7 +46,7 @@ function Settings({ navigation }) {
             }}
           >
             <FontAwesomeIcon icon={faCircleQuestion} size={100} />
-            <Text style={[styles.buttonText]}>{'FAQ'}</Text>
+            <Text style={[styles.buttonText]}>{'View FAQ'}</Text>
           </Pressable>
         </View>
         <View style={{ padding: 20 }}>
@@ -62,10 +60,8 @@ function Settings({ navigation }) {
             <Text style={[styles.buttonText]}>{'Edit Account Info'}</Text>
           </Pressable>
         </View>
-        <View style={{ padding: 20 }}>
-        </View>
       </View>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 20 }}>
         <Button
           label='Log out'
           onPress={() => {
@@ -86,7 +82,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     width: '80%',
-    paddingBottom: 50,
+    marginVertical: 20,
     flex: 6,
   },
   buttonStyle: {
