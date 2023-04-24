@@ -40,7 +40,7 @@ function BoxRequest({ navigation }) {
         style={{ alignItems: 'center', justifyContent: 'center', width: '95%' }}
       >
         <RMText style={{ fontSize: 20 }}>
-          Boxes will be dropped off at your next scheduled pickup.
+          Boxes will be dropped off during your next scheduled pickup.
         </RMText>
         {/* <RMText style={{ fontSize: 20 }}>
           Your next scheduled pickup is: {'\n'} {day}, {nextPickup}, {time}.
