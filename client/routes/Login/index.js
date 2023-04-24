@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 function Login({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   return (
     <View
@@ -44,10 +45,13 @@ function Login({ navigation }) {
         label='Login'
         onPress={() => {
           if (!password || !email) {
+            setErrorMessage('Email and password cannot be empty.');
             return;
           }
 
-          if (email.startsWith('d')) {
+          setErrorMessage('');
+
+          if (email.toLowerCase().startsWith('d')) {
             navigation.push('DriverHome');
           } else {
             navigation.push('CustomerHome');
@@ -60,6 +64,8 @@ function Login({ navigation }) {
           navigation.push('ForgotPass');
         }}
       />
+
+      {errorMessage && <RMText style={{ color: 'red' }}>{errorMessage}</RMText>}
     </View>
   );
 }
