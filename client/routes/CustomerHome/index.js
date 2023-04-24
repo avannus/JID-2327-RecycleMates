@@ -54,7 +54,7 @@ function CustomerHome({ navigation }) {
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
-            <RMText style={styles.bannerTitle}>Schedule a pickup</RMText>
+            <RMText style={styles.bannerTitle}>Schedule a Pickup</RMText>
             <RMText style={styles.bannerText}>
               Local drivers are available and ready to pickup your recyclable
               packages with RecycleMates!
@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 5,
+    paddingBottom: 50,
   },
 });
 
