@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function RequestScheduleChanges() {
   const createTwoButtonAlert = () =>
     Alert.alert(
-      'Request Schedule?',
+      'Request Schedule Change?',
       'You will be notified if your schedule change request is approved.',
       [
         {
