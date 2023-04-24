@@ -44,7 +44,7 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.push('InProgress');
+              navigation.push('FAQ');
             }}
           >
             <FontAwesomeIcon icon={faCircleQuestion} size={100} />

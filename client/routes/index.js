@@ -22,7 +22,7 @@ import DriverCurrentSchedule from './DriverCurrentSchedule';
 import RequestScheduleChanges from './RequestScheduleChanges';
 import Settings from './Settings';
 import EditAccount from './EditAccount';
-import InProgress from './InProgress';
+import FAQ from './Faq';
 
 const Stack = createNativeStackNavigator();
 
@@ -143,7 +143,7 @@ function SettingsStack() {
   return (
     <Stack.Navigator initialRouteName='Settings'>
       <Stack.Screen name='Settings' component={Settings} />
-      <Stack.Screen name='InProgress' component={InProgress} />
+      <Stack.Screen name='FAQ' component={FAQ} />
       <Stack.Screen name='EditAccount' component={EditAccount} />
       {/* <Stack.Screen
         name='DescribeMaterial'
@@ -234,7 +234,7 @@ function RMRoutes() {
           component={RequestScheduleChanges}
         />
         <Stack.Screen name='EditAccount' component={EditAccount} />
-        <Stack.Screen name='InProgress' component={InProgress} />
+        <Stack.Screen name='FAQ' component={FAQ} />
       </Stack.Navigator>
     </NavigationContainer>
   );
