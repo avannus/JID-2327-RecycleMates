@@ -36,6 +36,7 @@ function CustomerTabs() {
         component={CustomerHome}
         options={{
           tabBarIcon: () => <FontAwesomeIcon icon={faHouse} />,
+          title: 'Customer Home',
         }}
       />
       <Tab.Screen
@@ -115,7 +116,7 @@ function DriverHomeStack() {
         name='DriverHome'
         component={DriverHome}
         options={{
-          title: 'Home',
+          title: 'Driver Home',
           headerLeft: () => null,
         }}
       />
