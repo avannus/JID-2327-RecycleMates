@@ -46,13 +46,13 @@ function Landing({ navigation }) {
       <Button
         label='Join Us!'
         onPress={() => {
-          navigation.navigate('Account Type');
+          navigation.push('Account Type');
         }}
       />
       <Button
         label='Login'
         onPress={() => {
-          navigation.navigate('Login');
+          navigation.push('Login');
         }}
       />
     </View>

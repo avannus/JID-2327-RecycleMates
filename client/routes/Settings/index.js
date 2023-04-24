@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Pressable,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import RMStyle from '../../RMStyle';
 import RMText from '../../components/RMText';
 import Button from '../../components/RMButton';
@@ -39,7 +44,7 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.navigate('InProgress');
+              navigation.push('InProgress');
             }}
           >
             <FontAwesomeIcon icon={faCircleQuestion} size={100} />
@@ -50,7 +55,7 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.navigate('InProgress');
+              navigation.push('InProgress');
             }}
           >
             <FontAwesomeIcon icon={faHandshakeAngle} size={100} />
@@ -61,7 +66,7 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.navigate('EditAccount');
+              navigation.push('EditAccount');
             }}
           >
             <FontAwesomeIcon icon={faCircleInfo} size={100} />
@@ -72,7 +77,7 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.navigate('InProgress');
+              navigation.push('InProgress');
             }}
           >
             <FontAwesomeIcon icon={faLock} size={100} />
@@ -80,10 +85,12 @@ function Settings({ navigation }) {
           </Pressable>
         </View>
       </View>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
           label='Log out'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => {
+            navigation.push('Landing');
+          }}
         ></Button>
       </View>
     </View>

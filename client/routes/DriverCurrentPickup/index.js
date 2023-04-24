@@ -99,7 +99,7 @@ function DriverCurrentPickup({ navigation }) {
         onRequestClose={() => {
           beginNextPickup();
           setFinishPopup(false);
-          navigation.navigate('DriverHome');
+          navigation.push('DriverHome');
         }}
         xVisibility={false}
         description={
@@ -109,7 +109,7 @@ function DriverCurrentPickup({ navigation }) {
         buttonOneFunction={() => {
           beginNextPickup();
           setFinishPopup(false);
-          navigation.navigate('DriverHome');
+          navigation.push('DriverHome');
         }}
       />
 
@@ -227,7 +227,7 @@ function DriverCurrentPickup({ navigation }) {
               label='Return Home'
               onPress={() => {
                 beginNextPickup();
-                navigation.navigate('DriverHome');
+                navigation.push('DriverHome');
               }}
               width={150}
             />

@@ -79,7 +79,7 @@ function Register({ route, navigation }) {
             if (email.length === 0 || password.length === 0) {
               setErrorMessage('Emails or passwords cannot be empty.');
             } else {
-              navigation.navigate('RegisterInfo', regInfo);
+              navigation.push('RegisterInfo', regInfo);
             }
           } else {
             setErrorMessage('Emails and passwords must match.');

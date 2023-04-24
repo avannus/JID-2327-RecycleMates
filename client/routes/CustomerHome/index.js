@@ -54,7 +54,7 @@ function CustomerHome({ navigation }) {
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <View style={styles.banner}>
-            <RMText style={styles.bannerTitle}>Schedule a pickup</RMText>
+            <RMText style={styles.bannerTitle}>Schedule a Pickup</RMText>
             <RMText style={styles.bannerText}>
               Local drivers are available and ready to pickup your recyclable
               packages with RecycleMates!
@@ -140,7 +140,7 @@ function CustomerHome({ navigation }) {
             </RMText>
 
             {/* <Pressable
-              onPress={() => navigation.navigate('CustomerCurrentPickup')}
+              onPress={() => navigation.push('CustomerCurrentPickup')}
             >
               <Text style={{ fontSize: 20, color: 'rgba(50, 57, 65, 0.38)' }}>
                 {'view more >'}
@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 5,
+    paddingBottom: 50,
   },
 });
 

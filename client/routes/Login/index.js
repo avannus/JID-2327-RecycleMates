@@ -7,6 +7,10 @@ import RMText from '../../components/RMText';
 import PropTypes from 'prop-types';
 
 function Login({ navigation }) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState('');
+
   return (
     <View
       style={{
@@ -24,6 +28,7 @@ function Login({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='email'
         textContentType='emailAddress'
+        onChangeText={(newText) => setEmail(newText)}
       />
       <RMTextInput
         label='Password'
@@ -33,30 +38,34 @@ function Login({ navigation }) {
         autoCapitalize='none'
         autoCompleteType='password'
         textContentType='password'
+        onChangeText={(newText) => setPassword(newText)}
       />
       <Button
         theme='primary'
         label='Login'
         onPress={() => {
-          // TODO api call
-          const homeScreenInfo = {
-            firstName: 'John',
-            city: 'Default City',
-            accountType: 'customer',
-          };
-          if (homeScreenInfo.accountType === 'customer') {
-            navigation.navigate('CustomerHome', homeScreenInfo);
-          } else if (homeScreenInfo.accountType === 'driver') {
-            navigation.navigate('DriverHome', homeScreenInfo);
+          if (!password || !email) {
+            setErrorMessage('Email and password cannot be empty.');
+            return;
+          }
+
+          setErrorMessage('');
+
+          if (email.toLowerCase().startsWith('d')) {
+            navigation.push('DriverHome');
+          } else {
+            navigation.push('CustomerHome');
           }
         }}
       />
       <Button
         label='Forgot Password?'
         onPress={() => {
-          navigation.navigate('ForgotPass');
+          navigation.push('ForgotPass');
         }}
       />
+
+      {errorMessage && <RMText style={{ color: 'red' }}>{errorMessage}</RMText>}
     </View>
   );
 }

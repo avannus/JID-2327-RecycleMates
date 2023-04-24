@@ -84,22 +84,22 @@ function Register({ route, navigation }) {
             zip,
             accountType: route.params.accountType,
           };
-          fetch(`${SERVER}user/create`, {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify(regInfo),
-          }).then((response) => {
-            // TODO update API to send back just needed info for confirm email screen, update navigation call
-            console.log(JSON.stringify(response));
-            navigation.navigate('ConfirmEmail', regInfo);
-          }).catch((error) => {
-            console.log('Error creating account: ');
-            console.log(error);
-          });
+          // fetch(`${SERVER}user/create`, {
+          //   method: 'POST',
+          //   headers: {
+          //     Accept: 'application/json',
+          //     'Content-Type': 'application/json',
+          //     'Access-Control-Allow-Origin': '*',
+          //   },
+          //   body: JSON.stringify(regInfo),
+          // }).then((response) => {
+          //   // TODO update API to send back just needed info for confirm email screen, update navigation call
+          //   console.log(JSON.stringify(response));
+          navigation.push('ConfirmEmail', regInfo);
+          // }).catch((error) => {
+          //   console.log('Error creating account: ');
+          //   console.log(error);
+          // });
         }}
       />
     </View>

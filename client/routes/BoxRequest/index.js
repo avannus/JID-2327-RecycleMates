@@ -32,7 +32,7 @@ function BoxRequest({ navigation }) {
         visible={popupVisible}
         onRequestClose={() => {
           setPopupVisible(false);
-          navigation.navigate('CustomerHome');
+          navigation.push('CustomerHome');
         }}
         description={'Changes saved!'}
       />
