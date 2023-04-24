@@ -32,7 +32,7 @@ function Landing({ route, navigation }) {
     >
       <RMText
         style={{
-          fontSize: 36,
+          fontSize: 24,
           padding: 0,
           textAlign: 'center',
         }}
