@@ -55,17 +55,6 @@ function Settings({ navigation }) {
           <Pressable
             style={styles.buttonStyle}
             onPress={() => {
-              navigation.push('InProgress');
-            }}
-          >
-            <FontAwesomeIcon icon={faHandshakeAngle} size={100} />
-            <Text style={[styles.buttonText]}>{'Request Help'}</Text>
-          </Pressable>
-        </View>
-        <View style={{ padding: 20 }}>
-          <Pressable
-            style={styles.buttonStyle}
-            onPress={() => {
               navigation.push('EditAccount');
             }}
           >
@@ -74,15 +63,6 @@ function Settings({ navigation }) {
           </Pressable>
         </View>
         <View style={{ padding: 20 }}>
-          <Pressable
-            style={styles.buttonStyle}
-            onPress={() => {
-              navigation.push('InProgress');
-            }}
-          >
-            <FontAwesomeIcon icon={faLock} size={100} />
-            <Text style={[styles.buttonText]}>{'Change Password'}</Text>
-          </Pressable>
         </View>
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
