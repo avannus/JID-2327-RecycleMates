@@ -32,6 +32,38 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 ## Release Notes
 
+### Version 1.0.0
+
+#### New Features
+
+* Create UI pages with ReactNative and Expo
+  * User Settings
+  * FAQ
+* Include functionality for a customer cancelling a pickup and having it update on their home screen accordingly
+* Add confirmation button to Box Request page
+* Include map for driver in current pickups
+  * Use Google Maps SDK
+  * Include search for addresses using Google Places API
+* Include status change for driver when they cancel a pickup
+* Include thank you message for drivers when they complete all their pickups for a day
+* Update driver schedule accordingly when they complete a pickup/complete all their pickups
+
+#### Bug Fixes
+
+* Fix crashes related to text on Android
+* Fix render error when trying to register with empty text fields
+* Driver can no longer revert pickup status
+* Customer can no longer confirm an unselected pickup frequency
+* User can log out successfully and is redirected to the Landing page
+* Popup on Forgot Password page disappears after pressing close
+
+#### Known Bugs
+
+* User can log in without successful credentials
+* Driver schedule may not update accordingly if driver uses the back button after marking a pickup as complete
+
+---
+
 ### Version 0.4.0
 
 #### New Features
