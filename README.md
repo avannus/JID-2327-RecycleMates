@@ -30,6 +30,43 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 [License under GPLv3](LICENSE)
 
+## Install Guide
+
+### Prerequisites
+
+To run the app, you can install the runtime requirements listed above. We highly recommend installing Homebrew for MacOS, and the links provided assume that you use brew. Once you have Homebrew installed, you can use it to install Node.js and MongoDB 6.
+
+If you want to check if you have Node.js installed, open your terminal and run the command: `node -v`
+
+If you get an error message, download Node.js from the official website at https://nodejs.org/en.
+
+You will also need to download the Expo Go app to view the app. Alternatively, you can view the app using Xcode.
+
+### Running the App
+
+1. Clone the repository to your computer by opening the terminal and entering:
+  
+  `git clone https://github.com/avannus/JID-2327-RecycleMates.git`
+
+  `cd JID-2327-RecycleMates`
+
+2. Install dependencies by running the following command in your terminal:
+  
+  `cd client`
+
+  `npm i` or `npm install`
+
+3. Run the app using Expo. In your terminal, run:
+
+  `npm start`
+
+  This will start the app and open a browser window with a QR code. You can then:
+
+  - Scan the QR code with a phone on the same network and the Expo app will launch the app
+  - Use the left and right arrow keys in the terminal window to select an emulator or device to launch the app on.
+
+  That's it! The app should now be up and running.
+
 ## Release Notes
 
 ### Version 1.0.0
