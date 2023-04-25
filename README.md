@@ -34,7 +34,9 @@ Highly recommend installing [Homebrew](https://brew.sh/) for MacOS. The links be
 
 ### Prerequisites
 
-Before you begin, you must have Node.js installed on your computer. To check if you have Node.js installed, open your terminal and run the command: `node -v`
+To run the app, you can install the runtime requirements listed above. We highly recommend installing Homebrew for MacOS, and the links provided assume that you use brew. Once you have Homebrew installed, you can use it to install Node.js and MongoDB 6.
+
+If you want to check if you have Node.js installed, open your terminal and run the command: `node -v`
 
 If you get an error message, download Node.js from the official website at https://nodejs.org/en.
 
